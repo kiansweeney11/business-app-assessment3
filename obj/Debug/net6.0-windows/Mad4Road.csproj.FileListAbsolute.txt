@@ -1,0 +1,17 @@
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\bin\Debug\net6.0-windows\Mad4Road.exe
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\bin\Debug\net6.0-windows\Mad4Road.deps.json
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\bin\Debug\net6.0-windows\Mad4Road.runtimeconfig.json
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\bin\Debug\net6.0-windows\Mad4Road.dll
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\bin\Debug\net6.0-windows\Mad4Road.pdb
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.Mad4RoadForm.resources
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.csproj.GenerateResource.cache
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.AssemblyInfo.cs
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.dll
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\refint\Mad4Road.dll
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.pdb
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.genruntimeconfig.cache
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\ref\Mad4Road.dll
