@@ -33,6 +33,17 @@ namespace Mad4Road
         const int MONTHSEVENYEARS = 84;
         // max attempts for password
         const int MAXATTEMPTS = 3;
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.TextBoxLoan.Clear();
+            this.DisplayGroupBox.Visible = false;
+            this.OneYearRadioButton.Checked = true;
+            this.ThreeYearRadioButton.Checked = false;
+            this.FiveYearsRadioButton.Checked = false;
+            this.SevenYearsRadioButton.Checked = false;
+        }
+
         // changeable variables
         int PasswordAttempts = 1;
 
@@ -84,28 +95,28 @@ namespace Mad4Road
                     if (OneYearRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_1YEAR_UNDER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHYEAR;
+                        MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_UNDER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_3YEAR_UNDER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_UNDER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_5YEAR_UNDER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_UNDER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_7YEAR_UNDER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_UNDER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
@@ -116,28 +127,28 @@ namespace Mad4Road
                     if (OneYearRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_1YEAR_OVER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHYEAR;
+                        MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_OVER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_3YEAR_OVER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_OVER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_5YEAR_OVER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_OVER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_7YEAR_OVER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_OVER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
@@ -148,28 +159,28 @@ namespace Mad4Road
                     if (OneYearRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_1YEAR_OVER80 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHYEAR;
+                        MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_OVER80;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_3YEAR_OVER80 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_OVER80;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_5YEAR_OVER80 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_OVER80;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
                         TotalInterestPaid = LoanPreTotal * (APR_7YEAR_OVER80 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS;
+                        MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_OVER80;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }

@@ -216,6 +216,7 @@
             this.ClearButton.TabIndex = 3;
             this.ClearButton.Text = "&Clear";
             this.ClearButton.UseVisualStyleBackColor = false;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // SubmitButton
             // 
