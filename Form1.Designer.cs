@@ -34,24 +34,36 @@
             this.WarningPasswordMessage = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.PasswordLabelMessage = new System.Windows.Forms.Label();
-            this.Below40GroupBox = new System.Windows.Forms.GroupBox();
-            this.InterestBelow40Label = new System.Windows.Forms.Label();
-            this.TermBelow40Label = new System.Windows.Forms.Label();
-            this.ListBoxBelow40 = new System.Windows.Forms.ListBox();
+            this.GroupBoxLength = new System.Windows.Forms.GroupBox();
+            this.SevenYearsRadioButton = new System.Windows.Forms.RadioButton();
+            this.FiveYearsRadioButton = new System.Windows.Forms.RadioButton();
+            this.ThreeYearRadioButton = new System.Windows.Forms.RadioButton();
+            this.OneYearRadioButton = new System.Windows.Forms.RadioButton();
             this.ButtonPanel = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ExitButton = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.SubmitButton = new System.Windows.Forms.Button();
             this.ProceedButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.GroupBoxLess80 = new System.Windows.Forms.GroupBox();
-            this.InterestLabel80Below = new System.Windows.Forms.Label();
-            this.TermLabel80Below = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.DisplayButton = new System.Windows.Forms.Button();
+            this.PricePictureBox = new System.Windows.Forms.PictureBox();
+            this.LoanAmountGroupBox = new System.Windows.Forms.GroupBox();
+            this.TextBoxLoan = new System.Windows.Forms.TextBox();
+            this.AmountLabel = new System.Windows.Forms.Label();
+            this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
+            this.TotalLoanCostTextBox = new System.Windows.Forms.TextBox();
+            this.TotalInterestTextBox = new System.Windows.Forms.TextBox();
+            this.MonthlyRepaymentTextBox = new System.Windows.Forms.TextBox();
+            this.InterestRateTextBox = new System.Windows.Forms.TextBox();
+            this.TotalLoanCostDisplay = new System.Windows.Forms.Label();
+            this.TotalInterestPaidDisplay = new System.Windows.Forms.Label();
+            this.MonthlyRepaymentLabel = new System.Windows.Forms.Label();
+            this.InterestLabelDisplay = new System.Windows.Forms.Label();
             this.StartMenuPanel.SuspendLayout();
-            this.Below40GroupBox.SuspendLayout();
+            this.GroupBoxLength.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
-            this.GroupBoxLess80.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PricePictureBox)).BeginInit();
+            this.LoanAmountGroupBox.SuspendLayout();
+            this.DisplayGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // StartMenuPanel
@@ -77,7 +89,7 @@
             this.PasswordAttemptSubmitButton.TabIndex = 3;
             this.PasswordAttemptSubmitButton.Text = "&Submit";
             this.PasswordAttemptSubmitButton.UseVisualStyleBackColor = false;
-            this.PasswordAttemptSubmitButton.Click += new System.EventHandler(this.PasswordAttemptsubmitButton_Click);
+            this.PasswordAttemptSubmitButton.Click += new System.EventHandler(this.PasswordAttemptSubmitButton_Click);
             // 
             // WarningPasswordMessage
             // 
@@ -108,103 +120,114 @@
             this.PasswordLabelMessage.TabIndex = 0;
             this.PasswordLabelMessage.Text = "Please Enter System Password:";
             // 
-            // Below40GroupBox
+            // GroupBoxLength
             // 
-            this.Below40GroupBox.BackColor = System.Drawing.SystemColors.Window;
-            this.Below40GroupBox.Controls.Add(this.InterestBelow40Label);
-            this.Below40GroupBox.Controls.Add(this.TermBelow40Label);
-            this.Below40GroupBox.Controls.Add(this.ListBoxBelow40);
-            this.Below40GroupBox.Enabled = false;
-            this.Below40GroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Below40GroupBox.Location = new System.Drawing.Point(12, 12);
-            this.Below40GroupBox.Name = "Below40GroupBox";
-            this.Below40GroupBox.Size = new System.Drawing.Size(486, 224);
-            this.Below40GroupBox.TabIndex = 1;
-            this.Below40GroupBox.TabStop = false;
-            this.Below40GroupBox.Text = "Interest Rates Cars Below €40,000";
-            this.Below40GroupBox.Visible = false;
+            this.GroupBoxLength.BackColor = System.Drawing.SystemColors.Window;
+            this.GroupBoxLength.Controls.Add(this.SevenYearsRadioButton);
+            this.GroupBoxLength.Controls.Add(this.FiveYearsRadioButton);
+            this.GroupBoxLength.Controls.Add(this.ThreeYearRadioButton);
+            this.GroupBoxLength.Controls.Add(this.OneYearRadioButton);
+            this.GroupBoxLength.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.GroupBoxLength.Location = new System.Drawing.Point(403, 231);
+            this.GroupBoxLength.Name = "GroupBoxLength";
+            this.GroupBoxLength.Size = new System.Drawing.Size(445, 265);
+            this.GroupBoxLength.TabIndex = 4;
+            this.GroupBoxLength.TabStop = false;
+            this.GroupBoxLength.Text = "Requested Loan Length";
+            this.GroupBoxLength.Visible = false;
             // 
-            // InterestBelow40Label
+            // SevenYearsRadioButton
             // 
-            this.InterestBelow40Label.AutoSize = true;
-            this.InterestBelow40Label.Location = new System.Drawing.Point(206, 59);
-            this.InterestBelow40Label.Name = "InterestBelow40Label";
-            this.InterestBelow40Label.Size = new System.Drawing.Size(193, 28);
-            this.InterestBelow40Label.TabIndex = 2;
-            this.InterestBelow40Label.Text = "Interest Rate - APR";
+            this.SevenYearsRadioButton.AutoSize = true;
+            this.SevenYearsRadioButton.Location = new System.Drawing.Point(90, 215);
+            this.SevenYearsRadioButton.Name = "SevenYearsRadioButton";
+            this.SevenYearsRadioButton.Size = new System.Drawing.Size(104, 32);
+            this.SevenYearsRadioButton.TabIndex = 3;
+            this.SevenYearsRadioButton.Text = "7 Years";
+            this.SevenYearsRadioButton.UseVisualStyleBackColor = true;
             // 
-            // TermBelow40Label
+            // FiveYearsRadioButton
             // 
-            this.TermBelow40Label.AutoSize = true;
-            this.TermBelow40Label.Location = new System.Drawing.Point(15, 59);
-            this.TermBelow40Label.Name = "TermBelow40Label";
-            this.TermBelow40Label.Size = new System.Drawing.Size(59, 28);
-            this.TermBelow40Label.TabIndex = 1;
-            this.TermBelow40Label.Text = "Term";
+            this.FiveYearsRadioButton.AutoSize = true;
+            this.FiveYearsRadioButton.Location = new System.Drawing.Point(90, 160);
+            this.FiveYearsRadioButton.Name = "FiveYearsRadioButton";
+            this.FiveYearsRadioButton.Size = new System.Drawing.Size(104, 32);
+            this.FiveYearsRadioButton.TabIndex = 2;
+            this.FiveYearsRadioButton.Text = "5 Years";
+            this.FiveYearsRadioButton.UseVisualStyleBackColor = true;
             // 
-            // ListBoxBelow40
+            // ThreeYearRadioButton
             // 
-            this.ListBoxBelow40.FormattingEnabled = true;
-            this.ListBoxBelow40.ItemHeight = 28;
-            this.ListBoxBelow40.Items.AddRange(new object[] {
-            "1 Year\t\t6.00%",
-            "3 Years\t\t6.50%",
-            "5 Years\t\t7.00%",
-            "7 Years\t\t7.50%"});
-            this.ListBoxBelow40.Location = new System.Drawing.Point(15, 90);
-            this.ListBoxBelow40.Name = "ListBoxBelow40";
-            this.ListBoxBelow40.Size = new System.Drawing.Size(450, 116);
-            this.ListBoxBelow40.TabIndex = 0;
+            this.ThreeYearRadioButton.AutoSize = true;
+            this.ThreeYearRadioButton.Location = new System.Drawing.Point(90, 105);
+            this.ThreeYearRadioButton.Name = "ThreeYearRadioButton";
+            this.ThreeYearRadioButton.Size = new System.Drawing.Size(104, 32);
+            this.ThreeYearRadioButton.TabIndex = 1;
+            this.ThreeYearRadioButton.Text = "3 Years";
+            this.ThreeYearRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OneYearRadioButton
+            // 
+            this.OneYearRadioButton.AutoSize = true;
+            this.OneYearRadioButton.Checked = true;
+            this.OneYearRadioButton.Location = new System.Drawing.Point(90, 50);
+            this.OneYearRadioButton.Name = "OneYearRadioButton";
+            this.OneYearRadioButton.Size = new System.Drawing.Size(95, 32);
+            this.OneYearRadioButton.TabIndex = 0;
+            this.OneYearRadioButton.TabStop = true;
+            this.OneYearRadioButton.Text = "1 Year";
+            this.OneYearRadioButton.UseVisualStyleBackColor = true;
             // 
             // ButtonPanel
             // 
             this.ButtonPanel.BackColor = System.Drawing.SystemColors.Window;
-            this.ButtonPanel.Controls.Add(this.button4);
-            this.ButtonPanel.Controls.Add(this.button3);
-            this.ButtonPanel.Controls.Add(this.button2);
+            this.ButtonPanel.Controls.Add(this.ExitButton);
+            this.ButtonPanel.Controls.Add(this.ClearButton);
+            this.ButtonPanel.Controls.Add(this.SubmitButton);
             this.ButtonPanel.Controls.Add(this.ProceedButton);
-            this.ButtonPanel.Controls.Add(this.button1);
-            this.ButtonPanel.Location = new System.Drawing.Point(866, 255);
+            this.ButtonPanel.Controls.Add(this.DisplayButton);
+            this.ButtonPanel.Location = new System.Drawing.Point(867, 28);
             this.ButtonPanel.Name = "ButtonPanel";
             this.ButtonPanel.Size = new System.Drawing.Size(268, 374);
             this.ButtonPanel.TabIndex = 2;
             this.ButtonPanel.Visible = false;
             // 
-            // button4
+            // ExitButton
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button4.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button4.Location = new System.Drawing.Point(78, 308);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(112, 34);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "&Exit";
-            this.button4.UseVisualStyleBackColor = false;
+            this.ExitButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.ExitButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ExitButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ExitButton.Location = new System.Drawing.Point(78, 308);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(112, 34);
+            this.ExitButton.TabIndex = 4;
+            this.ExitButton.Text = "&Exit";
+            this.ExitButton.UseVisualStyleBackColor = false;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
-            // button3
+            // ClearButton
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button3.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button3.Location = new System.Drawing.Point(78, 240);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 34);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "&Clear";
-            this.button3.UseVisualStyleBackColor = false;
+            this.ClearButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.ClearButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ClearButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ClearButton.Location = new System.Drawing.Point(78, 240);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(112, 34);
+            this.ClearButton.TabIndex = 3;
+            this.ClearButton.Text = "&Clear";
+            this.ClearButton.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // SubmitButton
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button2.Location = new System.Drawing.Point(78, 172);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 34);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Submit";
-            this.button2.UseVisualStyleBackColor = false;
+            this.SubmitButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.SubmitButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SubmitButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.SubmitButton.Location = new System.Drawing.Point(78, 172);
+            this.SubmitButton.Name = "SubmitButton";
+            this.SubmitButton.Size = new System.Drawing.Size(112, 34);
+            this.SubmitButton.TabIndex = 2;
+            this.SubmitButton.Text = "Submit";
+            this.SubmitButton.UseVisualStyleBackColor = false;
             // 
             // ProceedButton
             // 
@@ -218,85 +241,173 @@
             this.ProceedButton.Text = "&Proceed";
             this.ProceedButton.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // DisplayButton
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(78, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 34);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "&Display";
-            this.button1.UseVisualStyleBackColor = false;
+            this.DisplayButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.DisplayButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DisplayButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.DisplayButton.Location = new System.Drawing.Point(78, 36);
+            this.DisplayButton.Name = "DisplayButton";
+            this.DisplayButton.Size = new System.Drawing.Size(112, 34);
+            this.DisplayButton.TabIndex = 0;
+            this.DisplayButton.Text = "&Display";
+            this.DisplayButton.UseVisualStyleBackColor = false;
+            this.DisplayButton.Click += new System.EventHandler(this.DisplayButton_Click);
             // 
-            // GroupBoxLess80
+            // PricePictureBox
             // 
-            this.GroupBoxLess80.BackColor = System.Drawing.SystemColors.Window;
-            this.GroupBoxLess80.Controls.Add(this.InterestLabel80Below);
-            this.GroupBoxLess80.Controls.Add(this.TermLabel80Below);
-            this.GroupBoxLess80.Controls.Add(this.listBox1);
-            this.GroupBoxLess80.Enabled = false;
-            this.GroupBoxLess80.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GroupBoxLess80.Location = new System.Drawing.Point(12, 231);
-            this.GroupBoxLess80.Name = "GroupBoxLess80";
-            this.GroupBoxLess80.Size = new System.Drawing.Size(486, 230);
-            this.GroupBoxLess80.TabIndex = 3;
-            this.GroupBoxLess80.TabStop = false;
-            this.GroupBoxLess80.Text = "Interest Rates Cars Between €40,000 and €80,000";
-            this.GroupBoxLess80.Visible = false;
+            this.PricePictureBox.BackColor = System.Drawing.SystemColors.Window;
+            this.PricePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("PricePictureBox.Image")));
+            this.PricePictureBox.Location = new System.Drawing.Point(26, 28);
+            this.PricePictureBox.Name = "PricePictureBox";
+            this.PricePictureBox.Size = new System.Drawing.Size(357, 730);
+            this.PricePictureBox.TabIndex = 3;
+            this.PricePictureBox.TabStop = false;
+            this.PricePictureBox.Visible = false;
             // 
-            // InterestLabel80Below
+            // LoanAmountGroupBox
             // 
-            this.InterestLabel80Below.AutoSize = true;
-            this.InterestLabel80Below.Location = new System.Drawing.Point(206, 68);
-            this.InterestLabel80Below.Name = "InterestLabel80Below";
-            this.InterestLabel80Below.Size = new System.Drawing.Size(193, 28);
-            this.InterestLabel80Below.TabIndex = 2;
-            this.InterestLabel80Below.Text = "Interest Rate - APR";
+            this.LoanAmountGroupBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoanAmountGroupBox.Controls.Add(this.TextBoxLoan);
+            this.LoanAmountGroupBox.Controls.Add(this.AmountLabel);
+            this.LoanAmountGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LoanAmountGroupBox.Location = new System.Drawing.Point(403, 28);
+            this.LoanAmountGroupBox.Name = "LoanAmountGroupBox";
+            this.LoanAmountGroupBox.Size = new System.Drawing.Size(445, 150);
+            this.LoanAmountGroupBox.TabIndex = 4;
+            this.LoanAmountGroupBox.TabStop = false;
+            this.LoanAmountGroupBox.Text = "Requested Loan Amount";
+            this.LoanAmountGroupBox.Visible = false;
             // 
-            // TermLabel80Below
+            // TextBoxLoan
             // 
-            this.TermLabel80Below.AutoSize = true;
-            this.TermLabel80Below.Location = new System.Drawing.Point(15, 68);
-            this.TermLabel80Below.Name = "TermLabel80Below";
-            this.TermLabel80Below.Size = new System.Drawing.Size(59, 28);
-            this.TermLabel80Below.TabIndex = 1;
-            this.TermLabel80Below.Text = "Term";
+            this.TextBoxLoan.Location = new System.Drawing.Point(241, 71);
+            this.TextBoxLoan.Name = "TextBoxLoan";
+            this.TextBoxLoan.Size = new System.Drawing.Size(169, 34);
+            this.TextBoxLoan.TabIndex = 1;
+            this.TextBoxLoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // listBox1
+            // AmountLabel
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 28;
-            this.listBox1.Items.AddRange(new object[] {
-            "1 Year\t\t8.00%",
-            "3 Years\t\t8.50%",
-            "5 Years\t\t9.00%",
-            "7 Years\t\t9.50%"});
-            this.listBox1.Location = new System.Drawing.Point(15, 99);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(450, 116);
-            this.listBox1.TabIndex = 0;
+            this.AmountLabel.AutoSize = true;
+            this.AmountLabel.Location = new System.Drawing.Point(6, 74);
+            this.AmountLabel.Name = "AmountLabel";
+            this.AmountLabel.Size = new System.Drawing.Size(220, 28);
+            this.AmountLabel.TabIndex = 0;
+            this.AmountLabel.Text = "Loan Total Requested:";
+            // 
+            // DisplayGroupBox
+            // 
+            this.DisplayGroupBox.BackColor = System.Drawing.SystemColors.Window;
+            this.DisplayGroupBox.Controls.Add(this.TotalLoanCostTextBox);
+            this.DisplayGroupBox.Controls.Add(this.TotalInterestTextBox);
+            this.DisplayGroupBox.Controls.Add(this.MonthlyRepaymentTextBox);
+            this.DisplayGroupBox.Controls.Add(this.InterestRateTextBox);
+            this.DisplayGroupBox.Controls.Add(this.TotalLoanCostDisplay);
+            this.DisplayGroupBox.Controls.Add(this.TotalInterestPaidDisplay);
+            this.DisplayGroupBox.Controls.Add(this.MonthlyRepaymentLabel);
+            this.DisplayGroupBox.Controls.Add(this.InterestLabelDisplay);
+            this.DisplayGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DisplayGroupBox.Location = new System.Drawing.Point(524, 502);
+            this.DisplayGroupBox.Name = "DisplayGroupBox";
+            this.DisplayGroupBox.Size = new System.Drawing.Size(515, 256);
+            this.DisplayGroupBox.TabIndex = 5;
+            this.DisplayGroupBox.TabStop = false;
+            this.DisplayGroupBox.Text = "Car Loan Details";
+            this.DisplayGroupBox.Visible = false;
+            // 
+            // TotalLoanCostTextBox
+            // 
+            this.TotalLoanCostTextBox.Location = new System.Drawing.Point(291, 192);
+            this.TotalLoanCostTextBox.Name = "TotalLoanCostTextBox";
+            this.TotalLoanCostTextBox.Size = new System.Drawing.Size(187, 34);
+            this.TotalLoanCostTextBox.TabIndex = 7;
+            this.TotalLoanCostTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalInterestTextBox
+            // 
+            this.TotalInterestTextBox.Location = new System.Drawing.Point(291, 143);
+            this.TotalInterestTextBox.Name = "TotalInterestTextBox";
+            this.TotalInterestTextBox.Size = new System.Drawing.Size(187, 34);
+            this.TotalInterestTextBox.TabIndex = 6;
+            this.TotalInterestTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // MonthlyRepaymentTextBox
+            // 
+            this.MonthlyRepaymentTextBox.Location = new System.Drawing.Point(291, 94);
+            this.MonthlyRepaymentTextBox.Name = "MonthlyRepaymentTextBox";
+            this.MonthlyRepaymentTextBox.Size = new System.Drawing.Size(187, 34);
+            this.MonthlyRepaymentTextBox.TabIndex = 5;
+            this.MonthlyRepaymentTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // InterestRateTextBox
+            // 
+            this.InterestRateTextBox.Location = new System.Drawing.Point(291, 45);
+            this.InterestRateTextBox.Name = "InterestRateTextBox";
+            this.InterestRateTextBox.Size = new System.Drawing.Size(187, 34);
+            this.InterestRateTextBox.TabIndex = 4;
+            this.InterestRateTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalLoanCostDisplay
+            // 
+            this.TotalLoanCostDisplay.AutoSize = true;
+            this.TotalLoanCostDisplay.Location = new System.Drawing.Point(35, 195);
+            this.TotalLoanCostDisplay.Name = "TotalLoanCostDisplay";
+            this.TotalLoanCostDisplay.Size = new System.Drawing.Size(162, 28);
+            this.TotalLoanCostDisplay.TabIndex = 3;
+            this.TotalLoanCostDisplay.Text = "Total Loan Cost:";
+            // 
+            // TotalInterestPaidDisplay
+            // 
+            this.TotalInterestPaidDisplay.AutoSize = true;
+            this.TotalInterestPaidDisplay.Location = new System.Drawing.Point(35, 145);
+            this.TotalInterestPaidDisplay.Name = "TotalInterestPaidDisplay";
+            this.TotalInterestPaidDisplay.Size = new System.Drawing.Size(190, 28);
+            this.TotalInterestPaidDisplay.TabIndex = 2;
+            this.TotalInterestPaidDisplay.Text = "Total Interest Paid:";
+            // 
+            // MonthlyRepaymentLabel
+            // 
+            this.MonthlyRepaymentLabel.AutoSize = true;
+            this.MonthlyRepaymentLabel.Location = new System.Drawing.Point(35, 95);
+            this.MonthlyRepaymentLabel.Name = "MonthlyRepaymentLabel";
+            this.MonthlyRepaymentLabel.Size = new System.Drawing.Size(210, 28);
+            this.MonthlyRepaymentLabel.TabIndex = 1;
+            this.MonthlyRepaymentLabel.Text = "Monthly Repayment:";
+            // 
+            // InterestLabelDisplay
+            // 
+            this.InterestLabelDisplay.AutoSize = true;
+            this.InterestLabelDisplay.Location = new System.Drawing.Point(33, 45);
+            this.InterestLabelDisplay.Name = "InterestLabelDisplay";
+            this.InterestLabelDisplay.Size = new System.Drawing.Size(218, 28);
+            this.InterestLabelDisplay.TabIndex = 0;
+            this.InterestLabelDisplay.Text = "Interest Rate Applied:";
             // 
             // Mad4RoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1166, 725);
-            this.Controls.Add(this.GroupBoxLess80);
+            this.ClientSize = new System.Drawing.Size(1166, 786);
+            this.Controls.Add(this.DisplayGroupBox);
+            this.Controls.Add(this.LoanAmountGroupBox);
+            this.Controls.Add(this.GroupBoxLength);
+            this.Controls.Add(this.PricePictureBox);
             this.Controls.Add(this.ButtonPanel);
-            this.Controls.Add(this.Below40GroupBox);
             this.Controls.Add(this.StartMenuPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Mad4RoadForm";
             this.Text = "Mad4Road Ltd.";
             this.StartMenuPanel.ResumeLayout(false);
             this.StartMenuPanel.PerformLayout();
-            this.Below40GroupBox.ResumeLayout(false);
-            this.Below40GroupBox.PerformLayout();
+            this.GroupBoxLength.ResumeLayout(false);
+            this.GroupBoxLength.PerformLayout();
             this.ButtonPanel.ResumeLayout(false);
-            this.GroupBoxLess80.ResumeLayout(false);
-            this.GroupBoxLess80.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PricePictureBox)).EndInit();
+            this.LoanAmountGroupBox.ResumeLayout(false);
+            this.LoanAmountGroupBox.PerformLayout();
+            this.DisplayGroupBox.ResumeLayout(false);
+            this.DisplayGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -308,19 +419,29 @@
         private Label PasswordLabelMessage;
         private Label WarningPasswordMessage;
         private Button PasswordAttemptSubmitButton;
-        private GroupBox Below40GroupBox;
         private Panel ButtonPanel;
-        private Button button1;
+        private Button DisplayButton;
         private Button ProceedButton;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Label InterestBelow40Label;
-        private Label TermBelow40Label;
-        private ListBox ListBoxBelow40;
-        private GroupBox GroupBoxLess80;
-        private ListBox listBox1;
-        private Label InterestLabel80Below;
-        private Label TermLabel80Below;
+        private Button SubmitButton;
+        private Button ClearButton;
+        private Button ExitButton;
+        private PictureBox PricePictureBox;
+        private GroupBox GroupBoxLength;
+        private RadioButton SevenYearsRadioButton;
+        private RadioButton FiveYearsRadioButton;
+        private RadioButton ThreeYearRadioButton;
+        private RadioButton OneYearRadioButton;
+        private GroupBox LoanAmountGroupBox;
+        private Label AmountLabel;
+        private TextBox TextBoxLoan;
+        private GroupBox DisplayGroupBox;
+        private Label InterestLabelDisplay;
+        private Label MonthlyRepaymentLabel;
+        private Label TotalInterestPaidDisplay;
+        private TextBox TotalLoanCostTextBox;
+        private TextBox TotalInterestTextBox;
+        private TextBox MonthlyRepaymentTextBox;
+        private TextBox InterestRateTextBox;
+        private Label TotalLoanCostDisplay;
     }
 }

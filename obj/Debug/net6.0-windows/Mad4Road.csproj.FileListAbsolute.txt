@@ -15,3 +15,4 @@ C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\ref
 C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.pdb
 C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.genruntimeconfig.cache
 C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\ref\Mad4Road.dll
+C:\Users\user\Desktop\Masters\Ms806-BusApp\Mad4Road\obj\Debug\net6.0-windows\Mad4Road.Properties.Resources.resources
