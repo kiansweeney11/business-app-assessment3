@@ -40,11 +40,12 @@
             this.ThreeYearRadioButton = new System.Windows.Forms.RadioButton();
             this.OneYearRadioButton = new System.Windows.Forms.RadioButton();
             this.ButtonPanel = new System.Windows.Forms.Panel();
+            this.SummaryButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
-            this.SubmitButton = new System.Windows.Forms.Button();
             this.ProceedButton = new System.Windows.Forms.Button();
             this.DisplayButton = new System.Windows.Forms.Button();
+            this.SubmitButton = new System.Windows.Forms.Button();
             this.PricePictureBox = new System.Windows.Forms.PictureBox();
             this.LoanAmountGroupBox = new System.Windows.Forms.GroupBox();
             this.TextBoxLoan = new System.Windows.Forms.TextBox();
@@ -58,12 +59,24 @@
             this.TotalInterestPaidDisplay = new System.Windows.Forms.Label();
             this.MonthlyRepaymentLabel = new System.Windows.Forms.Label();
             this.InterestLabelDisplay = new System.Windows.Forms.Label();
+            this.ProceedGroupBox = new System.Windows.Forms.GroupBox();
+            this.IDTextBox = new System.Windows.Forms.TextBox();
+            this.EmailTextBox = new System.Windows.Forms.TextBox();
+            this.TelephoneTextBox = new System.Windows.Forms.TextBox();
+            this.PostcodeTextBox = new System.Windows.Forms.TextBox();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.IDLabel = new System.Windows.Forms.Label();
+            this.EmailLabel = new System.Windows.Forms.Label();
+            this.TelephoneLabel = new System.Windows.Forms.Label();
+            this.PostcodeLabel = new System.Windows.Forms.Label();
+            this.NameLabel = new System.Windows.Forms.Label();
             this.StartMenuPanel.SuspendLayout();
             this.GroupBoxLength.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PricePictureBox)).BeginInit();
             this.LoanAmountGroupBox.SuspendLayout();
             this.DisplayGroupBox.SuspendLayout();
+            this.ProceedGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // StartMenuPanel
@@ -130,7 +143,7 @@
             this.GroupBoxLength.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.GroupBoxLength.Location = new System.Drawing.Point(403, 231);
             this.GroupBoxLength.Name = "GroupBoxLength";
-            this.GroupBoxLength.Size = new System.Drawing.Size(445, 265);
+            this.GroupBoxLength.Size = new System.Drawing.Size(265, 527);
             this.GroupBoxLength.TabIndex = 4;
             this.GroupBoxLength.TabStop = false;
             this.GroupBoxLength.Text = "Requested Loan Length";
@@ -181,16 +194,28 @@
             // ButtonPanel
             // 
             this.ButtonPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.ButtonPanel.Controls.Add(this.SummaryButton);
             this.ButtonPanel.Controls.Add(this.ExitButton);
             this.ButtonPanel.Controls.Add(this.ClearButton);
-            this.ButtonPanel.Controls.Add(this.SubmitButton);
             this.ButtonPanel.Controls.Add(this.ProceedButton);
             this.ButtonPanel.Controls.Add(this.DisplayButton);
-            this.ButtonPanel.Location = new System.Drawing.Point(867, 28);
+            this.ButtonPanel.Location = new System.Drawing.Point(1210, 28);
             this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(268, 374);
+            this.ButtonPanel.Size = new System.Drawing.Size(243, 468);
             this.ButtonPanel.TabIndex = 2;
             this.ButtonPanel.Visible = false;
+            // 
+            // SummaryButton
+            // 
+            this.SummaryButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.SummaryButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SummaryButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.SummaryButton.Location = new System.Drawing.Point(78, 172);
+            this.SummaryButton.Name = "SummaryButton";
+            this.SummaryButton.Size = new System.Drawing.Size(112, 34);
+            this.SummaryButton.TabIndex = 5;
+            this.SummaryButton.Text = "&Summary";
+            this.SummaryButton.UseVisualStyleBackColor = false;
             // 
             // ExitButton
             // 
@@ -218,18 +243,6 @@
             this.ClearButton.UseVisualStyleBackColor = false;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // SubmitButton
-            // 
-            this.SubmitButton.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.SubmitButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SubmitButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.SubmitButton.Location = new System.Drawing.Point(78, 172);
-            this.SubmitButton.Name = "SubmitButton";
-            this.SubmitButton.Size = new System.Drawing.Size(112, 34);
-            this.SubmitButton.TabIndex = 2;
-            this.SubmitButton.Text = "Submit";
-            this.SubmitButton.UseVisualStyleBackColor = false;
-            // 
             // ProceedButton
             // 
             this.ProceedButton.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -241,6 +254,7 @@
             this.ProceedButton.TabIndex = 1;
             this.ProceedButton.Text = "&Proceed";
             this.ProceedButton.UseVisualStyleBackColor = false;
+            this.ProceedButton.Click += new System.EventHandler(this.ProceedButton_Click);
             // 
             // DisplayButton
             // 
@@ -254,6 +268,19 @@
             this.DisplayButton.Text = "&Display";
             this.DisplayButton.UseVisualStyleBackColor = false;
             this.DisplayButton.Click += new System.EventHandler(this.DisplayButton_Click);
+            // 
+            // SubmitButton
+            // 
+            this.SubmitButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.SubmitButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SubmitButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.SubmitButton.Location = new System.Drawing.Point(197, 255);
+            this.SubmitButton.Name = "SubmitButton";
+            this.SubmitButton.Size = new System.Drawing.Size(112, 34);
+            this.SubmitButton.TabIndex = 2;
+            this.SubmitButton.Text = "Submit";
+            this.SubmitButton.UseVisualStyleBackColor = false;
+            this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // PricePictureBox
             // 
@@ -309,7 +336,7 @@
             this.DisplayGroupBox.Controls.Add(this.MonthlyRepaymentLabel);
             this.DisplayGroupBox.Controls.Add(this.InterestLabelDisplay);
             this.DisplayGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisplayGroupBox.Location = new System.Drawing.Point(524, 502);
+            this.DisplayGroupBox.Location = new System.Drawing.Point(689, 231);
             this.DisplayGroupBox.Name = "DisplayGroupBox";
             this.DisplayGroupBox.Size = new System.Drawing.Size(515, 256);
             this.DisplayGroupBox.TabIndex = 5;
@@ -385,11 +412,121 @@
             this.InterestLabelDisplay.TabIndex = 0;
             this.InterestLabelDisplay.Text = "Interest Rate Applied:";
             // 
+            // ProceedGroupBox
+            // 
+            this.ProceedGroupBox.BackColor = System.Drawing.SystemColors.Window;
+            this.ProceedGroupBox.Controls.Add(this.IDTextBox);
+            this.ProceedGroupBox.Controls.Add(this.EmailTextBox);
+            this.ProceedGroupBox.Controls.Add(this.SubmitButton);
+            this.ProceedGroupBox.Controls.Add(this.TelephoneTextBox);
+            this.ProceedGroupBox.Controls.Add(this.PostcodeTextBox);
+            this.ProceedGroupBox.Controls.Add(this.NameTextBox);
+            this.ProceedGroupBox.Controls.Add(this.IDLabel);
+            this.ProceedGroupBox.Controls.Add(this.EmailLabel);
+            this.ProceedGroupBox.Controls.Add(this.TelephoneLabel);
+            this.ProceedGroupBox.Controls.Add(this.PostcodeLabel);
+            this.ProceedGroupBox.Controls.Add(this.NameLabel);
+            this.ProceedGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ProceedGroupBox.Location = new System.Drawing.Point(689, 493);
+            this.ProceedGroupBox.Name = "ProceedGroupBox";
+            this.ProceedGroupBox.Size = new System.Drawing.Size(515, 315);
+            this.ProceedGroupBox.TabIndex = 6;
+            this.ProceedGroupBox.TabStop = false;
+            this.ProceedGroupBox.Text = "Client Details";
+            this.ProceedGroupBox.Visible = false;
+            // 
+            // IDTextBox
+            // 
+            this.IDTextBox.Enabled = false;
+            this.IDTextBox.Location = new System.Drawing.Point(197, 198);
+            this.IDTextBox.Name = "IDTextBox";
+            this.IDTextBox.Size = new System.Drawing.Size(204, 34);
+            this.IDTextBox.TabIndex = 9;
+            this.IDTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // EmailTextBox
+            // 
+            this.EmailTextBox.Location = new System.Drawing.Point(197, 157);
+            this.EmailTextBox.Name = "EmailTextBox";
+            this.EmailTextBox.Size = new System.Drawing.Size(204, 34);
+            this.EmailTextBox.TabIndex = 8;
+            this.EmailTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TelephoneTextBox
+            // 
+            this.TelephoneTextBox.Location = new System.Drawing.Point(197, 116);
+            this.TelephoneTextBox.Name = "TelephoneTextBox";
+            this.TelephoneTextBox.Size = new System.Drawing.Size(204, 34);
+            this.TelephoneTextBox.TabIndex = 7;
+            this.TelephoneTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // PostcodeTextBox
+            // 
+            this.PostcodeTextBox.Location = new System.Drawing.Point(197, 76);
+            this.PostcodeTextBox.Name = "PostcodeTextBox";
+            this.PostcodeTextBox.Size = new System.Drawing.Size(204, 34);
+            this.PostcodeTextBox.TabIndex = 6;
+            this.PostcodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // NameTextBox
+            // 
+            this.NameTextBox.Location = new System.Drawing.Point(197, 36);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(204, 34);
+            this.NameTextBox.TabIndex = 5;
+            this.NameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // IDLabel
+            // 
+            this.IDLabel.AutoSize = true;
+            this.IDLabel.Location = new System.Drawing.Point(37, 201);
+            this.IDLabel.Name = "IDLabel";
+            this.IDLabel.Size = new System.Drawing.Size(111, 28);
+            this.IDLabel.TabIndex = 4;
+            this.IDLabel.Text = "Unique ID:";
+            // 
+            // EmailLabel
+            // 
+            this.EmailLabel.AutoSize = true;
+            this.EmailLabel.Location = new System.Drawing.Point(37, 160);
+            this.EmailLabel.Name = "EmailLabel";
+            this.EmailLabel.Size = new System.Drawing.Size(69, 28);
+            this.EmailLabel.TabIndex = 3;
+            this.EmailLabel.Text = "Email:";
+            // 
+            // TelephoneLabel
+            // 
+            this.TelephoneLabel.AutoSize = true;
+            this.TelephoneLabel.Location = new System.Drawing.Point(35, 119);
+            this.TelephoneLabel.Name = "TelephoneLabel";
+            this.TelephoneLabel.Size = new System.Drawing.Size(114, 28);
+            this.TelephoneLabel.TabIndex = 2;
+            this.TelephoneLabel.Text = "Telephone:";
+            // 
+            // PostcodeLabel
+            // 
+            this.PostcodeLabel.AutoSize = true;
+            this.PostcodeLabel.Location = new System.Drawing.Point(37, 79);
+            this.PostcodeLabel.Name = "PostcodeLabel";
+            this.PostcodeLabel.Size = new System.Drawing.Size(102, 28);
+            this.PostcodeLabel.TabIndex = 1;
+            this.PostcodeLabel.Text = "Postcode:";
+            // 
+            // NameLabel
+            // 
+            this.NameLabel.AutoSize = true;
+            this.NameLabel.Location = new System.Drawing.Point(35, 39);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(73, 28);
+            this.NameLabel.TabIndex = 0;
+            this.NameLabel.Text = "Name:";
+            // 
             // Mad4RoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1166, 786);
+            this.ClientSize = new System.Drawing.Size(1558, 1050);
+            this.Controls.Add(this.ProceedGroupBox);
             this.Controls.Add(this.DisplayGroupBox);
             this.Controls.Add(this.LoanAmountGroupBox);
             this.Controls.Add(this.GroupBoxLength);
@@ -409,6 +546,8 @@
             this.LoanAmountGroupBox.PerformLayout();
             this.DisplayGroupBox.ResumeLayout(false);
             this.DisplayGroupBox.PerformLayout();
+            this.ProceedGroupBox.ResumeLayout(false);
+            this.ProceedGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -444,5 +583,17 @@
         private TextBox MonthlyRepaymentTextBox;
         private TextBox InterestRateTextBox;
         private Label TotalLoanCostDisplay;
+        private GroupBox ProceedGroupBox;
+        private Label NameLabel;
+        private Label PostcodeLabel;
+        private Label TelephoneLabel;
+        private Label EmailLabel;
+        private Label IDLabel;
+        private TextBox IDTextBox;
+        private TextBox EmailTextBox;
+        private TextBox TelephoneTextBox;
+        private TextBox PostcodeTextBox;
+        private TextBox NameTextBox;
+        private Button SummaryButton;
     }
 }
