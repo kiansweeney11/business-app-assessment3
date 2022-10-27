@@ -1,5 +1,1 @@
 
-Kian
-0834118550
-k@gmail.com
-System.Windows.Forms.TextBox, Text: £10,600.00

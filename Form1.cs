@@ -15,6 +15,8 @@ namespace Mad4Road
     {
         private decimal LoanPreTotal, MonthlyRepay, TotalInterestPaid,
             LoanOverallTotal, InterestRateApplied;
+
+        private const String DataFile = "ClientLoanDetails.txt";
         public Mad4RoadForm()
         {
             InitializeComponent();
@@ -45,17 +47,6 @@ namespace Mad4Road
         // max attempts for password
         const int MAXATTEMPTS = 3;
 
-        private void ClearButton_Click(object sender, EventArgs e)
-        {
-            this.TextBoxLoan.Clear();
-            this.DisplayGroupBox.Visible = false;
-            this.ProceedGroupBox.Visible = false;
-            this.OneYearRadioButton.Checked = true;
-            this.ThreeYearRadioButton.Checked = false;
-            this.FiveYearsRadioButton.Checked = false;
-            this.SevenYearsRadioButton.Checked = false;
-        }
-
         // changeable variables
         int PasswordAttempts = 1;
 
@@ -82,8 +73,8 @@ namespace Mad4Road
                     StartMenuPanel.Visible = false;
                     PricePictureBox.Visible = true;
                     ButtonPanel.Visible = true;
-                    GroupBoxLength.Visible = true;
                     LoanAmountGroupBox.Visible = true;
+                    this.TextBoxLoan.Focus();
                     break;
                 }
             } while (PasswordAttempts >= MAXATTEMPTS);
@@ -97,6 +88,220 @@ namespace Mad4Road
             {
                 // no need to check for greater than equal 10k done already
                 if(LoanPreTotal < 40000)
+                {
+                    decimal TotalInterestPaidYear1 = LoanPreTotal * (APR_1YEAR_UNDER40 / 100);
+                    decimal MonthlyRepayYear1 = TotalInterestPaidYear1 / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                    decimal InterestRateAppliedYear1 = APR_1YEAR_UNDER40;
+                    decimal LoanOverallTotalYear1 = TotalInterestPaidYear1 + LoanPreTotal;
+                    // populate textboxes
+                    this.InterestRateTextBox.Text = InterestRateAppliedYear1 + "%";
+                    this.MonthlyRepaymentTextBox.Text = MonthlyRepayYear1.ToString("C");
+                    this.TotalInterestTextBox.Text = TotalInterestPaidYear1.ToString("C");
+                    this.TotalLoanCostTextBox.Text = LoanOverallTotalYear1.ToString("C");
+                    // 3 year less than40k
+                    decimal TotalInterestPaidYear3 = LoanPreTotal * (APR_3YEAR_UNDER40 / 100);
+                    decimal MonthlyRepayYear3 = TotalInterestPaidYear3 / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                    decimal InterestRateAppliedYear3 = APR_3YEAR_UNDER40;
+                    decimal LoanOverallTotalYear3 = TotalInterestPaidYear3 + LoanPreTotal;
+                    // populate textboxes
+                    this.Interest3YearTextBox.Text = InterestRateAppliedYear3 + "%";
+                    this.Monthly3YearTextBox.Text = MonthlyRepayYear3.ToString("C");
+                    this.TotalInterest3YearTextBox.Text = TotalInterestPaidYear3.ToString("C");
+                    this.TotalLoanCost3YearTextBox.Text= LoanOverallTotalYear3.ToString("C");
+                    // 5 year less than40k
+                    decimal TotalInterestPaidYear5 = LoanPreTotal * (APR_5YEAR_UNDER40 / 100);
+                    decimal MonthlyRepayYear5 = TotalInterestPaidYear5 / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                    decimal InterestRateAppliedYear5 = APR_5YEAR_UNDER40;
+                    decimal LoanOverallTotalYear5 = TotalInterestPaidYear5 + LoanPreTotal;
+                    // populate textboxes
+                    this.FiveYearInterestRateTextBox.Text = InterestRateAppliedYear5 + "%";
+                    this.Monthly5YearRepayTextBox.Text = MonthlyRepayYear5.ToString("C");
+                    this.TotalInterest5YearTextBox.Text = TotalInterestPaidYear5.ToString("C");
+                    this.TotalLoan5YearsTextBox.Text = LoanOverallTotalYear5.ToString("C");
+                    // 7 year less than40k
+                    decimal TotalInterestPaidYear7 = LoanPreTotal * (APR_7YEAR_UNDER40 / 100);
+                    decimal MonthlyRepayYear7 = TotalInterestPaidYear7 / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                    decimal InterestRateAppliedYear7 = APR_7YEAR_UNDER40;
+                    decimal LoanOverallTotalYear7 = TotalInterestPaidYear7 + LoanPreTotal;
+                    // populate textboxes
+                    this.AppliedInterest7YearTextBox.Text = InterestRateAppliedYear7 + "%";
+                    this.Monthly7YearTextBox.Text = MonthlyRepayYear7.ToString("C");
+                    this.Interest7YearTextBox.Text = TotalInterestPaidYear7.ToString("C");
+                    this.TotalLoan7YearTextBox.Text = LoanOverallTotalYear7.ToString("C");
+                }
+                else if(LoanPreTotal < 80000 && LoanPreTotal >= 40000)
+                {
+                    decimal TotalInterestPaidYear1 = LoanPreTotal * (APR_1YEAR_OVER40 / 100);
+                    decimal MonthlyRepayYear1 = TotalInterestPaidYear1 / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                    decimal InterestRateAppliedYear1 = APR_1YEAR_OVER40;
+                    decimal LoanOverallTotalYear1 = TotalInterestPaidYear1 + LoanPreTotal;
+                    // populate textboxes
+                    this.InterestRateTextBox.Text = InterestRateAppliedYear1 + "%";
+                    this.MonthlyRepaymentTextBox.Text = MonthlyRepayYear1.ToString("C");
+                    this.TotalInterestTextBox.Text = TotalInterestPaidYear1.ToString("C");
+                    this.TotalLoanCostTextBox.Text = LoanOverallTotalYear1.ToString("C");
+                    // 3 year less than40k
+                    decimal TotalInterestPaidYear3 = LoanPreTotal * (APR_3YEAR_OVER40 / 100);
+                    decimal MonthlyRepayYear3 = TotalInterestPaidYear3 / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                    decimal InterestRateAppliedYear3 = APR_3YEAR_OVER40;
+                    decimal LoanOverallTotalYear3 = TotalInterestPaidYear3 + LoanPreTotal;
+                    // populate textboxes
+                    this.Interest3YearTextBox.Text = InterestRateAppliedYear3 + "%";
+                    this.Monthly3YearTextBox.Text = MonthlyRepayYear3.ToString("C");
+                    this.TotalInterest3YearTextBox.Text = TotalInterestPaidYear3.ToString("C");
+                    this.TotalLoanCost3YearTextBox.Text = LoanOverallTotalYear3.ToString("C");
+                    // 5 year less than40k
+                    decimal TotalInterestPaidYear5 = LoanPreTotal * (APR_5YEAR_OVER40 / 100);
+                    decimal MonthlyRepayYear5 = TotalInterestPaidYear5 / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                    decimal InterestRateAppliedYear5 = APR_5YEAR_OVER40;
+                    decimal LoanOverallTotalYear5 = TotalInterestPaidYear5 + LoanPreTotal;
+                    // populate textboxes
+                    this.FiveYearInterestRateTextBox.Text = InterestRateAppliedYear5 + "%";
+                    this.Monthly5YearRepayTextBox.Text = MonthlyRepayYear5.ToString("C");
+                    this.TotalInterest5YearTextBox.Text = TotalInterestPaidYear5.ToString("C");
+                    this.TotalLoan5YearsTextBox.Text = LoanOverallTotalYear5.ToString("C");
+                    // 7 year less than40k
+                    decimal TotalInterestPaidYear7 = LoanPreTotal * (APR_7YEAR_OVER40 / 100);
+                    decimal MonthlyRepayYear7 = TotalInterestPaidYear7 / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                    decimal InterestRateAppliedYear7 = APR_7YEAR_OVER40;
+                    decimal LoanOverallTotalYear7 = TotalInterestPaidYear7 + LoanPreTotal;
+                    // populate textboxes
+                    this.AppliedInterest7YearTextBox.Text = InterestRateAppliedYear7 + "%";
+                    this.Monthly7YearTextBox.Text = MonthlyRepayYear7.ToString("C");
+                    this.Interest7YearTextBox.Text = TotalInterestPaidYear7.ToString("C");
+                    this.TotalLoan7YearTextBox.Text = LoanOverallTotalYear7.ToString("C");
+                }
+                else
+                // again no need to check for greater than equal 100k done already
+                {
+                    decimal TotalInterestPaidYear1 = LoanPreTotal * (APR_1YEAR_OVER80 / 100);
+                    decimal MonthlyRepayYear1 = TotalInterestPaidYear1 / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                    decimal InterestRateAppliedYear1 = APR_1YEAR_OVER80;
+                    decimal LoanOverallTotalYear1 = TotalInterestPaidYear1 + LoanPreTotal;
+                    // populate textboxes
+                    this.InterestRateTextBox.Text = InterestRateAppliedYear1 + "%";
+                    this.MonthlyRepaymentTextBox.Text = MonthlyRepayYear1.ToString("C");
+                    this.TotalInterestTextBox.Text = TotalInterestPaidYear1.ToString("C");
+                    this.TotalLoanCostTextBox.Text = LoanOverallTotalYear1.ToString("C");
+                    // 3 year less than40k
+                    decimal TotalInterestPaidYear3 = LoanPreTotal * (APR_3YEAR_OVER80 / 100);
+                    decimal MonthlyRepayYear3 = TotalInterestPaidYear3 / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                    decimal InterestRateAppliedYear3 = APR_3YEAR_OVER80;
+                    decimal LoanOverallTotalYear3 = TotalInterestPaidYear3 + LoanPreTotal;
+                    // populate textboxes
+                    this.Interest3YearTextBox.Text = InterestRateAppliedYear3 + "%";
+                    this.Monthly3YearTextBox.Text = MonthlyRepayYear3.ToString("C");
+                    this.TotalInterest3YearTextBox.Text = TotalInterestPaidYear3.ToString("C");
+                    this.TotalLoanCost3YearTextBox.Text = LoanOverallTotalYear3.ToString("C");
+                    // 5 year less than40k
+                    decimal TotalInterestPaidYear5 = LoanPreTotal * (APR_5YEAR_OVER80 / 100);
+                    decimal MonthlyRepayYear5 = TotalInterestPaidYear5 / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                    decimal InterestRateAppliedYear5 = APR_5YEAR_OVER80;
+                    decimal LoanOverallTotalYear5 = TotalInterestPaidYear5 + LoanPreTotal;
+                    // populate textboxes
+                    this.FiveYearInterestRateTextBox.Text = InterestRateAppliedYear5 + "%";
+                    this.Monthly5YearRepayTextBox.Text = MonthlyRepayYear5.ToString("C");
+                    this.TotalInterest5YearTextBox.Text = TotalInterestPaidYear5.ToString("C");
+                    this.TotalLoan5YearsTextBox.Text = LoanOverallTotalYear5.ToString("C");
+                    // 7 year less than40k
+                    decimal TotalInterestPaidYear7 = LoanPreTotal * (APR_7YEAR_OVER80 / 100);
+                    decimal MonthlyRepayYear7 = TotalInterestPaidYear7 / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                    decimal InterestRateAppliedYear7 = APR_7YEAR_OVER80;
+                    decimal LoanOverallTotalYear7 = TotalInterestPaidYear7 + LoanPreTotal;
+                    // populate textboxes
+                    this.AppliedInterest7YearTextBox.Text = InterestRateAppliedYear7 + "%";
+                    this.Monthly7YearTextBox.Text = MonthlyRepayYear7.ToString("C");
+                    this.Interest7YearTextBox.Text = TotalInterestPaidYear7.ToString("C");
+                    this.TotalLoan7YearTextBox.Text = LoanOverallTotalYear7.ToString("C");
+                }
+                this.DisplayGroupBox.Visible = true;
+                GroupBoxLength.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Please check value for Loan Total." +
+    "\nPlease ensure there are no negative numbers inputted." +
+    "\nLoan must be between €10,000 and €100,000.",
+    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TextBoxLoan.Focus();
+            }
+        }
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            if(NameTextBox.Text.Length >= 1)
+            {
+                if(PostcodeTextBox.Text.Length >= 1)
+                {
+                    String PhoneNumber = TelephoneTextBox.Text;
+                    if(PhoneNumber.Length == 10 && IsDigitsOnly(PhoneNumber) == true)
+                    {
+                        if (EmailTextBox.Text != "" & (EmailTextBox.Text.Contains("@") | EmailTextBox.Text.EndsWith(".com") | EmailTextBox.Text.EndsWith(".in") | EmailTextBox.Text.EndsWith(".ie")))
+                        {
+                            string Details = "Name of Client:\t\t" + NameTextBox.Text + "\nMembership ID:\t\t" + IDTextBox.Text + "\nTelephone Number:\t" + TelephoneTextBox.Text + 
+                                "\nEmail Address:\t\t" + EmailTextBox.Text + "\nTotal Price:\t\t" +
+                                TotalLoanCostTextBox.Text + "\nInterest to be Paid:\t\t" + TotalInterestTextBox.Text;
+                            if (MessageBox.Show("Do you wish to Proceed?\n" + Details, "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    StreamWriter InputFile = File.AppendText(DataFile);
+                                    InputFile.WriteLine(IDTextBox.Text);
+                                    InputFile.WriteLine(NameTextBox.Text);
+                                    InputFile.WriteLine(TelephoneTextBox.Text);
+                                    InputFile.WriteLine(EmailTextBox.Text);
+                                    InputFile.WriteLine(TotalLoanCostTextBox.Text);
+                                    InputFile.WriteLine(TotalInterestTextBox.Text);
+                                    InputFile.WriteLine(MonthlyRepaymentTextBox.Text);
+                                    InputFile.Close();
+                                    MessageBox.Show("Details Saved Successfully.\nClient Loan has Been Approved", "Loan Success");
+                                    ClearButton_Click(sender, e);
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("File not found.\nCheck details again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                ClearButton.Focus();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Enter Valid Email of the Client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            EmailTextBox.Clear();
+                            EmailTextBox.Focus();
+                        }
+                    }
+                    else
+                    {
+                        TelephoneTextBox.Focus();
+                        MessageBox.Show("Invalid/Empty Phone Number Inputted.", "Error", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    EmailTextBox.Focus();
+                    MessageBox.Show("Invalid/Empty Postcode Inputted.", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                NameTextBox.Focus();
+                MessageBox.Show("Invalid/Empty Name Inputted.", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void ProceedButton_Click(object sender, EventArgs e)
+        {
+            this.ProceedGroupBox.Visible = true;
+            try
+            {
+                if (LoanPreTotal < 40000)
                 {
                     // make sure radio button clicked
                     if (OneYearRadioButton.Checked)
@@ -128,7 +333,7 @@ namespace Mad4Road
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                 }
-                else if(LoanPreTotal < 80000 && LoanPreTotal >= 40000)
+                else if (LoanPreTotal < 80000 && LoanPreTotal >= 40000)
                 {
                     // make sure radio button clicked
                     if (OneYearRadioButton.Checked)
@@ -192,91 +397,6 @@ namespace Mad4Road
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                 }
-                this.DisplayGroupBox.Visible = true;
-                this.InterestRateTextBox.Text = InterestRateApplied.ToString() + "%";
-                this.MonthlyRepaymentTextBox.Text = MonthlyRepay.ToString("C");
-                this.TotalInterestTextBox.Text = TotalInterestPaid.ToString("C");
-                this.TotalLoanCostTextBox.Text = LoanOverallTotal.ToString("C");
-            }
-            else
-            {
-                MessageBox.Show("Please check value for Loan Total." +
-    "\nPlease ensure there are no negative numbers inputted." +
-    "\nLoan must be between €10,000 and €100,000.",
-    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TextBoxLoan.Focus();
-            }
-        }
-
-        private void SubmitButton_Click(object sender, EventArgs e)
-        {
-            if(NameTextBox.Text.Length >= 1)
-            {
-                if(PostcodeTextBox.Text.Length >= 1)
-                {
-                    String PhoneNumber = TelephoneTextBox.Text;
-                    if(PhoneNumber.Length == 10 && IsDigitsOnly(PhoneNumber) == true)
-                    {
-                        if (EmailTextBox.Text != "" & (EmailTextBox.Text.Contains("@") | EmailTextBox.Text.EndsWith(".com") | EmailTextBox.Text.EndsWith(".in") | EmailTextBox.Text.EndsWith(".ie")))
-                        {
-                            string Details = "Name of Client:\t\t" + NameTextBox.Text + "\nMembership ID:\t\t" + IDTextBox.Text + "\nTelephone Number:\t" + TelephoneTextBox.Text + 
-                                "\nEmail Address:\t\t" + EmailTextBox.Text + "\nTotal Price:\t\t" +
-                                TotalLoanCostTextBox.Text + "\nInterest to be Paid:\t\t" + TotalInterestTextBox.Text;
-                            if (MessageBox.Show("Do you wish to Proceed?\n" + Details, "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                            {
-                                try
-                                {
-                                    StreamWriter InputFile = File.AppendText("ClientLoanDetails.txt");
-                                    InputFile.WriteLine(IDTextBox.Text);
-                                    InputFile.WriteLine(NameTextBox.Text);
-                                    InputFile.WriteLine(TelephoneTextBox.Text);
-                                    InputFile.WriteLine(EmailTextBox.Text);
-                                    InputFile.WriteLine(TotalLoanCostTextBox.Text);
-                                    InputFile.Close();
-                                    MessageBox.Show("Details Saved Successfully.\nClient Loan has Been Approved", "Loan Success");
-                                    ClearButton_Click(sender, e);
-                                }
-                                catch (Exception)
-                                {
-                                    MessageBox.Show("File not found.\nCheck details again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                            else
-                            {
-                                ClearButton.Focus();
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Enter Valid Email of the Client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            EmailTextBox.Clear();
-                            EmailTextBox.Focus();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid/Empty Phone Number Inputted.", "Error", MessageBoxButtons.OK,
-                                            MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Invalid/Empty Postcode Inputted.", "Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Invalid/Empty Name Inputted.", "Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void ProceedButton_Click(object sender, EventArgs e)
-        {
-            this.ProceedGroupBox.Visible = true;
-            try
-            {
                 TransactionIDGenerator();
             }
             catch
@@ -290,12 +410,18 @@ namespace Mad4Road
         // functions like count so we have to manually count each line.
         private int CalculateFileLines()
         {
+            // create file if it doesn't exist
+            if (!File.Exists(DataFile))
+            {
+                var FileCreated = File.Create(DataFile);
+                FileCreated.Close();
+            }
             // lines count is variable for iterating through
             // this is set as 1 due to it only being used if file does exist
             int LinesCount = 1, TotalLines;
             try
             {
-                StreamReader OutputFile = File.OpenText("ClientLoanDetails.txt");
+                StreamReader OutputFile = File.OpenText(DataFile);
                 while(OutputFile.ReadLine() != null)
                 {
                     LinesCount++;
@@ -305,7 +431,7 @@ namespace Mad4Road
             }
             catch
             {
-                MessageBox.Show("No details to show.\nPlease ensure there has been data inputted.", "Error", 
+                MessageBox.Show("No details to show.\nPlease ensure there has been data inputted.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TotalLines = 0;
             }
@@ -316,16 +442,15 @@ namespace Mad4Road
         {
             int FileLines = CalculateFileLines();
             Random Rand = new Random();
-            int rand = Rand.Next(0, 999999);
+            int rand = Rand.Next(0, 99999);
             try
             {
-                // C:\\Users\\user\\Desktop\\Masters\\Ms806-BusApp\\Mad4Road\\
-                StreamReader OutputFile = File.OpenText("ClientLoanDetails.txt");
-                while (OutputFile.ReadLine() != null)
+                StreamReader OutputFile = File.OpenText(DataFile);
+                while(OutputFile.ReadLine() != null)
                 {
                     for (int i = 1; i <= FileLines; i++)
                     {
-                        if (OutputFile.ReadLine() == rand.ToString("D6"))
+                        if (OutputFile.ReadLine() == rand.ToString("D5"))
                         {
                             // call function again to try generate a new unique number
                             TransactionIDGenerator();
@@ -333,7 +458,8 @@ namespace Mad4Road
                         else
                         {
                             // generates random number if not on file
-                            this.IDTextBox.Text = rand.ToString("D6");
+                            this.IDTextBox.Text = rand.ToString("D5");
+                            //Console.WriteLine(IDTextBox.Text.ToString());
                         }
                     }
                 }
@@ -348,13 +474,23 @@ namespace Mad4Road
 
         private bool IsDigitsOnly(string str)
         {
-            foreach (char c in str)
+            foreach(char c in str)
             {
-                if (c < '0' || c > '9')
+                if(c < '0' || c > '9')
                     return false;
             }
 
             return true;
+        }
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.TextBoxLoan.Clear();
+            this.DisplayGroupBox.Visible = false;
+            this.ProceedGroupBox.Visible = false;
+            this.OneYearRadioButton.Checked = true;
+            this.ThreeYearRadioButton.Checked = false;
+            this.FiveYearsRadioButton.Checked = false;
+            this.SevenYearsRadioButton.Checked = false;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

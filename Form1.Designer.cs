@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mad4RoadForm));
             this.StartMenuPanel = new System.Windows.Forms.Panel();
             this.PasswordAttemptSubmitButton = new System.Windows.Forms.Button();
@@ -51,6 +52,34 @@
             this.TextBoxLoan = new System.Windows.Forms.TextBox();
             this.AmountLabel = new System.Windows.Forms.Label();
             this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
+            this.SevenYearLoanLabel = new System.Windows.Forms.Label();
+            this.TotalLoan7YearTextBox = new System.Windows.Forms.TextBox();
+            this.Interest7YearTextBox = new System.Windows.Forms.TextBox();
+            this.Monthly7YearTextBox = new System.Windows.Forms.TextBox();
+            this.AppliedInterest7YearTextBox = new System.Windows.Forms.TextBox();
+            this.TotalLoan7YearLabel = new System.Windows.Forms.Label();
+            this.TotalInterest7YearLabel = new System.Windows.Forms.Label();
+            this.Monthly7YearLabel = new System.Windows.Forms.Label();
+            this.InterestRate7YearLabel = new System.Windows.Forms.Label();
+            this.ThreeYearLoanLabel = new System.Windows.Forms.Label();
+            this.TotalLoanCost3YearTextBox = new System.Windows.Forms.TextBox();
+            this.TotalInterest3YearTextBox = new System.Windows.Forms.TextBox();
+            this.Monthly3YearTextBox = new System.Windows.Forms.TextBox();
+            this.Interest3YearTextBox = new System.Windows.Forms.TextBox();
+            this.TotalLoan3YearLabel = new System.Windows.Forms.Label();
+            this.TotalInterestPaid3YearLabel = new System.Windows.Forms.Label();
+            this.Monthly3YearLabel = new System.Windows.Forms.Label();
+            this.InterestRate3YearLabel = new System.Windows.Forms.Label();
+            this.FiveYearLoanLabel = new System.Windows.Forms.Label();
+            this.TotalLoan5YearsTextBox = new System.Windows.Forms.TextBox();
+            this.TotalInterest5YearTextBox = new System.Windows.Forms.TextBox();
+            this.Monthly5YearRepayTextBox = new System.Windows.Forms.TextBox();
+            this.FiveYearInterestRateTextBox = new System.Windows.Forms.TextBox();
+            this.TotalLoan5YearLabel = new System.Windows.Forms.Label();
+            this.TotalInterest5YearLabel = new System.Windows.Forms.Label();
+            this.MonthlyLabel5Year = new System.Windows.Forms.Label();
+            this.InterestLabel5Year = new System.Windows.Forms.Label();
+            this.Year1LoanDetails = new System.Windows.Forms.Label();
             this.TotalLoanCostTextBox = new System.Windows.Forms.TextBox();
             this.TotalInterestTextBox = new System.Windows.Forms.TextBox();
             this.MonthlyRepaymentTextBox = new System.Windows.Forms.TextBox();
@@ -70,6 +99,12 @@
             this.TelephoneLabel = new System.Windows.Forms.Label();
             this.PostcodeLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
+            this.DisplayToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ProceedToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.SummaryToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ClearToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ExitToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.SubmitToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.StartMenuPanel.SuspendLayout();
             this.GroupBoxLength.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
@@ -141,9 +176,9 @@
             this.GroupBoxLength.Controls.Add(this.ThreeYearRadioButton);
             this.GroupBoxLength.Controls.Add(this.OneYearRadioButton);
             this.GroupBoxLength.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GroupBoxLength.Location = new System.Drawing.Point(403, 231);
+            this.GroupBoxLength.Location = new System.Drawing.Point(1281, 453);
             this.GroupBoxLength.Name = "GroupBoxLength";
-            this.GroupBoxLength.Size = new System.Drawing.Size(265, 527);
+            this.GroupBoxLength.Size = new System.Drawing.Size(251, 298);
             this.GroupBoxLength.TabIndex = 4;
             this.GroupBoxLength.TabStop = false;
             this.GroupBoxLength.Text = "Requested Loan Length";
@@ -199,9 +234,9 @@
             this.ButtonPanel.Controls.Add(this.ClearButton);
             this.ButtonPanel.Controls.Add(this.ProceedButton);
             this.ButtonPanel.Controls.Add(this.DisplayButton);
-            this.ButtonPanel.Location = new System.Drawing.Point(1210, 28);
+            this.ButtonPanel.Location = new System.Drawing.Point(1281, 28);
             this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(243, 468);
+            this.ButtonPanel.Size = new System.Drawing.Size(251, 379);
             this.ButtonPanel.TabIndex = 2;
             this.ButtonPanel.Visible = false;
             // 
@@ -215,6 +250,7 @@
             this.SummaryButton.Size = new System.Drawing.Size(112, 34);
             this.SummaryButton.TabIndex = 5;
             this.SummaryButton.Text = "&Summary";
+            this.SummaryToolTip.SetToolTip(this.SummaryButton, "Click for summary of company transactions.");
             this.SummaryButton.UseVisualStyleBackColor = false;
             // 
             // ExitButton
@@ -227,6 +263,7 @@
             this.ExitButton.Size = new System.Drawing.Size(112, 34);
             this.ExitButton.TabIndex = 4;
             this.ExitButton.Text = "&Exit";
+            this.ExitToolTip.SetToolTip(this.ExitButton, "Press to exit application.");
             this.ExitButton.UseVisualStyleBackColor = false;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
@@ -240,6 +277,7 @@
             this.ClearButton.Size = new System.Drawing.Size(112, 34);
             this.ClearButton.TabIndex = 3;
             this.ClearButton.Text = "&Clear";
+            this.ClearToolTip.SetToolTip(this.ClearButton, "Press to clear form for next user.");
             this.ClearButton.UseVisualStyleBackColor = false;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
@@ -253,6 +291,7 @@
             this.ProceedButton.Size = new System.Drawing.Size(112, 34);
             this.ProceedButton.TabIndex = 1;
             this.ProceedButton.Text = "&Proceed";
+            this.ProceedToolTip.SetToolTip(this.ProceedButton, "If happy with selected details, input client\'s personal information.");
             this.ProceedButton.UseVisualStyleBackColor = false;
             this.ProceedButton.Click += new System.EventHandler(this.ProceedButton_Click);
             // 
@@ -266,6 +305,7 @@
             this.DisplayButton.Size = new System.Drawing.Size(112, 34);
             this.DisplayButton.TabIndex = 0;
             this.DisplayButton.Text = "&Display";
+            this.DisplayToolTip.SetToolTip(this.DisplayButton, "Display Payment Arrangements for selected loan total and years.");
             this.DisplayButton.UseVisualStyleBackColor = false;
             this.DisplayButton.Click += new System.EventHandler(this.DisplayButton_Click);
             // 
@@ -279,6 +319,7 @@
             this.SubmitButton.Size = new System.Drawing.Size(112, 34);
             this.SubmitButton.TabIndex = 2;
             this.SubmitButton.Text = "Submit";
+            this.SubmitToolTip.SetToolTip(this.SubmitButton, "Press to confirm personal details and loan details.");
             this.SubmitButton.UseVisualStyleBackColor = false;
             this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
@@ -327,6 +368,34 @@
             // DisplayGroupBox
             // 
             this.DisplayGroupBox.BackColor = System.Drawing.SystemColors.Window;
+            this.DisplayGroupBox.Controls.Add(this.SevenYearLoanLabel);
+            this.DisplayGroupBox.Controls.Add(this.TotalLoan7YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.Interest7YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.Monthly7YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.AppliedInterest7YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.TotalLoan7YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.TotalInterest7YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.Monthly7YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.InterestRate7YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.ThreeYearLoanLabel);
+            this.DisplayGroupBox.Controls.Add(this.TotalLoanCost3YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.TotalInterest3YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.Monthly3YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.Interest3YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.TotalLoan3YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.TotalInterestPaid3YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.Monthly3YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.InterestRate3YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.FiveYearLoanLabel);
+            this.DisplayGroupBox.Controls.Add(this.TotalLoan5YearsTextBox);
+            this.DisplayGroupBox.Controls.Add(this.TotalInterest5YearTextBox);
+            this.DisplayGroupBox.Controls.Add(this.Monthly5YearRepayTextBox);
+            this.DisplayGroupBox.Controls.Add(this.FiveYearInterestRateTextBox);
+            this.DisplayGroupBox.Controls.Add(this.TotalLoan5YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.TotalInterest5YearLabel);
+            this.DisplayGroupBox.Controls.Add(this.MonthlyLabel5Year);
+            this.DisplayGroupBox.Controls.Add(this.InterestLabel5Year);
+            this.DisplayGroupBox.Controls.Add(this.Year1LoanDetails);
             this.DisplayGroupBox.Controls.Add(this.TotalLoanCostTextBox);
             this.DisplayGroupBox.Controls.Add(this.TotalInterestTextBox);
             this.DisplayGroupBox.Controls.Add(this.MonthlyRepaymentTextBox);
@@ -336,17 +405,257 @@
             this.DisplayGroupBox.Controls.Add(this.MonthlyRepaymentLabel);
             this.DisplayGroupBox.Controls.Add(this.InterestLabelDisplay);
             this.DisplayGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisplayGroupBox.Location = new System.Drawing.Point(689, 231);
+            this.DisplayGroupBox.Location = new System.Drawing.Point(403, 231);
             this.DisplayGroupBox.Name = "DisplayGroupBox";
-            this.DisplayGroupBox.Size = new System.Drawing.Size(515, 256);
+            this.DisplayGroupBox.Size = new System.Drawing.Size(858, 520);
             this.DisplayGroupBox.TabIndex = 5;
             this.DisplayGroupBox.TabStop = false;
             this.DisplayGroupBox.Text = "Car Loan Details";
             this.DisplayGroupBox.Visible = false;
             // 
+            // SevenYearLoanLabel
+            // 
+            this.SevenYearLoanLabel.AutoSize = true;
+            this.SevenYearLoanLabel.Location = new System.Drawing.Point(546, 281);
+            this.SevenYearLoanLabel.Name = "SevenYearLoanLabel";
+            this.SevenYearLoanLabel.Size = new System.Drawing.Size(193, 28);
+            this.SevenYearLoanLabel.TabIndex = 35;
+            this.SevenYearLoanLabel.Text = "7 Year Loan Details";
+            // 
+            // TotalLoan7YearTextBox
+            // 
+            this.TotalLoan7YearTextBox.Location = new System.Drawing.Point(659, 463);
+            this.TotalLoan7YearTextBox.Name = "TotalLoan7YearTextBox";
+            this.TotalLoan7YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.TotalLoan7YearTextBox.TabIndex = 34;
+            this.TotalLoan7YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Interest7YearTextBox
+            // 
+            this.Interest7YearTextBox.Location = new System.Drawing.Point(659, 414);
+            this.Interest7YearTextBox.Name = "Interest7YearTextBox";
+            this.Interest7YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.Interest7YearTextBox.TabIndex = 33;
+            this.Interest7YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Monthly7YearTextBox
+            // 
+            this.Monthly7YearTextBox.Location = new System.Drawing.Point(659, 365);
+            this.Monthly7YearTextBox.Name = "Monthly7YearTextBox";
+            this.Monthly7YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.Monthly7YearTextBox.TabIndex = 32;
+            this.Monthly7YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // AppliedInterest7YearTextBox
+            // 
+            this.AppliedInterest7YearTextBox.Location = new System.Drawing.Point(659, 316);
+            this.AppliedInterest7YearTextBox.Name = "AppliedInterest7YearTextBox";
+            this.AppliedInterest7YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.AppliedInterest7YearTextBox.TabIndex = 31;
+            this.AppliedInterest7YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalLoan7YearLabel
+            // 
+            this.TotalLoan7YearLabel.AutoSize = true;
+            this.TotalLoan7YearLabel.Location = new System.Drawing.Point(434, 465);
+            this.TotalLoan7YearLabel.Name = "TotalLoan7YearLabel";
+            this.TotalLoan7YearLabel.Size = new System.Drawing.Size(162, 28);
+            this.TotalLoan7YearLabel.TabIndex = 30;
+            this.TotalLoan7YearLabel.Text = "Total Loan Cost:";
+            // 
+            // TotalInterest7YearLabel
+            // 
+            this.TotalInterest7YearLabel.AutoSize = true;
+            this.TotalInterest7YearLabel.Location = new System.Drawing.Point(434, 415);
+            this.TotalInterest7YearLabel.Name = "TotalInterest7YearLabel";
+            this.TotalInterest7YearLabel.Size = new System.Drawing.Size(190, 28);
+            this.TotalInterest7YearLabel.TabIndex = 29;
+            this.TotalInterest7YearLabel.Text = "Total Interest Paid:";
+            // 
+            // Monthly7YearLabel
+            // 
+            this.Monthly7YearLabel.AutoSize = true;
+            this.Monthly7YearLabel.Location = new System.Drawing.Point(434, 365);
+            this.Monthly7YearLabel.Name = "Monthly7YearLabel";
+            this.Monthly7YearLabel.Size = new System.Drawing.Size(210, 28);
+            this.Monthly7YearLabel.TabIndex = 28;
+            this.Monthly7YearLabel.Text = "Monthly Repayment:";
+            // 
+            // InterestRate7YearLabel
+            // 
+            this.InterestRate7YearLabel.AutoSize = true;
+            this.InterestRate7YearLabel.Location = new System.Drawing.Point(432, 315);
+            this.InterestRate7YearLabel.Name = "InterestRate7YearLabel";
+            this.InterestRate7YearLabel.Size = new System.Drawing.Size(218, 28);
+            this.InterestRate7YearLabel.TabIndex = 27;
+            this.InterestRate7YearLabel.Text = "Interest Rate Applied:";
+            // 
+            // ThreeYearLoanLabel
+            // 
+            this.ThreeYearLoanLabel.AutoSize = true;
+            this.ThreeYearLoanLabel.Location = new System.Drawing.Point(546, 43);
+            this.ThreeYearLoanLabel.Name = "ThreeYearLoanLabel";
+            this.ThreeYearLoanLabel.Size = new System.Drawing.Size(193, 28);
+            this.ThreeYearLoanLabel.TabIndex = 26;
+            this.ThreeYearLoanLabel.Text = "3 Year Loan Details";
+            // 
+            // TotalLoanCost3YearTextBox
+            // 
+            this.TotalLoanCost3YearTextBox.Location = new System.Drawing.Point(659, 225);
+            this.TotalLoanCost3YearTextBox.Name = "TotalLoanCost3YearTextBox";
+            this.TotalLoanCost3YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.TotalLoanCost3YearTextBox.TabIndex = 25;
+            this.TotalLoanCost3YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalInterest3YearTextBox
+            // 
+            this.TotalInterest3YearTextBox.Location = new System.Drawing.Point(659, 176);
+            this.TotalInterest3YearTextBox.Name = "TotalInterest3YearTextBox";
+            this.TotalInterest3YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.TotalInterest3YearTextBox.TabIndex = 24;
+            this.TotalInterest3YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Monthly3YearTextBox
+            // 
+            this.Monthly3YearTextBox.Location = new System.Drawing.Point(659, 127);
+            this.Monthly3YearTextBox.Name = "Monthly3YearTextBox";
+            this.Monthly3YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.Monthly3YearTextBox.TabIndex = 23;
+            this.Monthly3YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Interest3YearTextBox
+            // 
+            this.Interest3YearTextBox.Location = new System.Drawing.Point(659, 78);
+            this.Interest3YearTextBox.Name = "Interest3YearTextBox";
+            this.Interest3YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.Interest3YearTextBox.TabIndex = 22;
+            this.Interest3YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalLoan3YearLabel
+            // 
+            this.TotalLoan3YearLabel.AutoSize = true;
+            this.TotalLoan3YearLabel.Location = new System.Drawing.Point(434, 227);
+            this.TotalLoan3YearLabel.Name = "TotalLoan3YearLabel";
+            this.TotalLoan3YearLabel.Size = new System.Drawing.Size(162, 28);
+            this.TotalLoan3YearLabel.TabIndex = 21;
+            this.TotalLoan3YearLabel.Text = "Total Loan Cost:";
+            // 
+            // TotalInterestPaid3YearLabel
+            // 
+            this.TotalInterestPaid3YearLabel.AutoSize = true;
+            this.TotalInterestPaid3YearLabel.Location = new System.Drawing.Point(434, 177);
+            this.TotalInterestPaid3YearLabel.Name = "TotalInterestPaid3YearLabel";
+            this.TotalInterestPaid3YearLabel.Size = new System.Drawing.Size(190, 28);
+            this.TotalInterestPaid3YearLabel.TabIndex = 20;
+            this.TotalInterestPaid3YearLabel.Text = "Total Interest Paid:";
+            // 
+            // Monthly3YearLabel
+            // 
+            this.Monthly3YearLabel.AutoSize = true;
+            this.Monthly3YearLabel.Location = new System.Drawing.Point(434, 127);
+            this.Monthly3YearLabel.Name = "Monthly3YearLabel";
+            this.Monthly3YearLabel.Size = new System.Drawing.Size(210, 28);
+            this.Monthly3YearLabel.TabIndex = 19;
+            this.Monthly3YearLabel.Text = "Monthly Repayment:";
+            // 
+            // InterestRate3YearLabel
+            // 
+            this.InterestRate3YearLabel.AutoSize = true;
+            this.InterestRate3YearLabel.Location = new System.Drawing.Point(432, 77);
+            this.InterestRate3YearLabel.Name = "InterestRate3YearLabel";
+            this.InterestRate3YearLabel.Size = new System.Drawing.Size(218, 28);
+            this.InterestRate3YearLabel.TabIndex = 18;
+            this.InterestRate3YearLabel.Text = "Interest Rate Applied:";
+            // 
+            // FiveYearLoanLabel
+            // 
+            this.FiveYearLoanLabel.AutoSize = true;
+            this.FiveYearLoanLabel.Location = new System.Drawing.Point(120, 281);
+            this.FiveYearLoanLabel.Name = "FiveYearLoanLabel";
+            this.FiveYearLoanLabel.Size = new System.Drawing.Size(193, 28);
+            this.FiveYearLoanLabel.TabIndex = 17;
+            this.FiveYearLoanLabel.Text = "5 Year Loan Details";
+            // 
+            // TotalLoan5YearsTextBox
+            // 
+            this.TotalLoan5YearsTextBox.Location = new System.Drawing.Point(233, 463);
+            this.TotalLoan5YearsTextBox.Name = "TotalLoan5YearsTextBox";
+            this.TotalLoan5YearsTextBox.Size = new System.Drawing.Size(187, 34);
+            this.TotalLoan5YearsTextBox.TabIndex = 16;
+            this.TotalLoan5YearsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalInterest5YearTextBox
+            // 
+            this.TotalInterest5YearTextBox.Location = new System.Drawing.Point(233, 414);
+            this.TotalInterest5YearTextBox.Name = "TotalInterest5YearTextBox";
+            this.TotalInterest5YearTextBox.Size = new System.Drawing.Size(187, 34);
+            this.TotalInterest5YearTextBox.TabIndex = 15;
+            this.TotalInterest5YearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Monthly5YearRepayTextBox
+            // 
+            this.Monthly5YearRepayTextBox.Location = new System.Drawing.Point(233, 365);
+            this.Monthly5YearRepayTextBox.Name = "Monthly5YearRepayTextBox";
+            this.Monthly5YearRepayTextBox.Size = new System.Drawing.Size(187, 34);
+            this.Monthly5YearRepayTextBox.TabIndex = 14;
+            this.Monthly5YearRepayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // FiveYearInterestRateTextBox
+            // 
+            this.FiveYearInterestRateTextBox.Location = new System.Drawing.Point(233, 316);
+            this.FiveYearInterestRateTextBox.Name = "FiveYearInterestRateTextBox";
+            this.FiveYearInterestRateTextBox.Size = new System.Drawing.Size(187, 34);
+            this.FiveYearInterestRateTextBox.TabIndex = 13;
+            this.FiveYearInterestRateTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalLoan5YearLabel
+            // 
+            this.TotalLoan5YearLabel.AutoSize = true;
+            this.TotalLoan5YearLabel.Location = new System.Drawing.Point(8, 465);
+            this.TotalLoan5YearLabel.Name = "TotalLoan5YearLabel";
+            this.TotalLoan5YearLabel.Size = new System.Drawing.Size(162, 28);
+            this.TotalLoan5YearLabel.TabIndex = 12;
+            this.TotalLoan5YearLabel.Text = "Total Loan Cost:";
+            // 
+            // TotalInterest5YearLabel
+            // 
+            this.TotalInterest5YearLabel.AutoSize = true;
+            this.TotalInterest5YearLabel.Location = new System.Drawing.Point(8, 415);
+            this.TotalInterest5YearLabel.Name = "TotalInterest5YearLabel";
+            this.TotalInterest5YearLabel.Size = new System.Drawing.Size(190, 28);
+            this.TotalInterest5YearLabel.TabIndex = 11;
+            this.TotalInterest5YearLabel.Text = "Total Interest Paid:";
+            // 
+            // MonthlyLabel5Year
+            // 
+            this.MonthlyLabel5Year.AutoSize = true;
+            this.MonthlyLabel5Year.Location = new System.Drawing.Point(8, 365);
+            this.MonthlyLabel5Year.Name = "MonthlyLabel5Year";
+            this.MonthlyLabel5Year.Size = new System.Drawing.Size(210, 28);
+            this.MonthlyLabel5Year.TabIndex = 10;
+            this.MonthlyLabel5Year.Text = "Monthly Repayment:";
+            // 
+            // InterestLabel5Year
+            // 
+            this.InterestLabel5Year.AutoSize = true;
+            this.InterestLabel5Year.Location = new System.Drawing.Point(6, 315);
+            this.InterestLabel5Year.Name = "InterestLabel5Year";
+            this.InterestLabel5Year.Size = new System.Drawing.Size(218, 28);
+            this.InterestLabel5Year.TabIndex = 9;
+            this.InterestLabel5Year.Text = "Interest Rate Applied:";
+            // 
+            // Year1LoanDetails
+            // 
+            this.Year1LoanDetails.AutoSize = true;
+            this.Year1LoanDetails.Location = new System.Drawing.Point(120, 40);
+            this.Year1LoanDetails.Name = "Year1LoanDetails";
+            this.Year1LoanDetails.Size = new System.Drawing.Size(193, 28);
+            this.Year1LoanDetails.TabIndex = 8;
+            this.Year1LoanDetails.Text = "1 Year Loan Details";
+            // 
             // TotalLoanCostTextBox
             // 
-            this.TotalLoanCostTextBox.Location = new System.Drawing.Point(291, 192);
+            this.TotalLoanCostTextBox.Location = new System.Drawing.Point(233, 222);
             this.TotalLoanCostTextBox.Name = "TotalLoanCostTextBox";
             this.TotalLoanCostTextBox.Size = new System.Drawing.Size(187, 34);
             this.TotalLoanCostTextBox.TabIndex = 7;
@@ -354,7 +663,7 @@
             // 
             // TotalInterestTextBox
             // 
-            this.TotalInterestTextBox.Location = new System.Drawing.Point(291, 143);
+            this.TotalInterestTextBox.Location = new System.Drawing.Point(233, 173);
             this.TotalInterestTextBox.Name = "TotalInterestTextBox";
             this.TotalInterestTextBox.Size = new System.Drawing.Size(187, 34);
             this.TotalInterestTextBox.TabIndex = 6;
@@ -362,7 +671,7 @@
             // 
             // MonthlyRepaymentTextBox
             // 
-            this.MonthlyRepaymentTextBox.Location = new System.Drawing.Point(291, 94);
+            this.MonthlyRepaymentTextBox.Location = new System.Drawing.Point(233, 124);
             this.MonthlyRepaymentTextBox.Name = "MonthlyRepaymentTextBox";
             this.MonthlyRepaymentTextBox.Size = new System.Drawing.Size(187, 34);
             this.MonthlyRepaymentTextBox.TabIndex = 5;
@@ -370,7 +679,7 @@
             // 
             // InterestRateTextBox
             // 
-            this.InterestRateTextBox.Location = new System.Drawing.Point(291, 45);
+            this.InterestRateTextBox.Location = new System.Drawing.Point(233, 75);
             this.InterestRateTextBox.Name = "InterestRateTextBox";
             this.InterestRateTextBox.Size = new System.Drawing.Size(187, 34);
             this.InterestRateTextBox.TabIndex = 4;
@@ -379,7 +688,7 @@
             // TotalLoanCostDisplay
             // 
             this.TotalLoanCostDisplay.AutoSize = true;
-            this.TotalLoanCostDisplay.Location = new System.Drawing.Point(35, 195);
+            this.TotalLoanCostDisplay.Location = new System.Drawing.Point(8, 224);
             this.TotalLoanCostDisplay.Name = "TotalLoanCostDisplay";
             this.TotalLoanCostDisplay.Size = new System.Drawing.Size(162, 28);
             this.TotalLoanCostDisplay.TabIndex = 3;
@@ -388,7 +697,7 @@
             // TotalInterestPaidDisplay
             // 
             this.TotalInterestPaidDisplay.AutoSize = true;
-            this.TotalInterestPaidDisplay.Location = new System.Drawing.Point(35, 145);
+            this.TotalInterestPaidDisplay.Location = new System.Drawing.Point(8, 174);
             this.TotalInterestPaidDisplay.Name = "TotalInterestPaidDisplay";
             this.TotalInterestPaidDisplay.Size = new System.Drawing.Size(190, 28);
             this.TotalInterestPaidDisplay.TabIndex = 2;
@@ -397,7 +706,7 @@
             // MonthlyRepaymentLabel
             // 
             this.MonthlyRepaymentLabel.AutoSize = true;
-            this.MonthlyRepaymentLabel.Location = new System.Drawing.Point(35, 95);
+            this.MonthlyRepaymentLabel.Location = new System.Drawing.Point(8, 124);
             this.MonthlyRepaymentLabel.Name = "MonthlyRepaymentLabel";
             this.MonthlyRepaymentLabel.Size = new System.Drawing.Size(210, 28);
             this.MonthlyRepaymentLabel.TabIndex = 1;
@@ -406,7 +715,7 @@
             // InterestLabelDisplay
             // 
             this.InterestLabelDisplay.AutoSize = true;
-            this.InterestLabelDisplay.Location = new System.Drawing.Point(33, 45);
+            this.InterestLabelDisplay.Location = new System.Drawing.Point(6, 74);
             this.InterestLabelDisplay.Name = "InterestLabelDisplay";
             this.InterestLabelDisplay.Size = new System.Drawing.Size(218, 28);
             this.InterestLabelDisplay.TabIndex = 0;
@@ -427,9 +736,9 @@
             this.ProceedGroupBox.Controls.Add(this.PostcodeLabel);
             this.ProceedGroupBox.Controls.Add(this.NameLabel);
             this.ProceedGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ProceedGroupBox.Location = new System.Drawing.Point(689, 493);
+            this.ProceedGroupBox.Location = new System.Drawing.Point(689, 757);
             this.ProceedGroupBox.Name = "ProceedGroupBox";
-            this.ProceedGroupBox.Size = new System.Drawing.Size(515, 315);
+            this.ProceedGroupBox.Size = new System.Drawing.Size(515, 297);
             this.ProceedGroupBox.TabIndex = 6;
             this.ProceedGroupBox.TabStop = false;
             this.ProceedGroupBox.Text = "Client Details";
@@ -521,6 +830,36 @@
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Name:";
             // 
+            // DisplayToolTip
+            // 
+            this.DisplayToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.DisplayToolTip.ToolTipTitle = "Info";
+            // 
+            // ProceedToolTip
+            // 
+            this.ProceedToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ProceedToolTip.ToolTipTitle = "Info";
+            // 
+            // SummaryToolTip
+            // 
+            this.SummaryToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.SummaryToolTip.ToolTipTitle = "Info";
+            // 
+            // ClearToolTip
+            // 
+            this.ClearToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ClearToolTip.ToolTipTitle = "Info";
+            // 
+            // ExitToolTip
+            // 
+            this.ExitToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ExitToolTip.ToolTipTitle = "Info";
+            // 
+            // SubmitToolTip
+            // 
+            this.SubmitToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.SubmitToolTip.ToolTipTitle = "Info";
+            // 
             // Mad4RoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -595,5 +934,39 @@
         private TextBox PostcodeTextBox;
         private TextBox NameTextBox;
         private Button SummaryButton;
+        private ToolTip DisplayToolTip;
+        private ToolTip ProceedToolTip;
+        private ToolTip SummaryToolTip;
+        private ToolTip ExitToolTip;
+        private ToolTip ClearToolTip;
+        private ToolTip SubmitToolTip;
+        private Label FiveYearLoanLabel;
+        private TextBox TotalLoan5YearsTextBox;
+        private TextBox TotalInterest5YearTextBox;
+        private TextBox Monthly5YearRepayTextBox;
+        private TextBox FiveYearInterestRateTextBox;
+        private Label TotalLoan5YearLabel;
+        private Label TotalInterest5YearLabel;
+        private Label MonthlyLabel5Year;
+        private Label InterestLabel5Year;
+        private Label Year1LoanDetails;
+        private Label ThreeYearLoanLabel;
+        private TextBox TotalLoanCost3YearTextBox;
+        private TextBox TotalInterest3YearTextBox;
+        private TextBox Monthly3YearTextBox;
+        private TextBox Interest3YearTextBox;
+        private Label TotalLoan3YearLabel;
+        private Label TotalInterestPaid3YearLabel;
+        private Label Monthly3YearLabel;
+        private Label InterestRate3YearLabel;
+        private Label SevenYearLoanLabel;
+        private TextBox TotalLoan7YearTextBox;
+        private TextBox Interest7YearTextBox;
+        private TextBox Monthly7YearTextBox;
+        private TextBox AppliedInterest7YearTextBox;
+        private Label TotalLoan7YearLabel;
+        private Label TotalInterest7YearLabel;
+        private Label Monthly7YearLabel;
+        private Label InterestRate7YearLabel;
     }
 }
