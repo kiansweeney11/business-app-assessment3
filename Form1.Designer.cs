@@ -47,7 +47,6 @@
             this.ProceedButton = new System.Windows.Forms.Button();
             this.DisplayButton = new System.Windows.Forms.Button();
             this.SubmitButton = new System.Windows.Forms.Button();
-            this.PricePictureBox = new System.Windows.Forms.PictureBox();
             this.LoanAmountGroupBox = new System.Windows.Forms.GroupBox();
             this.TextBoxLoan = new System.Windows.Forms.TextBox();
             this.AmountLabel = new System.Windows.Forms.Label();
@@ -105,13 +104,24 @@
             this.ClearToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ExitToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SubmitToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.CompanyLogoPictureBox = new System.Windows.Forms.PictureBox();
+            this.SummaryGroupBox = new System.Windows.Forms.GroupBox();
+            this.OverallLabel = new System.Windows.Forms.Label();
+            this.TotalInterestLabel = new System.Windows.Forms.Label();
+            this.AverageLoanLabel = new System.Windows.Forms.Label();
+            this.AverageLengthLabel = new System.Windows.Forms.Label();
+            this.TotalIncomeTextBox = new System.Windows.Forms.TextBox();
+            this.InterestOverallTextBox = new System.Windows.Forms.TextBox();
+            this.AverageLoanTextBox = new System.Windows.Forms.TextBox();
+            this.AverageLoanLengthTextBox = new System.Windows.Forms.TextBox();
             this.StartMenuPanel.SuspendLayout();
             this.GroupBoxLength.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PricePictureBox)).BeginInit();
             this.LoanAmountGroupBox.SuspendLayout();
             this.DisplayGroupBox.SuspendLayout();
             this.ProceedGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CompanyLogoPictureBox)).BeginInit();
+            this.SummaryGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // StartMenuPanel
@@ -176,9 +186,9 @@
             this.GroupBoxLength.Controls.Add(this.ThreeYearRadioButton);
             this.GroupBoxLength.Controls.Add(this.OneYearRadioButton);
             this.GroupBoxLength.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GroupBoxLength.Location = new System.Drawing.Point(1281, 453);
+            this.GroupBoxLength.Location = new System.Drawing.Point(876, 231);
             this.GroupBoxLength.Name = "GroupBoxLength";
-            this.GroupBoxLength.Size = new System.Drawing.Size(251, 298);
+            this.GroupBoxLength.Size = new System.Drawing.Size(251, 301);
             this.GroupBoxLength.TabIndex = 4;
             this.GroupBoxLength.TabStop = false;
             this.GroupBoxLength.Text = "Requested Loan Length";
@@ -234,9 +244,9 @@
             this.ButtonPanel.Controls.Add(this.ClearButton);
             this.ButtonPanel.Controls.Add(this.ProceedButton);
             this.ButtonPanel.Controls.Add(this.DisplayButton);
-            this.ButtonPanel.Location = new System.Drawing.Point(1281, 28);
+            this.ButtonPanel.Location = new System.Drawing.Point(929, 17);
             this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(251, 379);
+            this.ButtonPanel.Size = new System.Drawing.Size(701, 107);
             this.ButtonPanel.TabIndex = 2;
             this.ButtonPanel.Visible = false;
             // 
@@ -245,20 +255,21 @@
             this.SummaryButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.SummaryButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SummaryButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.SummaryButton.Location = new System.Drawing.Point(78, 172);
+            this.SummaryButton.Location = new System.Drawing.Point(297, 36);
             this.SummaryButton.Name = "SummaryButton";
             this.SummaryButton.Size = new System.Drawing.Size(112, 34);
             this.SummaryButton.TabIndex = 5;
             this.SummaryButton.Text = "&Summary";
             this.SummaryToolTip.SetToolTip(this.SummaryButton, "Click for summary of company transactions.");
             this.SummaryButton.UseVisualStyleBackColor = false;
+            this.SummaryButton.Click += new System.EventHandler(this.SummaryButton_Click);
             // 
             // ExitButton
             // 
             this.ExitButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ExitButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ExitButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ExitButton.Location = new System.Drawing.Point(78, 308);
+            this.ExitButton.Location = new System.Drawing.Point(567, 36);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(112, 34);
             this.ExitButton.TabIndex = 4;
@@ -272,7 +283,7 @@
             this.ClearButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClearButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ClearButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ClearButton.Location = new System.Drawing.Point(78, 240);
+            this.ClearButton.Location = new System.Drawing.Point(432, 36);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(112, 34);
             this.ClearButton.TabIndex = 3;
@@ -286,7 +297,7 @@
             this.ProceedButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ProceedButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ProceedButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ProceedButton.Location = new System.Drawing.Point(78, 104);
+            this.ProceedButton.Location = new System.Drawing.Point(162, 36);
             this.ProceedButton.Name = "ProceedButton";
             this.ProceedButton.Size = new System.Drawing.Size(112, 34);
             this.ProceedButton.TabIndex = 1;
@@ -300,7 +311,7 @@
             this.DisplayButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.DisplayButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.DisplayButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.DisplayButton.Location = new System.Drawing.Point(78, 36);
+            this.DisplayButton.Location = new System.Drawing.Point(27, 36);
             this.DisplayButton.Name = "DisplayButton";
             this.DisplayButton.Size = new System.Drawing.Size(112, 34);
             this.DisplayButton.TabIndex = 0;
@@ -323,24 +334,13 @@
             this.SubmitButton.UseVisualStyleBackColor = false;
             this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
-            // PricePictureBox
-            // 
-            this.PricePictureBox.BackColor = System.Drawing.SystemColors.Window;
-            this.PricePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("PricePictureBox.Image")));
-            this.PricePictureBox.Location = new System.Drawing.Point(26, 28);
-            this.PricePictureBox.Name = "PricePictureBox";
-            this.PricePictureBox.Size = new System.Drawing.Size(357, 730);
-            this.PricePictureBox.TabIndex = 3;
-            this.PricePictureBox.TabStop = false;
-            this.PricePictureBox.Visible = false;
-            // 
             // LoanAmountGroupBox
             // 
             this.LoanAmountGroupBox.BackColor = System.Drawing.SystemColors.Window;
             this.LoanAmountGroupBox.Controls.Add(this.TextBoxLoan);
             this.LoanAmountGroupBox.Controls.Add(this.AmountLabel);
             this.LoanAmountGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LoanAmountGroupBox.Location = new System.Drawing.Point(403, 28);
+            this.LoanAmountGroupBox.Location = new System.Drawing.Point(461, 17);
             this.LoanAmountGroupBox.Name = "LoanAmountGroupBox";
             this.LoanAmountGroupBox.Size = new System.Drawing.Size(445, 150);
             this.LoanAmountGroupBox.TabIndex = 4;
@@ -405,12 +405,12 @@
             this.DisplayGroupBox.Controls.Add(this.MonthlyRepaymentLabel);
             this.DisplayGroupBox.Controls.Add(this.InterestLabelDisplay);
             this.DisplayGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisplayGroupBox.Location = new System.Drawing.Point(403, 231);
+            this.DisplayGroupBox.Location = new System.Drawing.Point(12, 173);
             this.DisplayGroupBox.Name = "DisplayGroupBox";
             this.DisplayGroupBox.Size = new System.Drawing.Size(858, 520);
             this.DisplayGroupBox.TabIndex = 5;
             this.DisplayGroupBox.TabStop = false;
-            this.DisplayGroupBox.Text = "Car Loan Details";
+            this.DisplayGroupBox.Text = "Car Loan Offered Term Details";
             this.DisplayGroupBox.Visible = false;
             // 
             // SevenYearLoanLabel
@@ -736,9 +736,9 @@
             this.ProceedGroupBox.Controls.Add(this.PostcodeLabel);
             this.ProceedGroupBox.Controls.Add(this.NameLabel);
             this.ProceedGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ProceedGroupBox.Location = new System.Drawing.Point(689, 757);
+            this.ProceedGroupBox.Location = new System.Drawing.Point(1149, 231);
             this.ProceedGroupBox.Name = "ProceedGroupBox";
-            this.ProceedGroupBox.Size = new System.Drawing.Size(515, 297);
+            this.ProceedGroupBox.Size = new System.Drawing.Size(481, 301);
             this.ProceedGroupBox.TabIndex = 6;
             this.ProceedGroupBox.TabStop = false;
             this.ProceedGroupBox.Text = "Client Details";
@@ -860,16 +860,112 @@
             this.SubmitToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.SubmitToolTip.ToolTipTitle = "Info";
             // 
+            // CompanyLogoPictureBox
+            // 
+            this.CompanyLogoPictureBox.BackColor = System.Drawing.SystemColors.Window;
+            this.CompanyLogoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("CompanyLogoPictureBox.Image")));
+            this.CompanyLogoPictureBox.Location = new System.Drawing.Point(541, 754);
+            this.CompanyLogoPictureBox.Name = "CompanyLogoPictureBox";
+            this.CompanyLogoPictureBox.Size = new System.Drawing.Size(491, 137);
+            this.CompanyLogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.CompanyLogoPictureBox.TabIndex = 7;
+            this.CompanyLogoPictureBox.TabStop = false;
+            // 
+            // SummaryGroupBox
+            // 
+            this.SummaryGroupBox.BackColor = System.Drawing.SystemColors.Window;
+            this.SummaryGroupBox.Controls.Add(this.AverageLoanLengthTextBox);
+            this.SummaryGroupBox.Controls.Add(this.AverageLoanTextBox);
+            this.SummaryGroupBox.Controls.Add(this.InterestOverallTextBox);
+            this.SummaryGroupBox.Controls.Add(this.TotalIncomeTextBox);
+            this.SummaryGroupBox.Controls.Add(this.AverageLengthLabel);
+            this.SummaryGroupBox.Controls.Add(this.AverageLoanLabel);
+            this.SummaryGroupBox.Controls.Add(this.TotalInterestLabel);
+            this.SummaryGroupBox.Controls.Add(this.OverallLabel);
+            this.SummaryGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SummaryGroupBox.Location = new System.Drawing.Point(12, 717);
+            this.SummaryGroupBox.Name = "SummaryGroupBox";
+            this.SummaryGroupBox.Size = new System.Drawing.Size(514, 321);
+            this.SummaryGroupBox.TabIndex = 8;
+            this.SummaryGroupBox.TabStop = false;
+            this.SummaryGroupBox.Text = "Company Summary Details";
+            this.SummaryGroupBox.Visible = false;
+            // 
+            // OverallLabel
+            // 
+            this.OverallLabel.AutoSize = true;
+            this.OverallLabel.Location = new System.Drawing.Point(30, 62);
+            this.OverallLabel.Name = "OverallLabel";
+            this.OverallLabel.Size = new System.Drawing.Size(139, 28);
+            this.OverallLabel.TabIndex = 0;
+            this.OverallLabel.Text = "Total Income:";
+            // 
+            // TotalInterestLabel
+            // 
+            this.TotalInterestLabel.AutoSize = true;
+            this.TotalInterestLabel.Location = new System.Drawing.Point(30, 112);
+            this.TotalInterestLabel.Name = "TotalInterestLabel";
+            this.TotalInterestLabel.Size = new System.Drawing.Size(143, 28);
+            this.TotalInterestLabel.TabIndex = 1;
+            this.TotalInterestLabel.Text = "Total Interest:";
+            // 
+            // AverageLoanLabel
+            // 
+            this.AverageLoanLabel.AutoSize = true;
+            this.AverageLoanLabel.Location = new System.Drawing.Point(30, 162);
+            this.AverageLoanLabel.Name = "AverageLoanLabel";
+            this.AverageLoanLabel.Size = new System.Drawing.Size(199, 28);
+            this.AverageLoanLabel.TabIndex = 2;
+            this.AverageLoanLabel.Text = "Average Loan Total:";
+            // 
+            // AverageLengthLabel
+            // 
+            this.AverageLengthLabel.AutoSize = true;
+            this.AverageLengthLabel.Location = new System.Drawing.Point(30, 212);
+            this.AverageLengthLabel.Name = "AverageLengthLabel";
+            this.AverageLengthLabel.Size = new System.Drawing.Size(217, 28);
+            this.AverageLengthLabel.TabIndex = 3;
+            this.AverageLengthLabel.Text = "Average Loan Length:";
+            // 
+            // TotalIncomeTextBox
+            // 
+            this.TotalIncomeTextBox.Location = new System.Drawing.Point(302, 62);
+            this.TotalIncomeTextBox.Name = "TotalIncomeTextBox";
+            this.TotalIncomeTextBox.Size = new System.Drawing.Size(150, 34);
+            this.TotalIncomeTextBox.TabIndex = 4;
+            // 
+            // InterestOverallTextBox
+            // 
+            this.InterestOverallTextBox.Location = new System.Drawing.Point(302, 112);
+            this.InterestOverallTextBox.Name = "InterestOverallTextBox";
+            this.InterestOverallTextBox.Size = new System.Drawing.Size(150, 34);
+            this.InterestOverallTextBox.TabIndex = 5;
+            // 
+            // AverageLoanTextBox
+            // 
+            this.AverageLoanTextBox.Location = new System.Drawing.Point(302, 162);
+            this.AverageLoanTextBox.Name = "AverageLoanTextBox";
+            this.AverageLoanTextBox.Size = new System.Drawing.Size(150, 34);
+            this.AverageLoanTextBox.TabIndex = 6;
+            // 
+            // AverageLoanLengthTextBox
+            // 
+            this.AverageLoanLengthTextBox.Location = new System.Drawing.Point(302, 212);
+            this.AverageLoanLengthTextBox.Name = "AverageLoanLengthTextBox";
+            this.AverageLoanLengthTextBox.Size = new System.Drawing.Size(150, 34);
+            this.AverageLoanLengthTextBox.TabIndex = 7;
+            // 
             // Mad4RoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1558, 1050);
+            this.ClientSize = new System.Drawing.Size(1652, 1050);
+            this.Controls.Add(this.SummaryGroupBox);
+            this.Controls.Add(this.CompanyLogoPictureBox);
             this.Controls.Add(this.ProceedGroupBox);
             this.Controls.Add(this.DisplayGroupBox);
             this.Controls.Add(this.LoanAmountGroupBox);
             this.Controls.Add(this.GroupBoxLength);
-            this.Controls.Add(this.PricePictureBox);
             this.Controls.Add(this.ButtonPanel);
             this.Controls.Add(this.StartMenuPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -880,13 +976,15 @@
             this.GroupBoxLength.ResumeLayout(false);
             this.GroupBoxLength.PerformLayout();
             this.ButtonPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PricePictureBox)).EndInit();
             this.LoanAmountGroupBox.ResumeLayout(false);
             this.LoanAmountGroupBox.PerformLayout();
             this.DisplayGroupBox.ResumeLayout(false);
             this.DisplayGroupBox.PerformLayout();
             this.ProceedGroupBox.ResumeLayout(false);
             this.ProceedGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CompanyLogoPictureBox)).EndInit();
+            this.SummaryGroupBox.ResumeLayout(false);
+            this.SummaryGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -904,7 +1002,6 @@
         private Button SubmitButton;
         private Button ClearButton;
         private Button ExitButton;
-        private PictureBox PricePictureBox;
         private GroupBox GroupBoxLength;
         private RadioButton SevenYearsRadioButton;
         private RadioButton FiveYearsRadioButton;
@@ -968,5 +1065,15 @@
         private Label TotalInterest7YearLabel;
         private Label Monthly7YearLabel;
         private Label InterestRate7YearLabel;
+        private PictureBox CompanyLogoPictureBox;
+        private GroupBox SummaryGroupBox;
+        private Label AverageLengthLabel;
+        private Label AverageLoanLabel;
+        private Label TotalInterestLabel;
+        private Label OverallLabel;
+        private TextBox AverageLoanLengthTextBox;
+        private TextBox AverageLoanTextBox;
+        private TextBox InterestOverallTextBox;
+        private TextBox TotalIncomeTextBox;
     }
 }

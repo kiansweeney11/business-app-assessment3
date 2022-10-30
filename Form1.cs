@@ -1,3 +1,12 @@
+// Name - Kian Sweeney
+// ID - 22220670
+// MS806 Assignment 3
+// Your client Mad4Money Bank Corp is a financial services company that offers various financial
+// products to its customers. One of these is a car loan product called ‘Mad4Road’, in which a client can
+// borrow between €10,000 and €100,000 over terms of up to 7 years. The interest rate offered to each
+// client depends on the amount and term of the loan requested. Your company has been commissioned to
+//create a well-designed application for employees to process client transactions for this product.
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.AccessControl;
 
 namespace Mad4Road
 {
@@ -71,7 +81,7 @@ namespace Mad4Road
                 else if (PasswordTextBox.Text == PASSWORD & PasswordAttempts <= MAXATTEMPTS)
                 {
                     StartMenuPanel.Visible = false;
-                    PricePictureBox.Visible = true;
+                    //PricePictureBox.Visible = true;
                     ButtonPanel.Visible = true;
                     LoanAmountGroupBox.Visible = true;
                     this.TextBoxLoan.Focus();
@@ -140,7 +150,7 @@ namespace Mad4Road
                     this.MonthlyRepaymentTextBox.Text = MonthlyRepayYear1.ToString("C");
                     this.TotalInterestTextBox.Text = TotalInterestPaidYear1.ToString("C");
                     this.TotalLoanCostTextBox.Text = LoanOverallTotalYear1.ToString("C");
-                    // 3 year less than40k
+                    // 3 year greater than40k
                     decimal TotalInterestPaidYear3 = LoanPreTotal * (APR_3YEAR_OVER40 / 100);
                     decimal MonthlyRepayYear3 = TotalInterestPaidYear3 / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
                     decimal InterestRateAppliedYear3 = APR_3YEAR_OVER40;
@@ -150,7 +160,7 @@ namespace Mad4Road
                     this.Monthly3YearTextBox.Text = MonthlyRepayYear3.ToString("C");
                     this.TotalInterest3YearTextBox.Text = TotalInterestPaidYear3.ToString("C");
                     this.TotalLoanCost3YearTextBox.Text = LoanOverallTotalYear3.ToString("C");
-                    // 5 year less than40k
+                    // 5 year greater than40k
                     decimal TotalInterestPaidYear5 = LoanPreTotal * (APR_5YEAR_OVER40 / 100);
                     decimal MonthlyRepayYear5 = TotalInterestPaidYear5 / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
                     decimal InterestRateAppliedYear5 = APR_5YEAR_OVER40;
@@ -160,7 +170,7 @@ namespace Mad4Road
                     this.Monthly5YearRepayTextBox.Text = MonthlyRepayYear5.ToString("C");
                     this.TotalInterest5YearTextBox.Text = TotalInterestPaidYear5.ToString("C");
                     this.TotalLoan5YearsTextBox.Text = LoanOverallTotalYear5.ToString("C");
-                    // 7 year less than40k
+                    // 7 year greater than40k
                     decimal TotalInterestPaidYear7 = LoanPreTotal * (APR_7YEAR_OVER40 / 100);
                     decimal MonthlyRepayYear7 = TotalInterestPaidYear7 / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
                     decimal InterestRateAppliedYear7 = APR_7YEAR_OVER40;
@@ -183,7 +193,7 @@ namespace Mad4Road
                     this.MonthlyRepaymentTextBox.Text = MonthlyRepayYear1.ToString("C");
                     this.TotalInterestTextBox.Text = TotalInterestPaidYear1.ToString("C");
                     this.TotalLoanCostTextBox.Text = LoanOverallTotalYear1.ToString("C");
-                    // 3 year less than40k
+                    // 3 year greater than 80k
                     decimal TotalInterestPaidYear3 = LoanPreTotal * (APR_3YEAR_OVER80 / 100);
                     decimal MonthlyRepayYear3 = TotalInterestPaidYear3 / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
                     decimal InterestRateAppliedYear3 = APR_3YEAR_OVER80;
@@ -193,7 +203,7 @@ namespace Mad4Road
                     this.Monthly3YearTextBox.Text = MonthlyRepayYear3.ToString("C");
                     this.TotalInterest3YearTextBox.Text = TotalInterestPaidYear3.ToString("C");
                     this.TotalLoanCost3YearTextBox.Text = LoanOverallTotalYear3.ToString("C");
-                    // 5 year less than40k
+                    // 5 year greater than 80k
                     decimal TotalInterestPaidYear5 = LoanPreTotal * (APR_5YEAR_OVER80 / 100);
                     decimal MonthlyRepayYear5 = TotalInterestPaidYear5 / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
                     decimal InterestRateAppliedYear5 = APR_5YEAR_OVER80;
@@ -203,7 +213,7 @@ namespace Mad4Road
                     this.Monthly5YearRepayTextBox.Text = MonthlyRepayYear5.ToString("C");
                     this.TotalInterest5YearTextBox.Text = TotalInterestPaidYear5.ToString("C");
                     this.TotalLoan5YearsTextBox.Text = LoanOverallTotalYear5.ToString("C");
-                    // 7 year less than40k
+                    // 7 year greater than 80k
                     decimal TotalInterestPaidYear7 = LoanPreTotal * (APR_7YEAR_OVER80 / 100);
                     decimal MonthlyRepayYear7 = TotalInterestPaidYear7 / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
                     decimal InterestRateAppliedYear7 = APR_7YEAR_OVER80;
@@ -229,18 +239,19 @@ namespace Mad4Road
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            if(NameTextBox.Text.Length >= 1)
+            if (NameTextBox.Text.Length >= 1)
             {
                 if(PostcodeTextBox.Text.Length >= 1)
                 {
                     String PhoneNumber = TelephoneTextBox.Text;
                     if(PhoneNumber.Length == 10 && IsDigitsOnly(PhoneNumber) == true)
                     {
-                        if (EmailTextBox.Text != "" & (EmailTextBox.Text.Contains("@") | EmailTextBox.Text.EndsWith(".com") | EmailTextBox.Text.EndsWith(".in") | EmailTextBox.Text.EndsWith(".ie")))
+                        if (EmailTextBox.Text != "" & (EmailTextBox.Text.Contains("@") | EmailTextBox.Text.EndsWith(".com")))
                         {
                             string Details = "Name of Client:\t\t" + NameTextBox.Text + "\nMembership ID:\t\t" + IDTextBox.Text + "\nTelephone Number:\t" + TelephoneTextBox.Text + 
-                                "\nEmail Address:\t\t" + EmailTextBox.Text + "\nTotal Price:\t\t" +
-                                TotalLoanCostTextBox.Text + "\nInterest to be Paid:\t\t" + TotalInterestTextBox.Text;
+                                "\nEmail Address:\t\t" + EmailTextBox.Text + "\nPostcode:\t\t" + PostcodeTextBox.Text +  "\nTotal Price:\t\t" +
+                                LoanOverallTotal.ToString("C") + "\nInterest to be Paid:\t" + TotalInterestPaid.ToString("C") +
+                                "\nInterest Rate Applied:\t" + InterestRateApplied.ToString() + "\nMonthy Repayments:\t" + MonthlyRepay.ToString("C");
                             if (MessageBox.Show("Do you wish to Proceed?\n" + Details, "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
                                 try
@@ -250,9 +261,10 @@ namespace Mad4Road
                                     InputFile.WriteLine(NameTextBox.Text);
                                     InputFile.WriteLine(TelephoneTextBox.Text);
                                     InputFile.WriteLine(EmailTextBox.Text);
-                                    InputFile.WriteLine(TotalLoanCostTextBox.Text);
-                                    InputFile.WriteLine(TotalInterestTextBox.Text);
-                                    InputFile.WriteLine(MonthlyRepaymentTextBox.Text);
+                                    InputFile.WriteLine(TotalInterestPaid.ToString("C"));
+                                    InputFile.WriteLine(MonthlyRepay.ToString("C"));
+                                    InputFile.WriteLine(InterestRateApplied.ToString());
+                                    InputFile.WriteLine(LoanOverallTotal.ToString("C"));
                                     InputFile.Close();
                                     MessageBox.Show("Details Saved Successfully.\nClient Loan has Been Approved", "Loan Success");
                                     ClearButton_Click(sender, e);
@@ -298,7 +310,10 @@ namespace Mad4Road
 
         private void ProceedButton_Click(object sender, EventArgs e)
         {
+            // proceed button generates actual values based on loan length
+            // this does if statements to populate our global variables
             this.ProceedGroupBox.Visible = true;
+            TransactionIDGenerator();
             try
             {
                 if (LoanPreTotal < 40000)
@@ -397,11 +412,10 @@ namespace Mad4Road
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
                     }
                 }
-                TransactionIDGenerator();
             }
             catch
             {
-                MessageBox.Show("Invalid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid File. Does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -413,8 +427,8 @@ namespace Mad4Road
             // create file if it doesn't exist
             if (!File.Exists(DataFile))
             {
-                var FileCreated = File.Create(DataFile);
-                FileCreated.Close();
+                StreamWriter Files;
+                Files = File.CreateText(DataFile);
             }
             // lines count is variable for iterating through
             // this is set as 1 due to it only being used if file does exist
@@ -459,7 +473,6 @@ namespace Mad4Road
                         {
                             // generates random number if not on file
                             this.IDTextBox.Text = rand.ToString("D5");
-                            //Console.WriteLine(IDTextBox.Text.ToString());
                         }
                     }
                 }
@@ -482,6 +495,50 @@ namespace Mad4Road
 
             return true;
         }
+
+        private void SummaryButton_Click(object sender, EventArgs e)
+        {
+            this.ProceedGroupBox.Visible = false;
+            this.SummaryGroupBox.Visible = true;
+            int TotalLines = CalculateFileLines();
+            decimal TotalTranscations = Convert.ToDecimal(TotalLines) / 8;
+            decimal TotalLoans = CalculateSummary(8);
+            decimal TotalInterest = CalculateSummary(5);
+            TotalInterestTextBox.Text = TotalInterest.ToString("C");
+            TotalLoanCostTextBox.Text = TotalLoans.ToString("C");
+            AverageLoanTextBox.Text = (TotalLoans / TotalTranscations).ToString("C2");
+            //decimal TotalTerms = CalculateSummary(6);
+            //AvgMembershipTermLabel.Text = (TotalTerms / TotalTranscations).ToString("N2");
+        }
+
+        private decimal CalculateSummary(int CalculateLines)
+        {
+            int TotalLines = CalculateFileLines();
+            string LineRead;
+            decimal Total = 0m, LineValue;
+            if(TotalLines > 1)
+            {
+                StreamReader OutputFile = File.OpenText(DataFile);
+                while (!OutputFile.EndOfStream)
+                {
+                    for (int i = CalculateLines; i <= TotalLines - 1; i += CalculateLines)
+                    {
+                        LineRead = OutputFile.ReadLine();
+                        LineValue = decimal.Parse(LineRead);
+                        Total += LineValue;
+                    }
+
+                }
+                OutputFile.Close();
+            }
+            else
+            {
+                MessageBox.Show("No Information Available\nContact Admin",
+                    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return Total;
+     
+        }
         private void ClearButton_Click(object sender, EventArgs e)
         {
             this.TextBoxLoan.Clear();
@@ -491,6 +548,11 @@ namespace Mad4Road
             this.ThreeYearRadioButton.Checked = false;
             this.FiveYearsRadioButton.Checked = false;
             this.SevenYearsRadioButton.Checked = false;
+            this.GroupBoxLength.Visible = false;
+            this.NameTextBox.Clear();
+            this.TelephoneTextBox.Clear();
+            this.EmailTextBox.Clear();
+            this.PostcodeTextBox.Clear();
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
