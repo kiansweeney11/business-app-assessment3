@@ -106,14 +106,14 @@
             this.SubmitToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.CompanyLogoPictureBox = new System.Windows.Forms.PictureBox();
             this.SummaryGroupBox = new System.Windows.Forms.GroupBox();
-            this.OverallLabel = new System.Windows.Forms.Label();
-            this.TotalInterestLabel = new System.Windows.Forms.Label();
-            this.AverageLoanLabel = new System.Windows.Forms.Label();
-            this.AverageLengthLabel = new System.Windows.Forms.Label();
-            this.TotalIncomeTextBox = new System.Windows.Forms.TextBox();
-            this.InterestOverallTextBox = new System.Windows.Forms.TextBox();
-            this.AverageLoanTextBox = new System.Windows.Forms.TextBox();
             this.AverageLoanLengthTextBox = new System.Windows.Forms.TextBox();
+            this.AverageLoanTextBox = new System.Windows.Forms.TextBox();
+            this.InterestOverallTextBox = new System.Windows.Forms.TextBox();
+            this.TotalIncomeTextBox = new System.Windows.Forms.TextBox();
+            this.AverageLengthLabel = new System.Windows.Forms.Label();
+            this.AverageLoanLabel = new System.Windows.Forms.Label();
+            this.TotalInterestLabel = new System.Windows.Forms.Label();
+            this.OverallLabel = new System.Windows.Forms.Label();
             this.StartMenuPanel.SuspendLayout();
             this.GroupBoxLength.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
@@ -891,32 +891,37 @@
             this.SummaryGroupBox.Text = "Company Summary Details";
             this.SummaryGroupBox.Visible = false;
             // 
-            // OverallLabel
+            // AverageLoanLengthTextBox
             // 
-            this.OverallLabel.AutoSize = true;
-            this.OverallLabel.Location = new System.Drawing.Point(30, 62);
-            this.OverallLabel.Name = "OverallLabel";
-            this.OverallLabel.Size = new System.Drawing.Size(139, 28);
-            this.OverallLabel.TabIndex = 0;
-            this.OverallLabel.Text = "Total Income:";
+            this.AverageLoanLengthTextBox.Location = new System.Drawing.Point(302, 212);
+            this.AverageLoanLengthTextBox.Name = "AverageLoanLengthTextBox";
+            this.AverageLoanLengthTextBox.Size = new System.Drawing.Size(150, 34);
+            this.AverageLoanLengthTextBox.TabIndex = 7;
+            this.AverageLoanLengthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // TotalInterestLabel
+            // AverageLoanTextBox
             // 
-            this.TotalInterestLabel.AutoSize = true;
-            this.TotalInterestLabel.Location = new System.Drawing.Point(30, 112);
-            this.TotalInterestLabel.Name = "TotalInterestLabel";
-            this.TotalInterestLabel.Size = new System.Drawing.Size(143, 28);
-            this.TotalInterestLabel.TabIndex = 1;
-            this.TotalInterestLabel.Text = "Total Interest:";
+            this.AverageLoanTextBox.Location = new System.Drawing.Point(302, 162);
+            this.AverageLoanTextBox.Name = "AverageLoanTextBox";
+            this.AverageLoanTextBox.Size = new System.Drawing.Size(150, 34);
+            this.AverageLoanTextBox.TabIndex = 6;
+            this.AverageLoanTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // AverageLoanLabel
+            // InterestOverallTextBox
             // 
-            this.AverageLoanLabel.AutoSize = true;
-            this.AverageLoanLabel.Location = new System.Drawing.Point(30, 162);
-            this.AverageLoanLabel.Name = "AverageLoanLabel";
-            this.AverageLoanLabel.Size = new System.Drawing.Size(199, 28);
-            this.AverageLoanLabel.TabIndex = 2;
-            this.AverageLoanLabel.Text = "Average Loan Total:";
+            this.InterestOverallTextBox.Location = new System.Drawing.Point(302, 112);
+            this.InterestOverallTextBox.Name = "InterestOverallTextBox";
+            this.InterestOverallTextBox.Size = new System.Drawing.Size(150, 34);
+            this.InterestOverallTextBox.TabIndex = 5;
+            this.InterestOverallTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalIncomeTextBox
+            // 
+            this.TotalIncomeTextBox.Location = new System.Drawing.Point(302, 62);
+            this.TotalIncomeTextBox.Name = "TotalIncomeTextBox";
+            this.TotalIncomeTextBox.Size = new System.Drawing.Size(150, 34);
+            this.TotalIncomeTextBox.TabIndex = 4;
+            this.TotalIncomeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // AverageLengthLabel
             // 
@@ -927,33 +932,32 @@
             this.AverageLengthLabel.TabIndex = 3;
             this.AverageLengthLabel.Text = "Average Loan Length:";
             // 
-            // TotalIncomeTextBox
+            // AverageLoanLabel
             // 
-            this.TotalIncomeTextBox.Location = new System.Drawing.Point(302, 62);
-            this.TotalIncomeTextBox.Name = "TotalIncomeTextBox";
-            this.TotalIncomeTextBox.Size = new System.Drawing.Size(150, 34);
-            this.TotalIncomeTextBox.TabIndex = 4;
+            this.AverageLoanLabel.AutoSize = true;
+            this.AverageLoanLabel.Location = new System.Drawing.Point(30, 162);
+            this.AverageLoanLabel.Name = "AverageLoanLabel";
+            this.AverageLoanLabel.Size = new System.Drawing.Size(199, 28);
+            this.AverageLoanLabel.TabIndex = 2;
+            this.AverageLoanLabel.Text = "Average Loan Total:";
             // 
-            // InterestOverallTextBox
+            // TotalInterestLabel
             // 
-            this.InterestOverallTextBox.Location = new System.Drawing.Point(302, 112);
-            this.InterestOverallTextBox.Name = "InterestOverallTextBox";
-            this.InterestOverallTextBox.Size = new System.Drawing.Size(150, 34);
-            this.InterestOverallTextBox.TabIndex = 5;
+            this.TotalInterestLabel.AutoSize = true;
+            this.TotalInterestLabel.Location = new System.Drawing.Point(30, 112);
+            this.TotalInterestLabel.Name = "TotalInterestLabel";
+            this.TotalInterestLabel.Size = new System.Drawing.Size(143, 28);
+            this.TotalInterestLabel.TabIndex = 1;
+            this.TotalInterestLabel.Text = "Total Interest:";
             // 
-            // AverageLoanTextBox
+            // OverallLabel
             // 
-            this.AverageLoanTextBox.Location = new System.Drawing.Point(302, 162);
-            this.AverageLoanTextBox.Name = "AverageLoanTextBox";
-            this.AverageLoanTextBox.Size = new System.Drawing.Size(150, 34);
-            this.AverageLoanTextBox.TabIndex = 6;
-            // 
-            // AverageLoanLengthTextBox
-            // 
-            this.AverageLoanLengthTextBox.Location = new System.Drawing.Point(302, 212);
-            this.AverageLoanLengthTextBox.Name = "AverageLoanLengthTextBox";
-            this.AverageLoanLengthTextBox.Size = new System.Drawing.Size(150, 34);
-            this.AverageLoanLengthTextBox.TabIndex = 7;
+            this.OverallLabel.AutoSize = true;
+            this.OverallLabel.Location = new System.Drawing.Point(30, 62);
+            this.OverallLabel.Name = "OverallLabel";
+            this.OverallLabel.Size = new System.Drawing.Size(139, 28);
+            this.OverallLabel.TabIndex = 0;
+            this.OverallLabel.Text = "Total Income:";
             // 
             // Mad4RoadForm
             // 

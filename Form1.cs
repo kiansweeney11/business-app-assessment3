@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Security.AccessControl;
+using System.Globalization;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Mad4Road
 {
@@ -25,6 +28,7 @@ namespace Mad4Road
     {
         private decimal LoanPreTotal, MonthlyRepay, TotalInterestPaid,
             LoanOverallTotal, InterestRateApplied;
+        private int TermYears;
 
         private const String DataFile = "ClientLoanDetails.txt";
         public Mad4RoadForm()
@@ -250,7 +254,7 @@ namespace Mad4Road
                         {
                             string Details = "Name of Client:\t\t" + NameTextBox.Text + "\nMembership ID:\t\t" + IDTextBox.Text + "\nTelephone Number:\t" + TelephoneTextBox.Text + 
                                 "\nEmail Address:\t\t" + EmailTextBox.Text + "\nPostcode:\t\t" + PostcodeTextBox.Text +  "\nTotal Price:\t\t" +
-                                LoanOverallTotal.ToString("C") + "\nInterest to be Paid:\t" + TotalInterestPaid.ToString("C") +
+                                LoanOverallTotal.ToString("C") + "\nInterest to be Paid:\t" + TotalInterestPaid.ToString("C") + "\nNumber Years Loan:\t" + TermYears.ToString() +
                                 "\nInterest Rate Applied:\t" + InterestRateApplied.ToString() + "\nMonthy Repayments:\t" + MonthlyRepay.ToString("C");
                             if (MessageBox.Show("Do you wish to Proceed?\n" + Details, "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
@@ -261,10 +265,11 @@ namespace Mad4Road
                                     InputFile.WriteLine(NameTextBox.Text);
                                     InputFile.WriteLine(TelephoneTextBox.Text);
                                     InputFile.WriteLine(EmailTextBox.Text);
-                                    InputFile.WriteLine(TotalInterestPaid.ToString("C"));
-                                    InputFile.WriteLine(MonthlyRepay.ToString("C"));
+                                    InputFile.WriteLine(TermYears.ToString());
+                                    InputFile.WriteLine(TotalInterestPaid.ToString("0.00"));
+                                    InputFile.WriteLine(MonthlyRepay.ToString("0.00"));
                                     InputFile.WriteLine(InterestRateApplied.ToString());
-                                    InputFile.WriteLine(LoanOverallTotal.ToString("C"));
+                                    InputFile.WriteLine(LoanOverallTotal.ToString("0.00"));
                                     InputFile.Close();
                                     MessageBox.Show("Details Saved Successfully.\nClient Loan has Been Approved", "Loan Success");
                                     ClearButton_Click(sender, e);
@@ -295,7 +300,7 @@ namespace Mad4Road
                 }
                 else
                 {
-                    EmailTextBox.Focus();
+                    PostcodeTextBox.Focus();
                     MessageBox.Show("Invalid/Empty Postcode Inputted.", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 }
@@ -325,6 +330,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_UNDER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 1;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
@@ -332,6 +338,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_UNDER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 3;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
@@ -339,6 +346,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_UNDER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 5;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
@@ -346,6 +354,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_UNDER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 7;
                     }
                 }
                 else if (LoanPreTotal < 80000 && LoanPreTotal >= 40000)
@@ -357,6 +366,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_OVER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 1;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
@@ -364,6 +374,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_OVER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 3;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
@@ -371,6 +382,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_OVER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 5;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
@@ -378,6 +390,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_OVER40;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 7;
                     }
                 }
                 else
@@ -389,6 +402,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_OVER80;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 1;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
@@ -396,6 +410,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_OVER80;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 3;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
@@ -403,6 +418,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_OVER80;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 5;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
@@ -410,6 +426,7 @@ namespace Mad4Road
                         MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_OVER80;
                         LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        TermYears = 7;
                     }
                 }
             }
@@ -424,12 +441,6 @@ namespace Mad4Road
         // functions like count so we have to manually count each line.
         private int CalculateFileLines()
         {
-            // create file if it doesn't exist
-            if (!File.Exists(DataFile))
-            {
-                StreamWriter Files;
-                Files = File.CreateText(DataFile);
-            }
             // lines count is variable for iterating through
             // this is set as 1 due to it only being used if file does exist
             int LinesCount = 1, TotalLines;
@@ -501,33 +512,52 @@ namespace Mad4Road
             this.ProceedGroupBox.Visible = false;
             this.SummaryGroupBox.Visible = true;
             int TotalLines = CalculateFileLines();
-            decimal TotalTranscations = Convert.ToDecimal(TotalLines) / 8;
-            decimal TotalLoans = CalculateSummary(8);
-            decimal TotalInterest = CalculateSummary(5);
-            TotalInterestTextBox.Text = TotalInterest.ToString("C");
-            TotalLoanCostTextBox.Text = TotalLoans.ToString("C");
-            AverageLoanTextBox.Text = (TotalLoans / TotalTranscations).ToString("C2");
-            //decimal TotalTerms = CalculateSummary(6);
-            //AvgMembershipTermLabel.Text = (TotalTerms / TotalTranscations).ToString("N2");
+            // deal with whitespace at end of file  -> rounds down/up to actual number of transactions
+            decimal NumberTransactions = Decimal.Round((TotalLines) / 9);
+            decimal TotalLoans = CalculateSummary(9);
+            decimal TotalInterest = CalculateSummary(6);
+            // errors here
+            //decimal TotalYears = CalculateSummary(5);
+            TotalIncomeTextBox.Text = TotalLoans.ToString("C");
+            InterestOverallTextBox.Text = TotalInterest.ToString("C");
+            AverageLoanTextBox.Text = (TotalLoans / NumberTransactions).ToString("C");
+            //AverageLoanLengthTextBox.Text = (TotalYears / NumberTransactions).ToString("0.00");
         }
 
         private decimal CalculateSummary(int CalculateLines)
         {
             int TotalLines = CalculateFileLines();
             string LineRead;
-            decimal Total = 0m, LineValue;
-            if(TotalLines > 1)
+            decimal Total = 0m, LineValueDecimal;
+
+            Debug.WriteLine(TotalLines.ToString());
+            if (TotalLines >= 1)
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
                 while (!OutputFile.EndOfStream)
                 {
-                    for (int i = CalculateLines; i <= TotalLines - 1; i += CalculateLines)
+                    for (int i = 1; i <= TotalLines - 1; i++)
                     {
-                        LineRead = OutputFile.ReadLine();
-                        LineValue = decimal.Parse(LineRead);
-                        Total += LineValue;
+                        if((i - CalculateLines) % 9 == 0)
+                        {
+                            LineRead = OutputFile.ReadLine();
+                            if(LineRead != null)
+                            {
+                                // error here input string not in correct format
+                                LineValueDecimal = decimal.Parse(LineRead);
+                                Total += LineValueDecimal;
+                            }
+                            else
+                            {
+                                OutputFile.ReadLine();
+                            }
+                            
+                        }
+                        else
+                        {
+                            OutputFile.ReadLine();
+                        }                       
                     }
-
                 }
                 OutputFile.Close();
             }
@@ -549,6 +579,7 @@ namespace Mad4Road
             this.FiveYearsRadioButton.Checked = false;
             this.SevenYearsRadioButton.Checked = false;
             this.GroupBoxLength.Visible = false;
+            // ensure proceed groupboxs are cleared
             this.NameTextBox.Clear();
             this.TelephoneTextBox.Clear();
             this.EmailTextBox.Clear();
