@@ -41,6 +41,7 @@
             this.ThreeYearRadioButton = new System.Windows.Forms.RadioButton();
             this.OneYearRadioButton = new System.Windows.Forms.RadioButton();
             this.ButtonPanel = new System.Windows.Forms.Panel();
+            this.SearchButton = new System.Windows.Forms.Button();
             this.SummaryButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
@@ -114,6 +115,15 @@
             this.AverageLoanLabel = new System.Windows.Forms.Label();
             this.TotalInterestLabel = new System.Windows.Forms.Label();
             this.OverallLabel = new System.Windows.Forms.Label();
+            this.SearchToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.SearchGroupBox = new System.Windows.Forms.GroupBox();
+            this.SearchEmailButton = new System.Windows.Forms.Button();
+            this.SearchIDButton = new System.Windows.Forms.Button();
+            this.SearchEmailTextBox = new System.Windows.Forms.TextBox();
+            this.SearchIDTextBox = new System.Windows.Forms.TextBox();
+            this.EmailSearchLabel = new System.Windows.Forms.Label();
+            this.SearchIDLabel = new System.Windows.Forms.Label();
+            this.SearchListBox = new System.Windows.Forms.ListBox();
             this.StartMenuPanel.SuspendLayout();
             this.GroupBoxLength.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
@@ -122,6 +132,7 @@
             this.ProceedGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompanyLogoPictureBox)).BeginInit();
             this.SummaryGroupBox.SuspendLayout();
+            this.SearchGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // StartMenuPanel
@@ -239,23 +250,38 @@
             // ButtonPanel
             // 
             this.ButtonPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.ButtonPanel.Controls.Add(this.SearchButton);
             this.ButtonPanel.Controls.Add(this.SummaryButton);
             this.ButtonPanel.Controls.Add(this.ExitButton);
             this.ButtonPanel.Controls.Add(this.ClearButton);
             this.ButtonPanel.Controls.Add(this.ProceedButton);
             this.ButtonPanel.Controls.Add(this.DisplayButton);
-            this.ButtonPanel.Location = new System.Drawing.Point(929, 17);
+            this.ButtonPanel.Location = new System.Drawing.Point(772, 15);
             this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(701, 107);
+            this.ButtonPanel.Size = new System.Drawing.Size(858, 107);
             this.ButtonPanel.TabIndex = 2;
             this.ButtonPanel.Visible = false;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.SearchButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SearchButton.ForeColor = System.Drawing.SystemColors.Window;
+            this.SearchButton.Location = new System.Drawing.Point(583, 36);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(112, 34);
+            this.SearchButton.TabIndex = 6;
+            this.SearchButton.Text = "Search";
+            this.SearchToolTip.SetToolTip(this.SearchButton, "Search for previous transaction(s) based\r\noff ID or user ID.");
+            this.SearchButton.UseVisualStyleBackColor = false;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // SummaryButton
             // 
             this.SummaryButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.SummaryButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SummaryButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.SummaryButton.Location = new System.Drawing.Point(297, 36);
+            this.SummaryButton.Location = new System.Drawing.Point(305, 36);
             this.SummaryButton.Name = "SummaryButton";
             this.SummaryButton.Size = new System.Drawing.Size(112, 34);
             this.SummaryButton.TabIndex = 5;
@@ -269,7 +295,7 @@
             this.ExitButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ExitButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ExitButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ExitButton.Location = new System.Drawing.Point(567, 36);
+            this.ExitButton.Location = new System.Drawing.Point(722, 36);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(112, 34);
             this.ExitButton.TabIndex = 4;
@@ -283,7 +309,7 @@
             this.ClearButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClearButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ClearButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ClearButton.Location = new System.Drawing.Point(432, 36);
+            this.ClearButton.Location = new System.Drawing.Point(444, 36);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(112, 34);
             this.ClearButton.TabIndex = 3;
@@ -297,7 +323,7 @@
             this.ProceedButton.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ProceedButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ProceedButton.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ProceedButton.Location = new System.Drawing.Point(162, 36);
+            this.ProceedButton.Location = new System.Drawing.Point(166, 36);
             this.ProceedButton.Name = "ProceedButton";
             this.ProceedButton.Size = new System.Drawing.Size(112, 34);
             this.ProceedButton.TabIndex = 1;
@@ -340,7 +366,7 @@
             this.LoanAmountGroupBox.Controls.Add(this.TextBoxLoan);
             this.LoanAmountGroupBox.Controls.Add(this.AmountLabel);
             this.LoanAmountGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LoanAmountGroupBox.Location = new System.Drawing.Point(461, 17);
+            this.LoanAmountGroupBox.Location = new System.Drawing.Point(286, 17);
             this.LoanAmountGroupBox.Name = "LoanAmountGroupBox";
             this.LoanAmountGroupBox.Size = new System.Drawing.Size(445, 150);
             this.LoanAmountGroupBox.TabIndex = 4;
@@ -959,11 +985,105 @@
             this.OverallLabel.TabIndex = 0;
             this.OverallLabel.Text = "Total Income:";
             // 
+            // SearchToolTip
+            // 
+            this.SearchToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.SearchToolTip.ToolTipTitle = "Info";
+            // 
+            // SearchGroupBox
+            // 
+            this.SearchGroupBox.BackColor = System.Drawing.SystemColors.Window;
+            this.SearchGroupBox.Controls.Add(this.SearchEmailButton);
+            this.SearchGroupBox.Controls.Add(this.SearchIDButton);
+            this.SearchGroupBox.Controls.Add(this.SearchEmailTextBox);
+            this.SearchGroupBox.Controls.Add(this.SearchIDTextBox);
+            this.SearchGroupBox.Controls.Add(this.EmailSearchLabel);
+            this.SearchGroupBox.Controls.Add(this.SearchIDLabel);
+            this.SearchGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SearchGroupBox.Location = new System.Drawing.Point(938, 538);
+            this.SearchGroupBox.Name = "SearchGroupBox";
+            this.SearchGroupBox.Size = new System.Drawing.Size(692, 177);
+            this.SearchGroupBox.TabIndex = 9;
+            this.SearchGroupBox.TabStop = false;
+            this.SearchGroupBox.Text = "Search";
+            this.SearchGroupBox.Visible = false;
+            // 
+            // SearchEmailButton
+            // 
+            this.SearchEmailButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.SearchEmailButton.ForeColor = System.Drawing.SystemColors.Window;
+            this.SearchEmailButton.Location = new System.Drawing.Point(467, 100);
+            this.SearchEmailButton.Name = "SearchEmailButton";
+            this.SearchEmailButton.Size = new System.Drawing.Size(178, 34);
+            this.SearchEmailButton.TabIndex = 5;
+            this.SearchEmailButton.Text = "Search Email";
+            this.SearchEmailButton.UseVisualStyleBackColor = false;
+            this.SearchEmailButton.Click += new System.EventHandler(this.SearchEmailButton_Click);
+            // 
+            // SearchIDButton
+            // 
+            this.SearchIDButton.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.SearchIDButton.ForeColor = System.Drawing.SystemColors.Window;
+            this.SearchIDButton.Location = new System.Drawing.Point(467, 52);
+            this.SearchIDButton.Name = "SearchIDButton";
+            this.SearchIDButton.Size = new System.Drawing.Size(178, 34);
+            this.SearchIDButton.TabIndex = 4;
+            this.SearchIDButton.Text = "Search ID";
+            this.SearchIDButton.UseVisualStyleBackColor = false;
+            this.SearchIDButton.Click += new System.EventHandler(this.SearchIDButton_Click);
+            // 
+            // SearchEmailTextBox
+            // 
+            this.SearchEmailTextBox.Location = new System.Drawing.Point(200, 97);
+            this.SearchEmailTextBox.Name = "SearchEmailTextBox";
+            this.SearchEmailTextBox.Size = new System.Drawing.Size(215, 34);
+            this.SearchEmailTextBox.TabIndex = 3;
+            this.SearchEmailTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // SearchIDTextBox
+            // 
+            this.SearchIDTextBox.Location = new System.Drawing.Point(200, 52);
+            this.SearchIDTextBox.Name = "SearchIDTextBox";
+            this.SearchIDTextBox.Size = new System.Drawing.Size(215, 34);
+            this.SearchIDTextBox.TabIndex = 2;
+            this.SearchIDTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // EmailSearchLabel
+            // 
+            this.EmailSearchLabel.AutoSize = true;
+            this.EmailSearchLabel.Location = new System.Drawing.Point(25, 99);
+            this.EmailSearchLabel.Name = "EmailSearchLabel";
+            this.EmailSearchLabel.Size = new System.Drawing.Size(167, 28);
+            this.EmailSearchLabel.TabIndex = 1;
+            this.EmailSearchLabel.Text = "Search by Email:";
+            // 
+            // SearchIDLabel
+            // 
+            this.SearchIDLabel.AutoSize = true;
+            this.SearchIDLabel.Location = new System.Drawing.Point(25, 52);
+            this.SearchIDLabel.Name = "SearchIDLabel";
+            this.SearchIDLabel.Size = new System.Drawing.Size(136, 28);
+            this.SearchIDLabel.TabIndex = 0;
+            this.SearchIDLabel.Text = "Search by ID:";
+            // 
+            // SearchListBox
+            // 
+            this.SearchListBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SearchListBox.FormattingEnabled = true;
+            this.SearchListBox.ItemHeight = 28;
+            this.SearchListBox.Location = new System.Drawing.Point(1058, 742);
+            this.SearchListBox.Name = "SearchListBox";
+            this.SearchListBox.Size = new System.Drawing.Size(572, 284);
+            this.SearchListBox.TabIndex = 10;
+            this.SearchListBox.Visible = false;
+            // 
             // Mad4RoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1652, 1050);
+            this.Controls.Add(this.SearchListBox);
+            this.Controls.Add(this.SearchGroupBox);
             this.Controls.Add(this.SummaryGroupBox);
             this.Controls.Add(this.CompanyLogoPictureBox);
             this.Controls.Add(this.ProceedGroupBox);
@@ -989,6 +1109,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.CompanyLogoPictureBox)).EndInit();
             this.SummaryGroupBox.ResumeLayout(false);
             this.SummaryGroupBox.PerformLayout();
+            this.SearchGroupBox.ResumeLayout(false);
+            this.SearchGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1079,5 +1201,15 @@
         private TextBox AverageLoanTextBox;
         private TextBox InterestOverallTextBox;
         private TextBox TotalIncomeTextBox;
+        private Button SearchButton;
+        private ToolTip SearchToolTip;
+        private GroupBox SearchGroupBox;
+        private Label EmailSearchLabel;
+        private Label SearchIDLabel;
+        private TextBox SearchEmailTextBox;
+        private TextBox SearchIDTextBox;
+        private Button SearchEmailButton;
+        private Button SearchIDButton;
+        private ListBox SearchListBox;
     }
 }

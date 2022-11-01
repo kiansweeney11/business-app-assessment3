@@ -21,6 +21,7 @@ using System.Security.AccessControl;
 using System.Globalization;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Mad4Road
 {
@@ -28,7 +29,9 @@ namespace Mad4Road
     {
         private decimal LoanPreTotal, MonthlyRepay, TotalInterestPaid,
             LoanOverallTotal, InterestRateApplied;
-        private int TermYears;
+        // this needs to be decimal for our calculations regarding average loan length
+        // in the summary tab
+        private decimal TermYears;
 
         private const String DataFile = "ClientLoanDetails.txt";
         public Mad4RoadForm()
@@ -262,9 +265,9 @@ namespace Mad4Road
                                 {
                                     StreamWriter InputFile = File.AppendText(DataFile);
                                     InputFile.WriteLine(IDTextBox.Text);
+                                    InputFile.WriteLine(EmailTextBox.Text);
                                     InputFile.WriteLine(NameTextBox.Text);
                                     InputFile.WriteLine(TelephoneTextBox.Text);
-                                    InputFile.WriteLine(EmailTextBox.Text);
                                     InputFile.WriteLine(TermYears.ToString());
                                     InputFile.WriteLine(TotalInterestPaid.ToString("0.00"));
                                     InputFile.WriteLine(MonthlyRepay.ToString("0.00"));
@@ -507,6 +510,120 @@ namespace Mad4Road
             return true;
         }
 
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            // only to be used if there is input on file
+            int ClientLineFiles = CalculateFileLines();
+            if(ClientLineFiles >= 1)
+            {
+                this.SearchGroupBox.Visible = true;
+                this.DisplayGroupBox.Visible = false;
+                this.ProceedGroupBox.Visible = false;
+                this.SummaryGroupBox.Visible = false;
+                this.GroupBoxLength.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("No previous transactions.\nPlease ensure there has been data inputted.", "Error",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SearchIDButton_Click(object sender, EventArgs e)
+        {
+            int TotalLinesFile = CalculateFileLines();
+            String TransactIDString = this.SearchIDTextBox.Text;
+            if (TransactIDString.Length <= 5 && IsDigitsOnly(TransactIDString) == true)
+            {
+                StreamReader OutputFile = File.OpenText(DataFile);
+                while (OutputFile.ReadLine() != null)
+                {
+                    for (int i = 1; i <= TotalLinesFile - 1; i++)
+                    {
+                        string LineRead = OutputFile.ReadLine();
+                        if(LineRead != null)
+                        {
+                            if (LineRead == TransactIDString)
+                            {
+                                SearchListBox.Items.Add("ID is: " + LineRead);
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Visible = true;
+                                break;
+                            }
+                            else if (i == TotalLinesFile - 1)
+                            {
+                                MessageBox.Show("ID inputted not on file", "Info", 
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please input a valid ID.\nPlease ensure 5 or less numeric characters are inputted.", "Error",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SearchEmailButton_Click(object sender, EventArgs e)
+        {
+            int TotalLinesFile = CalculateFileLines();
+            String UserEmail = this.SearchEmailTextBox.Text;
+            if (UserEmail.Length >= 1 & (UserEmail.Contains("@") | UserEmail.EndsWith(".com")))
+            {
+                StreamReader OutputFile = File.OpenText(DataFile);
+                while (OutputFile.ReadLine() != null)
+                {
+                    for (int i = 1; i <= TotalLinesFile - 1; i++)
+                    {
+                        string LineRead = OutputFile.ReadLine();
+                        if (LineRead != null)
+                        {
+                            if (LineRead == UserEmail)
+                            {
+                                SearchListBox.Items.Add("Email is: " + LineRead);
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Visible = true;
+                                break;
+                            }
+                            else if (i == TotalLinesFile - 1)
+                            {
+                                MessageBox.Show("Email inputted not on file", "Info",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please input a valid Email.\nPlease ensure a valid email ending in .com is inputted.", "Error",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void SummaryButton_Click(object sender, EventArgs e)
         {
             this.ProceedGroupBox.Visible = false;
@@ -517,11 +634,11 @@ namespace Mad4Road
             decimal TotalLoans = CalculateSummary(9);
             decimal TotalInterest = CalculateSummary(6);
             // errors here
-            //decimal TotalYears = CalculateSummary(5);
+            decimal TotalYears = CalculateSummary(5);
             TotalIncomeTextBox.Text = TotalLoans.ToString("C");
             InterestOverallTextBox.Text = TotalInterest.ToString("C");
             AverageLoanTextBox.Text = (TotalLoans / NumberTransactions).ToString("C");
-            //AverageLoanLengthTextBox.Text = (TotalYears / NumberTransactions).ToString("0.00");
+            AverageLoanLengthTextBox.Text = (TotalYears / NumberTransactions).ToString("0.00");
         }
 
         private decimal CalculateSummary(int CalculateLines)
@@ -530,7 +647,7 @@ namespace Mad4Road
             string LineRead;
             decimal Total = 0m, LineValueDecimal;
 
-            Debug.WriteLine(TotalLines.ToString());
+            //Debug.WriteLine(TotalLines.ToString());
             if (TotalLines >= 1)
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
@@ -579,6 +696,7 @@ namespace Mad4Road
             this.FiveYearsRadioButton.Checked = false;
             this.SevenYearsRadioButton.Checked = false;
             this.GroupBoxLength.Visible = false;
+            this.SummaryGroupBox.Visible = false;
             // ensure proceed groupboxs are cleared
             this.NameTextBox.Clear();
             this.TelephoneTextBox.Clear();
