@@ -459,8 +459,8 @@ namespace Mad4Road
             }
             catch
             {
-                MessageBox.Show("No details to show.\nPlease ensure there has been data inputted.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // assign zero lines to this
+                // an error message is unncessary
                 TotalLines = 0;
             }
             return TotalLines;
@@ -494,8 +494,9 @@ namespace Mad4Road
             }
             catch
             {
-                MessageBox.Show("No details to show.\nPlease ensure there has been data inputted.", "Error",
-    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // handle when file is empty to start
+                // if we leave an error message our id wont be generated. this addresses this.
+                this.IDTextBox.Text = rand.ToString("D5");
             }
         }
 
