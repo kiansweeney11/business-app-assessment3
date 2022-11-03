@@ -62,39 +62,34 @@ namespace Mad4Road
         const int MONTHFIVEYEARS = 60;
         const int MONTHSEVENYEARS = 84;
         // max attempts for password
-        const int MAXATTEMPTS = 3;
+        const int MAXATTEMPTS = 2;
 
         // changeable variables
         int PasswordAttempts = 1;
 
         private void PasswordAttemptSubmitButton_Click(object sender, EventArgs e)
         {
-            do
+            if (PasswordTextBox.Text != PASSWORD & PasswordAttempts < MAXATTEMPTS)
             {
-                if (PasswordTextBox.Text != PASSWORD & PasswordAttempts < MAXATTEMPTS)
-                {
-                    int AttemptsLeft = MAXATTEMPTS - PasswordAttempts - 1;
-                    MessageBox.Show("Incorrect Password. Please Check Again.\nNumber of attempts left: " + AttemptsLeft.ToString(), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    PasswordTextBox.Clear();
-                    PasswordTextBox.Focus();
-                    PasswordAttempts += 1;
-                }
-                else if (PasswordTextBox.Text != PASSWORD & PasswordAttempts >= MAXATTEMPTS)
-                {
-                    MessageBox.Show("Access Denied. No More Password Attempts Remaining.\nClosing the Application", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
-                    break;
-                }
-                else if (PasswordTextBox.Text == PASSWORD & PasswordAttempts <= MAXATTEMPTS)
-                {
-                    StartMenuPanel.Visible = false;
-                    //PricePictureBox.Visible = true;
-                    ButtonPanel.Visible = true;
-                    LoanAmountGroupBox.Visible = true;
-                    this.TextBoxLoan.Focus();
-                    break;
-                }
-            } while (PasswordAttempts >= MAXATTEMPTS);
+                int AttemptsLeft = MAXATTEMPTS - 1;
+                MessageBox.Show("Incorrect Password. Please Check Again.\nNumber of attempts left: " + AttemptsLeft.ToString(), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                PasswordTextBox.Clear();
+                PasswordTextBox.Focus();
+                PasswordAttempts += 1;
+            }
+            else if (PasswordTextBox.Text == PASSWORD & PasswordAttempts < MAXATTEMPTS)
+            {
+                StartMenuPanel.Visible = false;
+                ButtonPanel.Visible = true;
+                LoanAmountGroupBox.Visible = true;
+                this.TextBoxLoan.Focus();
+                PasswordAttempts += 1;
+            }
+            else if (PasswordTextBox.Text != PASSWORD & PasswordAttempts >= MAXATTEMPTS)
+            {
+                MessageBox.Show("Access Denied. No More Password Attempts Remaining.\nClosing the Application", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
 
         }
 
@@ -106,40 +101,40 @@ namespace Mad4Road
                 // no need to check for greater than equal 10k done already
                 if(LoanPreTotal < 40000)
                 {
-                    decimal TotalInterestPaidYear1 = LoanPreTotal * (APR_1YEAR_UNDER40 / 100);
-                    decimal MonthlyRepayYear1 = TotalInterestPaidYear1 / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                    decimal TotalInterestPaidYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_UNDER40) - LoanPreTotal;
+                    decimal MonthlyRepayYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_UNDER40) / MONTHYEAR;
                     decimal InterestRateAppliedYear1 = APR_1YEAR_UNDER40;
-                    decimal LoanOverallTotalYear1 = TotalInterestPaidYear1 + LoanPreTotal;
+                    decimal LoanOverallTotalYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_UNDER40);
                     // populate textboxes
                     this.InterestRateTextBox.Text = InterestRateAppliedYear1 + "%";
                     this.MonthlyRepaymentTextBox.Text = MonthlyRepayYear1.ToString("C");
                     this.TotalInterestTextBox.Text = TotalInterestPaidYear1.ToString("C");
                     this.TotalLoanCostTextBox.Text = LoanOverallTotalYear1.ToString("C");
                     // 3 year less than40k
-                    decimal TotalInterestPaidYear3 = LoanPreTotal * (APR_3YEAR_UNDER40 / 100);
-                    decimal MonthlyRepayYear3 = TotalInterestPaidYear3 / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                    decimal TotalInterestPaidYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_UNDER40) - LoanPreTotal;
+                    decimal MonthlyRepayYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_UNDER40) / MONTHTHREEYEARS;
                     decimal InterestRateAppliedYear3 = APR_3YEAR_UNDER40;
-                    decimal LoanOverallTotalYear3 = TotalInterestPaidYear3 + LoanPreTotal;
+                    decimal LoanOverallTotalYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_UNDER40);
                     // populate textboxes
                     this.Interest3YearTextBox.Text = InterestRateAppliedYear3 + "%";
                     this.Monthly3YearTextBox.Text = MonthlyRepayYear3.ToString("C");
                     this.TotalInterest3YearTextBox.Text = TotalInterestPaidYear3.ToString("C");
                     this.TotalLoanCost3YearTextBox.Text= LoanOverallTotalYear3.ToString("C");
                     // 5 year less than40k
-                    decimal TotalInterestPaidYear5 = LoanPreTotal * (APR_5YEAR_UNDER40 / 100);
-                    decimal MonthlyRepayYear5 = TotalInterestPaidYear5 / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                    decimal TotalInterestPaidYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_UNDER40) - LoanPreTotal;
+                    decimal MonthlyRepayYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_UNDER40) / MONTHFIVEYEARS;
                     decimal InterestRateAppliedYear5 = APR_5YEAR_UNDER40;
-                    decimal LoanOverallTotalYear5 = TotalInterestPaidYear5 + LoanPreTotal;
+                    decimal LoanOverallTotalYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_UNDER40);
                     // populate textboxes
                     this.FiveYearInterestRateTextBox.Text = InterestRateAppliedYear5 + "%";
                     this.Monthly5YearRepayTextBox.Text = MonthlyRepayYear5.ToString("C");
                     this.TotalInterest5YearTextBox.Text = TotalInterestPaidYear5.ToString("C");
                     this.TotalLoan5YearsTextBox.Text = LoanOverallTotalYear5.ToString("C");
                     // 7 year less than40k
-                    decimal TotalInterestPaidYear7 = LoanPreTotal * (APR_7YEAR_UNDER40 / 100);
-                    decimal MonthlyRepayYear7 = TotalInterestPaidYear7 / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                    decimal TotalInterestPaidYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_UNDER40) - LoanPreTotal;
+                    decimal MonthlyRepayYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_UNDER40) / MONTHSEVENYEARS;
                     decimal InterestRateAppliedYear7 = APR_7YEAR_UNDER40;
-                    decimal LoanOverallTotalYear7 = TotalInterestPaidYear7 + LoanPreTotal;
+                    decimal LoanOverallTotalYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_UNDER40);
                     // populate textboxes
                     this.AppliedInterest7YearTextBox.Text = InterestRateAppliedYear7 + "%";
                     this.Monthly7YearTextBox.Text = MonthlyRepayYear7.ToString("C");
@@ -148,40 +143,40 @@ namespace Mad4Road
                 }
                 else if(LoanPreTotal < 80000 && LoanPreTotal >= 40000)
                 {
-                    decimal TotalInterestPaidYear1 = LoanPreTotal * (APR_1YEAR_OVER40 / 100);
-                    decimal MonthlyRepayYear1 = TotalInterestPaidYear1 / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                    decimal TotalInterestPaidYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER40) - LoanPreTotal;
+                    decimal MonthlyRepayYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER40) / MONTHYEAR;
                     decimal InterestRateAppliedYear1 = APR_1YEAR_OVER40;
-                    decimal LoanOverallTotalYear1 = TotalInterestPaidYear1 + LoanPreTotal;
+                    decimal LoanOverallTotalYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER40);
                     // populate textboxes
                     this.InterestRateTextBox.Text = InterestRateAppliedYear1 + "%";
                     this.MonthlyRepaymentTextBox.Text = MonthlyRepayYear1.ToString("C");
                     this.TotalInterestTextBox.Text = TotalInterestPaidYear1.ToString("C");
                     this.TotalLoanCostTextBox.Text = LoanOverallTotalYear1.ToString("C");
                     // 3 year greater than40k
-                    decimal TotalInterestPaidYear3 = LoanPreTotal * (APR_3YEAR_OVER40 / 100);
-                    decimal MonthlyRepayYear3 = TotalInterestPaidYear3 / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                    decimal TotalInterestPaidYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER40) - LoanPreTotal;
+                    decimal MonthlyRepayYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER40) / MONTHTHREEYEARS;
                     decimal InterestRateAppliedYear3 = APR_3YEAR_OVER40;
-                    decimal LoanOverallTotalYear3 = TotalInterestPaidYear3 + LoanPreTotal;
+                    decimal LoanOverallTotalYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER40);
                     // populate textboxes
                     this.Interest3YearTextBox.Text = InterestRateAppliedYear3 + "%";
                     this.Monthly3YearTextBox.Text = MonthlyRepayYear3.ToString("C");
                     this.TotalInterest3YearTextBox.Text = TotalInterestPaidYear3.ToString("C");
                     this.TotalLoanCost3YearTextBox.Text = LoanOverallTotalYear3.ToString("C");
                     // 5 year greater than40k
-                    decimal TotalInterestPaidYear5 = LoanPreTotal * (APR_5YEAR_OVER40 / 100);
-                    decimal MonthlyRepayYear5 = TotalInterestPaidYear5 / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                    decimal TotalInterestPaidYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER40) - LoanPreTotal;
+                    decimal MonthlyRepayYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER40) / MONTHFIVEYEARS;
                     decimal InterestRateAppliedYear5 = APR_5YEAR_OVER40;
-                    decimal LoanOverallTotalYear5 = TotalInterestPaidYear5 + LoanPreTotal;
+                    decimal LoanOverallTotalYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER40);
                     // populate textboxes
                     this.FiveYearInterestRateTextBox.Text = InterestRateAppliedYear5 + "%";
                     this.Monthly5YearRepayTextBox.Text = MonthlyRepayYear5.ToString("C");
                     this.TotalInterest5YearTextBox.Text = TotalInterestPaidYear5.ToString("C");
                     this.TotalLoan5YearsTextBox.Text = LoanOverallTotalYear5.ToString("C");
                     // 7 year greater than40k
-                    decimal TotalInterestPaidYear7 = LoanPreTotal * (APR_7YEAR_OVER40 / 100);
-                    decimal MonthlyRepayYear7 = TotalInterestPaidYear7 / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                    decimal TotalInterestPaidYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER40) - LoanPreTotal;
+                    decimal MonthlyRepayYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER40) / MONTHSEVENYEARS;
                     decimal InterestRateAppliedYear7 = APR_7YEAR_OVER40;
-                    decimal LoanOverallTotalYear7 = TotalInterestPaidYear7 + LoanPreTotal;
+                    decimal LoanOverallTotalYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER40);
                     // populate textboxes
                     this.AppliedInterest7YearTextBox.Text = InterestRateAppliedYear7 + "%";
                     this.Monthly7YearTextBox.Text = MonthlyRepayYear7.ToString("C");
@@ -191,40 +186,40 @@ namespace Mad4Road
                 else
                 // again no need to check for greater than equal 100k done already
                 {
-                    decimal TotalInterestPaidYear1 = LoanPreTotal * (APR_1YEAR_OVER80 / 100);
-                    decimal MonthlyRepayYear1 = TotalInterestPaidYear1 / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                    decimal TotalInterestPaidYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER80) - LoanPreTotal;
+                    decimal MonthlyRepayYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER80) / MONTHYEAR;
                     decimal InterestRateAppliedYear1 = APR_1YEAR_OVER80;
-                    decimal LoanOverallTotalYear1 = TotalInterestPaidYear1 + LoanPreTotal;
+                    decimal LoanOverallTotalYear1 = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER80);
                     // populate textboxes
                     this.InterestRateTextBox.Text = InterestRateAppliedYear1 + "%";
                     this.MonthlyRepaymentTextBox.Text = MonthlyRepayYear1.ToString("C");
                     this.TotalInterestTextBox.Text = TotalInterestPaidYear1.ToString("C");
                     this.TotalLoanCostTextBox.Text = LoanOverallTotalYear1.ToString("C");
                     // 3 year greater than 80k
-                    decimal TotalInterestPaidYear3 = LoanPreTotal * (APR_3YEAR_OVER80 / 100);
-                    decimal MonthlyRepayYear3 = TotalInterestPaidYear3 / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                    decimal TotalInterestPaidYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER80) - LoanPreTotal;
+                    decimal MonthlyRepayYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER80) / MONTHTHREEYEARS;
                     decimal InterestRateAppliedYear3 = APR_3YEAR_OVER80;
-                    decimal LoanOverallTotalYear3 = TotalInterestPaidYear3 + LoanPreTotal;
+                    decimal LoanOverallTotalYear3 = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER80);
                     // populate textboxes
                     this.Interest3YearTextBox.Text = InterestRateAppliedYear3 + "%";
                     this.Monthly3YearTextBox.Text = MonthlyRepayYear3.ToString("C");
                     this.TotalInterest3YearTextBox.Text = TotalInterestPaidYear3.ToString("C");
                     this.TotalLoanCost3YearTextBox.Text = LoanOverallTotalYear3.ToString("C");
                     // 5 year greater than 80k
-                    decimal TotalInterestPaidYear5 = LoanPreTotal * (APR_5YEAR_OVER80 / 100);
-                    decimal MonthlyRepayYear5 = TotalInterestPaidYear5 / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                    decimal TotalInterestPaidYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER80) - LoanPreTotal;
+                    decimal MonthlyRepayYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER80) / MONTHFIVEYEARS;
                     decimal InterestRateAppliedYear5 = APR_5YEAR_OVER80;
-                    decimal LoanOverallTotalYear5 = TotalInterestPaidYear5 + LoanPreTotal;
+                    decimal LoanOverallTotalYear5 = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER80);
                     // populate textboxes
                     this.FiveYearInterestRateTextBox.Text = InterestRateAppliedYear5 + "%";
                     this.Monthly5YearRepayTextBox.Text = MonthlyRepayYear5.ToString("C");
                     this.TotalInterest5YearTextBox.Text = TotalInterestPaidYear5.ToString("C");
                     this.TotalLoan5YearsTextBox.Text = LoanOverallTotalYear5.ToString("C");
                     // 7 year greater than 80k
-                    decimal TotalInterestPaidYear7 = LoanPreTotal * (APR_7YEAR_OVER80 / 100);
-                    decimal MonthlyRepayYear7 = TotalInterestPaidYear7 / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                    decimal TotalInterestPaidYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER80) - LoanPreTotal;
+                    decimal MonthlyRepayYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER80) / MONTHFIVEYEARS;
                     decimal InterestRateAppliedYear7 = APR_7YEAR_OVER80;
-                    decimal LoanOverallTotalYear7 = TotalInterestPaidYear7 + LoanPreTotal;
+                    decimal LoanOverallTotalYear7 = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER80);
                     // populate textboxes
                     this.AppliedInterest7YearTextBox.Text = InterestRateAppliedYear7 + "%";
                     this.Monthly7YearTextBox.Text = MonthlyRepayYear7.ToString("C");
@@ -242,6 +237,27 @@ namespace Mad4Road
     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TextBoxLoan.Focus();
             }
+        }
+
+        private decimal CalculateLoanTotal(int Term, decimal Loan, decimal IntRate)
+        {
+            decimal LoanInterest, MonthlyLoanAmount, MonthlyInt, Exponent = 1;
+            int MonthlyTerm, Months = 12;
+
+            MonthlyTerm = Term * Months;
+
+            MonthlyInt = ((IntRate / Months) / 100);
+
+            for (int i = 0; i < MonthlyTerm; i++)
+            {
+                Exponent = Exponent * (1 + MonthlyInt);
+            }
+
+            MonthlyLoanAmount = Loan * ((MonthlyInt * Exponent) / (Exponent - 1));
+
+            LoanInterest = MonthlyLoanAmount * MonthlyTerm;
+
+            return LoanInterest;
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
@@ -329,34 +345,34 @@ namespace Mad4Road
                     // make sure radio button clicked
                     if (OneYearRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_1YEAR_UNDER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                        TotalInterestPaid = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_UNDER40) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_UNDER40) / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_UNDER40;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_UNDER40);
                         TermYears = 1;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_3YEAR_UNDER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_UNDER40) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(3, LoanPreTotal, APR_1YEAR_UNDER40) / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_UNDER40;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_UNDER40);
                         TermYears = 3;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_5YEAR_UNDER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_UNDER40) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_UNDER40) / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_UNDER40;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_UNDER40);
                         TermYears = 5;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_7YEAR_UNDER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_UNDER40) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_UNDER40) / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_UNDER40;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_UNDER40);
                         TermYears = 7;
                     }
                 }
@@ -365,34 +381,34 @@ namespace Mad4Road
                     // make sure radio button clicked
                     if (OneYearRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_1YEAR_OVER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                        TotalInterestPaid = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER40) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER40) / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_OVER40;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER40);
                         TermYears = 1;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_3YEAR_OVER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER40) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER40) / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_OVER40;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER40);
                         TermYears = 3;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_5YEAR_OVER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER40) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER40) / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_OVER40;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER40);
                         TermYears = 5;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_7YEAR_OVER40 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER40) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER40) / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_OVER40;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER40);
                         TermYears = 7;
                     }
                 }
@@ -401,34 +417,34 @@ namespace Mad4Road
                 {
                     if (OneYearRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_1YEAR_OVER80 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHYEAR + LoanPreTotal / MONTHYEAR;
+                        TotalInterestPaid = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER80) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER80) / MONTHYEAR;
                         InterestRateApplied = APR_1YEAR_OVER80;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(1, LoanPreTotal, APR_1YEAR_OVER80);
                         TermYears = 1;
                     }
                     else if (ThreeYearRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_3YEAR_OVER80 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHTHREEYEARS + LoanPreTotal / MONTHTHREEYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER80) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER80) / MONTHTHREEYEARS;
                         InterestRateApplied = APR_3YEAR_OVER80;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(3, LoanPreTotal, APR_3YEAR_OVER80);
                         TermYears = 3;
                     }
                     else if (FiveYearsRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_5YEAR_OVER80 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHFIVEYEARS + LoanPreTotal / MONTHFIVEYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER80) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER80) / MONTHFIVEYEARS;
                         InterestRateApplied = APR_5YEAR_OVER80;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(5, LoanPreTotal, APR_5YEAR_OVER80);
                         TermYears = 5;
                     }
                     else if (SevenYearsRadioButton.Checked)
                     {
-                        TotalInterestPaid = LoanPreTotal * (APR_7YEAR_OVER80 / 100);
-                        MonthlyRepay = TotalInterestPaid / MONTHSEVENYEARS + LoanPreTotal / MONTHSEVENYEARS;
+                        TotalInterestPaid = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER80) - LoanPreTotal;
+                        MonthlyRepay = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER80) / MONTHSEVENYEARS;
                         InterestRateApplied = APR_7YEAR_OVER80;
-                        LoanOverallTotal = TotalInterestPaid + LoanPreTotal;
+                        LoanOverallTotal = CalculateLoanTotal(7, LoanPreTotal, APR_7YEAR_OVER80);
                         TermYears = 7;
                     }
                 }
@@ -471,7 +487,7 @@ namespace Mad4Road
             int FileLines = CalculateFileLines();
             Random Rand = new Random();
             int rand = Rand.Next(0, 99999);
-            try
+            if(FileLines >= 1)
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
                 while(OutputFile.ReadLine() != null)
@@ -492,7 +508,7 @@ namespace Mad4Road
                 }
                 OutputFile.Close();
             }
-            catch
+            else
             {
                 // handle when file is empty to start
                 // if we leave an error message our id wont be generated. this addresses this.
@@ -582,18 +598,20 @@ namespace Mad4Road
         {
             int TotalLinesFile = CalculateFileLines();
             String UserEmail = this.SearchEmailTextBox.Text;
+            String Prev = "";
             if (UserEmail.Length >= 1 & (UserEmail.Contains("@") | UserEmail.EndsWith(".com")))
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
                 while (OutputFile.ReadLine() != null)
                 {
-                    for (int i = 1; i <= TotalLinesFile - 1; i++)
+                    for (int i = 1;  i <= TotalLinesFile - 1; i++)
                     {
-                        string LineRead = OutputFile.ReadLine();
+                        String LineRead = OutputFile.ReadLine();
                         if (LineRead != null)
                         {
                             if (LineRead == UserEmail)
                             {
+                                SearchListBox.Items.Add("ID is: " + Prev);
                                 SearchListBox.Items.Add("Email is: " + LineRead);
                                 SearchListBox.Items.Add(OutputFile.ReadLine());
                                 SearchListBox.Items.Add(OutputFile.ReadLine());
@@ -610,10 +628,14 @@ namespace Mad4Road
                                 MessageBox.Show("Email inputted not on file", "Info",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
+                            else
+                            {
+                                Prev = LineRead;
+                            }
                         }
                         else
                         {
-                            continue;
+                            Prev = LineRead;
                         }
                     }
                 }
@@ -661,7 +683,6 @@ namespace Mad4Road
                             LineRead = OutputFile.ReadLine();
                             if(LineRead != null)
                             {
-                                // error here input string not in correct format
                                 LineValueDecimal = decimal.Parse(LineRead);
                                 Total += LineValueDecimal;
                             }
