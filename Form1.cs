@@ -60,7 +60,6 @@ namespace Mad4Road
         const int MAXATTEMPTS = 2;
 
         // changeable variables
-
         private decimal LoanPreTotal, MonthlyRepay, TotalInterestPaid,
             LoanOverallTotal, InterestRateApplied, TermYears;
         // TermYears needs to be decimal for our calculations regarding average loan length
@@ -537,12 +536,15 @@ namespace Mad4Road
         // method 4 - check numbers only in string for telephone number
         private bool IsDigitsOnly(string str)
         {
-            for(int i = 0; i <= str.Length; i++)
+            for (int i = 1; i < str.Length; i++)
             {
-                if (str[i] < '0' || str[i] > '9')
+                char c = str[i];
+                if (c < '0' || c > '9')
+                {
                     return false;
+                    break;
+                }
             }
-
             return true;
         }
 
@@ -569,106 +571,109 @@ namespace Mad4Road
         private void SearchIDButton_Click(object sender, EventArgs e)
         {
             int TotalLinesFile = CalculateFileLines();
+            // clear for next search if user wants to check another ID
+            SearchListBox.Items.Clear();
             String TransactIDString = this.SearchIDTextBox.Text;
             // transaction ID's are only length 5 and digits so make sure
             // these conditions are met
-            if (TransactIDString.Length <= 5 && IsDigitsOnly(TransactIDString) == true)
+            if (TransactIDString.Length == 5 && IsDigitsOnly(TransactIDString) == true)
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
-                while (OutputFile.ReadLine() != null)
+                string LineRead = OutputFile.ReadLine();
+                while (LineRead != null)
                 {
-                    for (int i = 1; i <= TotalLinesFile - 1; i++)
+                    //Debug.WriteLine(LineRead);
+                    //Debug.WriteLine(TotalLinesFile.ToString());
+                    if (LineRead == TransactIDString)
                     {
-                        string LineRead = OutputFile.ReadLine();
-                        if(LineRead != null)
-                        {
-                            if (LineRead == TransactIDString)
-                            {
-                                // strings to clarify user what the returned results are
-                                SearchListBox.Items.Add("ID is: " + LineRead);
-                                SearchListBox.Items.Add("Email is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Name is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Telephone is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Term in Years is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Total Interest is: " +OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Monthly Repayment is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Interest Rate Applied is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Total Loan Cost is: " + OutputFile.ReadLine());
-                                SearchListBox.Visible = true;
-                                break;
-                            }
-                            else if (i == TotalLinesFile - 1)
-                            {
-                                MessageBox.Show("ID inputted not on file", "Info", 
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                        else
-                        {
-                            continue;
-                        }
+                        // strings to clarify user what the returned results are
+                        SearchListBox.Items.Add("ID is: " + LineRead);
+                        SearchListBox.Items.Add("Email is: " + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Name is: " + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Telephone is: " + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Term in Years is: " + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Total Interest is: €" + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Monthly Repayment is: €" + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Interest Rate Applied is: " + OutputFile.ReadLine() + "%");
+                        SearchListBox.Items.Add("Total Loan Cost is: €" + OutputFile.ReadLine());
+                        SearchListBox.Visible = true;
+                        break;
                     }
+                    else
+                    {
+                        LineRead = OutputFile.ReadLine();
+                    }
+                }
+                if(LineRead == null)
+                {
+                    MessageBox.Show("ID inputted not on file", "Info",
+MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.SearchIDTextBox.Focus();
+                    // if already visible from an initial check - hide
+                    SearchListBox.Visible = false;
                 }
             }
             else
             {
-                MessageBox.Show("Please input a valid ID.\nPlease ensure 5 or less numeric characters are inputted.", "Error",
+                MessageBox.Show("Please input a valid ID.\nPlease ensure 5 numeric characters are inputted.", "Error",
     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.SearchIDTextBox.Focus();
+                // if already visible from an initial check - hide
+                SearchListBox.Visible = false;
             }
         }
 
         private void SearchEmailButton_Click(object sender, EventArgs e)
         {
             int TotalLinesFile = CalculateFileLines();
+            // clear for next search if user wants to check another email
+            SearchListBox.Items.Clear();
             String UserEmail = this.SearchEmailTextBox.Text;
             String Prev = "";
             // check inputted email is valid and meets conditions in earlier function
             if (UserEmail.Length >= 1 & (UserEmail.Contains("@") | UserEmail.EndsWith(".com")))
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
-                while (OutputFile.ReadLine() != null)
+                string LineRead = OutputFile.ReadLine();
+                while (LineRead != null)
                 {
-                    for (int i = 1;  i <= TotalLinesFile - 1; i++)
+                    if (LineRead == UserEmail)
                     {
-                        String LineRead = OutputFile.ReadLine();
-                        if (LineRead != null)
-                        {
-                            if (LineRead == UserEmail)
-                            {
-                                // again clarify what the various values mean
-                                SearchListBox.Items.Add("ID is: " + Prev);
-                                SearchListBox.Items.Add("Email is: " + LineRead);
-                                SearchListBox.Items.Add("Name is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Telephone is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Term in Years is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Total Interest is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Monthly Repayment is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Interest Rate Applied is: " + OutputFile.ReadLine());
-                                SearchListBox.Items.Add("Total Loan Cost is: " + OutputFile.ReadLine());
-                                SearchListBox.Visible = true;
-                                break;
-                            }
-                            else if (i == TotalLinesFile - 1)
-                            {
-                                MessageBox.Show("Email inputted not on file", "Info",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                Prev = LineRead;
-                            }
-                        }
-                        else
-                        {
-                            Prev = LineRead;
-                        }
+                        // strings to clarify user what the returned results are
+                        SearchListBox.Items.Add("ID is: " + Prev);
+                        SearchListBox.Items.Add("Email is: " + LineRead);
+                        SearchListBox.Items.Add("Name is: " + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Telephone is: " + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Term in Years is: " + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Total Interest is: €" + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Monthly Repayment is: €" + OutputFile.ReadLine());
+                        SearchListBox.Items.Add("Interest Rate Applied is: " + OutputFile.ReadLine() + "%");
+                        SearchListBox.Items.Add("Total Loan Cost is: €" + OutputFile.ReadLine());
+                        SearchListBox.Visible = true;
+                        break;
                     }
+                    else
+                    {
+                        Prev = LineRead;
+                        LineRead = OutputFile.ReadLine();
+                    }
+                }
+                if (LineRead == null)
+                {
+                    MessageBox.Show("Email inputted not on file", "Info",
+MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.SearchEmailTextBox.Focus();
+                    // if already visible from an initial check - hide
+                    SearchListBox.Visible = false;
                 }
             }
             else
             {
                 MessageBox.Show("Please input a valid Email.\nPlease ensure a valid email ending in .com is inputted.", "Error",
     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.SearchEmailTextBox.Focus();
+                // if already visible from an initial check - hide
+                SearchListBox.Visible = false;
             }
         }
 
@@ -763,6 +768,10 @@ namespace Mad4Road
             this.TelephoneTextBox.Clear();
             this.EmailTextBox.Clear();
             this.PostcodeTextBox.Clear();
+            // search text boxes cleared
+            this.SearchIDTextBox.Clear();
+            this.SearchEmailTextBox.Clear();
+            SearchListBox.Items.Clear();
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
