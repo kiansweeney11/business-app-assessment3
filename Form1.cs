@@ -5,7 +5,7 @@
 // products to its customers. One of these is a car loan product called ‘Mad4Road’, in which a client can
 // borrow between €10,000 and €100,000 over terms of up to 7 years. The interest rate offered to each
 // client depends on the amount and term of the loan requested. Your company has been commissioned to
-//create a well-designed application for employees to process client transactions for this product.
+// create a well-designed application for employees to process client transactions for this product.
 
 using System;
 using System.Collections.Generic;
@@ -27,18 +27,13 @@ namespace Mad4Road
 {
     public partial class Mad4RoadForm : Form
     {
-        private decimal LoanPreTotal, MonthlyRepay, TotalInterestPaid,
-            LoanOverallTotal, InterestRateApplied;
-        // this needs to be decimal for our calculations regarding average loan length
-        // in the summary tab
-        private decimal TermYears;
-
-        private const String DataFile = "ClientLoanDetails.txt";
         public Mad4RoadForm()
         {
             InitializeComponent();
         }
         // constants
+        // file we will write details to
+        private const String DataFile = "ClientLoanDetails.txt";
         // password for system
         const String PASSWORD = "2Fast4U#";
         // apr rates for under 40k
@@ -65,6 +60,11 @@ namespace Mad4Road
         const int MAXATTEMPTS = 2;
 
         // changeable variables
+
+        private decimal LoanPreTotal, MonthlyRepay, TotalInterestPaid,
+            LoanOverallTotal, InterestRateApplied, TermYears;
+        // TermYears needs to be decimal for our calculations regarding average loan length
+        // in the summary tab
         int PasswordAttempts = 1;
 
         private void PasswordAttemptSubmitButton_Click(object sender, EventArgs e)
@@ -72,7 +72,8 @@ namespace Mad4Road
             if (PasswordTextBox.Text != PASSWORD & PasswordAttempts < MAXATTEMPTS)
             {
                 int AttemptsLeft = MAXATTEMPTS - 1;
-                MessageBox.Show("Incorrect Password. Please Check Again.\nNumber of attempts left: " + AttemptsLeft.ToString(), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Incorrect Password. Please Check Again.\nNumber of attempts left: " + AttemptsLeft.ToString(), 
+                    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 PasswordTextBox.Clear();
                 PasswordTextBox.Focus();
                 PasswordAttempts += 1;
@@ -81,13 +82,16 @@ namespace Mad4Road
             {
                 StartMenuPanel.Visible = false;
                 ButtonPanel.Visible = true;
+                LogoPictureBox.Visible = true;
                 LoanAmountGroupBox.Visible = true;
+                this.Text = "Loan Calculator/Approval";
                 this.TextBoxLoan.Focus();
                 PasswordAttempts += 1;
             }
             else if (PasswordTextBox.Text != PASSWORD & PasswordAttempts >= MAXATTEMPTS)
             {
-                MessageBox.Show("Access Denied. No More Password Attempts Remaining.\nClosing the Application", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Access Denied. No More Password Attempts Remaining.\nClosing the Application", 
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
 
@@ -241,12 +245,13 @@ namespace Mad4Road
 
         private decimal CalculateLoanTotal(int Term, decimal Loan, decimal IntRate)
         {
+            // EMI calculator
             decimal LoanInterest, MonthlyLoanAmount, MonthlyInt, Exponent = 1;
-            int MonthlyTerm, Months = 12;
+            int MonthlyTerm;
 
-            MonthlyTerm = Term * Months;
+            MonthlyTerm = Term * MONTHYEAR;
 
-            MonthlyInt = ((IntRate / Months) / 100);
+            MonthlyInt = ((IntRate / MONTHYEAR) / 100);
 
             for (int i = 0; i < MonthlyTerm; i++)
             {
@@ -262,15 +267,23 @@ namespace Mad4Road
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
+            // no empty string for name
             if (NameTextBox.Text.Length >= 1)
             {
+                // likewise for postcode
                 if(PostcodeTextBox.Text.Length >= 1)
                 {
                     String PhoneNumber = TelephoneTextBox.Text;
+                    // make sure phone number in an actual format
+                    // i went with a typical 10 digit number found in Ireland
+                    // also checked to make sure characters are numeric only
                     if(PhoneNumber.Length == 10 && IsDigitsOnly(PhoneNumber) == true)
                     {
+                        // generic email check, cannot be empty must contain an @
+                        // has to also end in .com, this could be extended to further endings if needed (.ie etc)
                         if (EmailTextBox.Text != "" & (EmailTextBox.Text.Contains("@") | EmailTextBox.Text.EndsWith(".com")))
                         {
+                            // string details for confirmation message box
                             string Details = "Name of Client:\t\t" + NameTextBox.Text + "\nMembership ID:\t\t" + IDTextBox.Text + "\nTelephone Number:\t" + TelephoneTextBox.Text + 
                                 "\nEmail Address:\t\t" + EmailTextBox.Text + "\nPostcode:\t\t" + PostcodeTextBox.Text +  "\nTotal Price:\t\t" +
                                 LoanOverallTotal.ToString("C") + "\nInterest to be Paid:\t" + TotalInterestPaid.ToString("C") + "\nNumber Years Loan:\t" + TermYears.ToString() +
@@ -279,6 +292,8 @@ namespace Mad4Road
                             {
                                 try
                                 {
+                                    // write necessary values to file
+                                    // 9 in total
                                     StreamWriter InputFile = File.AppendText(DataFile);
                                     InputFile.WriteLine(IDTextBox.Text);
                                     InputFile.WriteLine(EmailTextBox.Text);
@@ -291,6 +306,7 @@ namespace Mad4Road
                                     InputFile.WriteLine(LoanOverallTotal.ToString("0.00"));
                                     InputFile.Close();
                                     MessageBox.Show("Details Saved Successfully.\nClient Loan has Been Approved", "Loan Success");
+                                    // reset form for next user
                                     ClearButton_Click(sender, e);
                                 }
                                 catch
@@ -538,6 +554,7 @@ namespace Mad4Road
                 this.ProceedGroupBox.Visible = false;
                 this.SummaryGroupBox.Visible = false;
                 this.GroupBoxLength.Visible = false;
+                this.Text = "Search Previous Transaction";
             }
             else
             {
@@ -550,6 +567,8 @@ namespace Mad4Road
         {
             int TotalLinesFile = CalculateFileLines();
             String TransactIDString = this.SearchIDTextBox.Text;
+            // transaction ID's are only length 5 and digits so make sure
+            // these conditions are met
             if (TransactIDString.Length <= 5 && IsDigitsOnly(TransactIDString) == true)
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
@@ -562,15 +581,16 @@ namespace Mad4Road
                         {
                             if (LineRead == TransactIDString)
                             {
+                                // strings to clarify user what the returned results are
                                 SearchListBox.Items.Add("ID is: " + LineRead);
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Email is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Name is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Telephone is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Term in Years is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Total Interest is: " +OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Monthly Repayment is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Interest Rate Applied is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Total Loan Cost is: " + OutputFile.ReadLine());
                                 SearchListBox.Visible = true;
                                 break;
                             }
@@ -599,6 +619,7 @@ namespace Mad4Road
             int TotalLinesFile = CalculateFileLines();
             String UserEmail = this.SearchEmailTextBox.Text;
             String Prev = "";
+            // check inputted email is valid and meets conditions in earlier function
             if (UserEmail.Length >= 1 & (UserEmail.Contains("@") | UserEmail.EndsWith(".com")))
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
@@ -611,15 +632,16 @@ namespace Mad4Road
                         {
                             if (LineRead == UserEmail)
                             {
+                                // again clarify what the various values mean
                                 SearchListBox.Items.Add("ID is: " + Prev);
                                 SearchListBox.Items.Add("Email is: " + LineRead);
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
-                                SearchListBox.Items.Add(OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Name is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Telephone is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Term in Years is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Total Interest is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Monthly Repayment is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Interest Rate Applied is: " + OutputFile.ReadLine());
+                                SearchListBox.Items.Add("Total Loan Cost is: " + OutputFile.ReadLine());
                                 SearchListBox.Visible = true;
                                 break;
                             }
@@ -650,9 +672,13 @@ namespace Mad4Road
         private void SummaryButton_Click(object sender, EventArgs e)
         {
             this.ProceedGroupBox.Visible = false;
+            this.DisplayGroupBox.Visible = false;
+            this.GroupBoxLength.Visible = false;
+            this.SearchGroupBox.Visible = false;
             this.SummaryGroupBox.Visible = true;
+            this.Text = "Company Transaction History Summary";
             int TotalLines = CalculateFileLines();
-            // deal with whitespace at end of file  -> rounds down/up to actual number of transactions
+            // rounds down/up to actual number of transactions and make decimal
             decimal NumberTransactions = Decimal.Round((TotalLines) / 9);
             decimal TotalLoans = CalculateSummary(9);
             decimal TotalInterest = CalculateSummary(6);
@@ -671,6 +697,7 @@ namespace Mad4Road
             decimal Total = 0m, LineValueDecimal;
 
             //Debug.WriteLine(TotalLines.ToString());
+            // if number of lines greater than 1 it can be presumed there should be 9 for a transaction
             if (TotalLines >= 1)
             {
                 StreamReader OutputFile = File.OpenText(DataFile);
@@ -678,9 +705,14 @@ namespace Mad4Road
                 {
                     for (int i = 1; i <= TotalLines - 1; i++)
                     {
+                        // if 5th value needed then modulus 9 5-5 would equal 0
+                        // this should as long as order aligns get a match
+                        // if next value is 14 then 14-5 % 9 is again 0 and so forth
                         if((i - CalculateLines) % 9 == 0)
                         {
                             LineRead = OutputFile.ReadLine();
+                            // VS underlines above line as potentially null deal with this case
+                            // avoids any runtime errors
                             if(LineRead != null)
                             {
                                 LineValueDecimal = decimal.Parse(LineRead);
@@ -700,6 +732,7 @@ namespace Mad4Road
                 }
                 OutputFile.Close();
             }
+            // nothing wrote to file yet if no lines
             else
             {
                 MessageBox.Show("No Information Available\nContact Admin",
@@ -717,8 +750,11 @@ namespace Mad4Road
             this.ThreeYearRadioButton.Checked = false;
             this.FiveYearsRadioButton.Checked = false;
             this.SevenYearsRadioButton.Checked = false;
+            this.SearchGroupBox.Visible = false;
+            this.SearchListBox.Visible = false;
             this.GroupBoxLength.Visible = false;
             this.SummaryGroupBox.Visible = false;
+            this.Text = "Loan Calculator/Approval";
             // ensure proceed groupboxs are cleared
             this.NameTextBox.Clear();
             this.TelephoneTextBox.Clear();

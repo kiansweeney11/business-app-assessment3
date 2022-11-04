@@ -88,6 +88,15 @@
             this.TotalInterestPaidDisplay = new System.Windows.Forms.Label();
             this.MonthlyRepaymentLabel = new System.Windows.Forms.Label();
             this.InterestLabelDisplay = new System.Windows.Forms.Label();
+            this.SummaryGroupBox = new System.Windows.Forms.GroupBox();
+            this.AverageLoanLengthTextBox = new System.Windows.Forms.TextBox();
+            this.AverageLoanTextBox = new System.Windows.Forms.TextBox();
+            this.InterestOverallTextBox = new System.Windows.Forms.TextBox();
+            this.TotalIncomeTextBox = new System.Windows.Forms.TextBox();
+            this.AverageLengthLabel = new System.Windows.Forms.Label();
+            this.AverageLoanLabel = new System.Windows.Forms.Label();
+            this.TotalInterestLabel = new System.Windows.Forms.Label();
+            this.OverallLabel = new System.Windows.Forms.Label();
             this.ProceedGroupBox = new System.Windows.Forms.GroupBox();
             this.IDTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
@@ -105,16 +114,6 @@
             this.ClearToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ExitToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SubmitToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.CompanyLogoPictureBox = new System.Windows.Forms.PictureBox();
-            this.SummaryGroupBox = new System.Windows.Forms.GroupBox();
-            this.AverageLoanLengthTextBox = new System.Windows.Forms.TextBox();
-            this.AverageLoanTextBox = new System.Windows.Forms.TextBox();
-            this.InterestOverallTextBox = new System.Windows.Forms.TextBox();
-            this.TotalIncomeTextBox = new System.Windows.Forms.TextBox();
-            this.AverageLengthLabel = new System.Windows.Forms.Label();
-            this.AverageLoanLabel = new System.Windows.Forms.Label();
-            this.TotalInterestLabel = new System.Windows.Forms.Label();
-            this.OverallLabel = new System.Windows.Forms.Label();
             this.SearchToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SearchGroupBox = new System.Windows.Forms.GroupBox();
             this.SearchEmailButton = new System.Windows.Forms.Button();
@@ -124,15 +123,18 @@
             this.EmailSearchLabel = new System.Windows.Forms.Label();
             this.SearchIDLabel = new System.Windows.Forms.Label();
             this.SearchListBox = new System.Windows.Forms.ListBox();
+            this.LogoPictureBox = new System.Windows.Forms.PictureBox();
+            this.SearchIDToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.SearchEmailToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.StartMenuPanel.SuspendLayout();
             this.GroupBoxLength.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
             this.LoanAmountGroupBox.SuspendLayout();
             this.DisplayGroupBox.SuspendLayout();
-            this.ProceedGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CompanyLogoPictureBox)).BeginInit();
             this.SummaryGroupBox.SuspendLayout();
+            this.ProceedGroupBox.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // StartMenuPanel
@@ -142,9 +144,9 @@
             this.StartMenuPanel.Controls.Add(this.WarningPasswordMessage);
             this.StartMenuPanel.Controls.Add(this.PasswordTextBox);
             this.StartMenuPanel.Controls.Add(this.PasswordLabelMessage);
-            this.StartMenuPanel.Location = new System.Drawing.Point(164, 75);
+            this.StartMenuPanel.Location = new System.Drawing.Point(164, 35);
             this.StartMenuPanel.Name = "StartMenuPanel";
-            this.StartMenuPanel.Size = new System.Drawing.Size(838, 150);
+            this.StartMenuPanel.Size = new System.Drawing.Size(838, 155);
             this.StartMenuPanel.TabIndex = 0;
             // 
             // PasswordAttemptSubmitButton
@@ -197,7 +199,7 @@
             this.GroupBoxLength.Controls.Add(this.ThreeYearRadioButton);
             this.GroupBoxLength.Controls.Add(this.OneYearRadioButton);
             this.GroupBoxLength.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GroupBoxLength.Location = new System.Drawing.Point(876, 231);
+            this.GroupBoxLength.Location = new System.Drawing.Point(876, 196);
             this.GroupBoxLength.Name = "GroupBoxLength";
             this.GroupBoxLength.Size = new System.Drawing.Size(251, 301);
             this.GroupBoxLength.TabIndex = 4;
@@ -256,7 +258,7 @@
             this.ButtonPanel.Controls.Add(this.ClearButton);
             this.ButtonPanel.Controls.Add(this.ProceedButton);
             this.ButtonPanel.Controls.Add(this.DisplayButton);
-            this.ButtonPanel.Location = new System.Drawing.Point(772, 15);
+            this.ButtonPanel.Location = new System.Drawing.Point(710, 13);
             this.ButtonPanel.Name = "ButtonPanel";
             this.ButtonPanel.Size = new System.Drawing.Size(858, 107);
             this.ButtonPanel.TabIndex = 2;
@@ -271,7 +273,7 @@
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(112, 34);
             this.SearchButton.TabIndex = 6;
-            this.SearchButton.Text = "Search";
+            this.SearchButton.Text = "Se&arch";
             this.SearchToolTip.SetToolTip(this.SearchButton, "Search for previous transaction(s) based\r\noff ID or user ID.");
             this.SearchButton.UseVisualStyleBackColor = false;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
@@ -355,7 +357,7 @@
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.Size = new System.Drawing.Size(112, 34);
             this.SubmitButton.TabIndex = 2;
-            this.SubmitButton.Text = "Submit";
+            this.SubmitButton.Text = "S&ubmit";
             this.SubmitToolTip.SetToolTip(this.SubmitButton, "Press to confirm personal details and loan details.");
             this.SubmitButton.UseVisualStyleBackColor = false;
             this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
@@ -366,9 +368,9 @@
             this.LoanAmountGroupBox.Controls.Add(this.TextBoxLoan);
             this.LoanAmountGroupBox.Controls.Add(this.AmountLabel);
             this.LoanAmountGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LoanAmountGroupBox.Location = new System.Drawing.Point(286, 17);
+            this.LoanAmountGroupBox.Location = new System.Drawing.Point(92, 17);
             this.LoanAmountGroupBox.Name = "LoanAmountGroupBox";
-            this.LoanAmountGroupBox.Size = new System.Drawing.Size(445, 150);
+            this.LoanAmountGroupBox.Size = new System.Drawing.Size(544, 150);
             this.LoanAmountGroupBox.TabIndex = 4;
             this.LoanAmountGroupBox.TabStop = false;
             this.LoanAmountGroupBox.Text = "Requested Loan Amount";
@@ -378,7 +380,7 @@
             // 
             this.TextBoxLoan.Location = new System.Drawing.Point(241, 71);
             this.TextBoxLoan.Name = "TextBoxLoan";
-            this.TextBoxLoan.Size = new System.Drawing.Size(169, 34);
+            this.TextBoxLoan.Size = new System.Drawing.Size(203, 34);
             this.TextBoxLoan.TabIndex = 1;
             this.TextBoxLoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -431,9 +433,9 @@
             this.DisplayGroupBox.Controls.Add(this.MonthlyRepaymentLabel);
             this.DisplayGroupBox.Controls.Add(this.InterestLabelDisplay);
             this.DisplayGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisplayGroupBox.Location = new System.Drawing.Point(12, 173);
+            this.DisplayGroupBox.Location = new System.Drawing.Point(12, 196);
             this.DisplayGroupBox.Name = "DisplayGroupBox";
-            this.DisplayGroupBox.Size = new System.Drawing.Size(858, 520);
+            this.DisplayGroupBox.Size = new System.Drawing.Size(858, 509);
             this.DisplayGroupBox.TabIndex = 5;
             this.DisplayGroupBox.TabStop = false;
             this.DisplayGroupBox.Text = "Car Loan Offered Term Details";
@@ -747,6 +749,94 @@
             this.InterestLabelDisplay.TabIndex = 0;
             this.InterestLabelDisplay.Text = "Interest Rate Applied:";
             // 
+            // SummaryGroupBox
+            // 
+            this.SummaryGroupBox.BackColor = System.Drawing.SystemColors.Window;
+            this.SummaryGroupBox.Controls.Add(this.AverageLoanLengthTextBox);
+            this.SummaryGroupBox.Controls.Add(this.AverageLoanTextBox);
+            this.SummaryGroupBox.Controls.Add(this.InterestOverallTextBox);
+            this.SummaryGroupBox.Controls.Add(this.TotalIncomeTextBox);
+            this.SummaryGroupBox.Controls.Add(this.AverageLengthLabel);
+            this.SummaryGroupBox.Controls.Add(this.AverageLoanLabel);
+            this.SummaryGroupBox.Controls.Add(this.TotalInterestLabel);
+            this.SummaryGroupBox.Controls.Add(this.OverallLabel);
+            this.SummaryGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SummaryGroupBox.Location = new System.Drawing.Point(20, 720);
+            this.SummaryGroupBox.Name = "SummaryGroupBox";
+            this.SummaryGroupBox.Size = new System.Drawing.Size(564, 275);
+            this.SummaryGroupBox.TabIndex = 8;
+            this.SummaryGroupBox.TabStop = false;
+            this.SummaryGroupBox.Text = "Company Summary Details";
+            this.SummaryGroupBox.Visible = false;
+            // 
+            // AverageLoanLengthTextBox
+            // 
+            this.AverageLoanLengthTextBox.Location = new System.Drawing.Point(302, 212);
+            this.AverageLoanLengthTextBox.Name = "AverageLoanLengthTextBox";
+            this.AverageLoanLengthTextBox.Size = new System.Drawing.Size(150, 34);
+            this.AverageLoanLengthTextBox.TabIndex = 7;
+            this.AverageLoanLengthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // AverageLoanTextBox
+            // 
+            this.AverageLoanTextBox.Location = new System.Drawing.Point(302, 162);
+            this.AverageLoanTextBox.Name = "AverageLoanTextBox";
+            this.AverageLoanTextBox.Size = new System.Drawing.Size(150, 34);
+            this.AverageLoanTextBox.TabIndex = 6;
+            this.AverageLoanTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // InterestOverallTextBox
+            // 
+            this.InterestOverallTextBox.Location = new System.Drawing.Point(302, 112);
+            this.InterestOverallTextBox.Name = "InterestOverallTextBox";
+            this.InterestOverallTextBox.Size = new System.Drawing.Size(150, 34);
+            this.InterestOverallTextBox.TabIndex = 5;
+            this.InterestOverallTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TotalIncomeTextBox
+            // 
+            this.TotalIncomeTextBox.Location = new System.Drawing.Point(302, 62);
+            this.TotalIncomeTextBox.Name = "TotalIncomeTextBox";
+            this.TotalIncomeTextBox.Size = new System.Drawing.Size(150, 34);
+            this.TotalIncomeTextBox.TabIndex = 4;
+            this.TotalIncomeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // AverageLengthLabel
+            // 
+            this.AverageLengthLabel.AutoSize = true;
+            this.AverageLengthLabel.Location = new System.Drawing.Point(30, 212);
+            this.AverageLengthLabel.Name = "AverageLengthLabel";
+            this.AverageLengthLabel.Size = new System.Drawing.Size(217, 28);
+            this.AverageLengthLabel.TabIndex = 3;
+            this.AverageLengthLabel.Text = "Average Loan Length:";
+            // 
+            // AverageLoanLabel
+            // 
+            this.AverageLoanLabel.AutoSize = true;
+            this.AverageLoanLabel.Location = new System.Drawing.Point(30, 162);
+            this.AverageLoanLabel.Name = "AverageLoanLabel";
+            this.AverageLoanLabel.Size = new System.Drawing.Size(199, 28);
+            this.AverageLoanLabel.TabIndex = 2;
+            this.AverageLoanLabel.Text = "Average Loan Total:";
+            // 
+            // TotalInterestLabel
+            // 
+            this.TotalInterestLabel.AutoSize = true;
+            this.TotalInterestLabel.Location = new System.Drawing.Point(30, 112);
+            this.TotalInterestLabel.Name = "TotalInterestLabel";
+            this.TotalInterestLabel.Size = new System.Drawing.Size(143, 28);
+            this.TotalInterestLabel.TabIndex = 1;
+            this.TotalInterestLabel.Text = "Total Interest:";
+            // 
+            // OverallLabel
+            // 
+            this.OverallLabel.AutoSize = true;
+            this.OverallLabel.Location = new System.Drawing.Point(30, 62);
+            this.OverallLabel.Name = "OverallLabel";
+            this.OverallLabel.Size = new System.Drawing.Size(139, 28);
+            this.OverallLabel.TabIndex = 0;
+            this.OverallLabel.Text = "Total Income:";
+            // 
             // ProceedGroupBox
             // 
             this.ProceedGroupBox.BackColor = System.Drawing.SystemColors.Window;
@@ -762,9 +852,9 @@
             this.ProceedGroupBox.Controls.Add(this.PostcodeLabel);
             this.ProceedGroupBox.Controls.Add(this.NameLabel);
             this.ProceedGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ProceedGroupBox.Location = new System.Drawing.Point(1149, 231);
+            this.ProceedGroupBox.Location = new System.Drawing.Point(1138, 196);
             this.ProceedGroupBox.Name = "ProceedGroupBox";
-            this.ProceedGroupBox.Size = new System.Drawing.Size(481, 301);
+            this.ProceedGroupBox.Size = new System.Drawing.Size(430, 301);
             this.ProceedGroupBox.TabIndex = 6;
             this.ProceedGroupBox.TabStop = false;
             this.ProceedGroupBox.Text = "Client Details";
@@ -886,105 +976,6 @@
             this.SubmitToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.SubmitToolTip.ToolTipTitle = "Info";
             // 
-            // CompanyLogoPictureBox
-            // 
-            this.CompanyLogoPictureBox.BackColor = System.Drawing.SystemColors.Window;
-            this.CompanyLogoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("CompanyLogoPictureBox.Image")));
-            this.CompanyLogoPictureBox.Location = new System.Drawing.Point(541, 754);
-            this.CompanyLogoPictureBox.Name = "CompanyLogoPictureBox";
-            this.CompanyLogoPictureBox.Size = new System.Drawing.Size(491, 137);
-            this.CompanyLogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.CompanyLogoPictureBox.TabIndex = 7;
-            this.CompanyLogoPictureBox.TabStop = false;
-            // 
-            // SummaryGroupBox
-            // 
-            this.SummaryGroupBox.BackColor = System.Drawing.SystemColors.Window;
-            this.SummaryGroupBox.Controls.Add(this.AverageLoanLengthTextBox);
-            this.SummaryGroupBox.Controls.Add(this.AverageLoanTextBox);
-            this.SummaryGroupBox.Controls.Add(this.InterestOverallTextBox);
-            this.SummaryGroupBox.Controls.Add(this.TotalIncomeTextBox);
-            this.SummaryGroupBox.Controls.Add(this.AverageLengthLabel);
-            this.SummaryGroupBox.Controls.Add(this.AverageLoanLabel);
-            this.SummaryGroupBox.Controls.Add(this.TotalInterestLabel);
-            this.SummaryGroupBox.Controls.Add(this.OverallLabel);
-            this.SummaryGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SummaryGroupBox.Location = new System.Drawing.Point(12, 717);
-            this.SummaryGroupBox.Name = "SummaryGroupBox";
-            this.SummaryGroupBox.Size = new System.Drawing.Size(514, 321);
-            this.SummaryGroupBox.TabIndex = 8;
-            this.SummaryGroupBox.TabStop = false;
-            this.SummaryGroupBox.Text = "Company Summary Details";
-            this.SummaryGroupBox.Visible = false;
-            // 
-            // AverageLoanLengthTextBox
-            // 
-            this.AverageLoanLengthTextBox.Location = new System.Drawing.Point(302, 212);
-            this.AverageLoanLengthTextBox.Name = "AverageLoanLengthTextBox";
-            this.AverageLoanLengthTextBox.Size = new System.Drawing.Size(150, 34);
-            this.AverageLoanLengthTextBox.TabIndex = 7;
-            this.AverageLoanLengthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // AverageLoanTextBox
-            // 
-            this.AverageLoanTextBox.Location = new System.Drawing.Point(302, 162);
-            this.AverageLoanTextBox.Name = "AverageLoanTextBox";
-            this.AverageLoanTextBox.Size = new System.Drawing.Size(150, 34);
-            this.AverageLoanTextBox.TabIndex = 6;
-            this.AverageLoanTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // InterestOverallTextBox
-            // 
-            this.InterestOverallTextBox.Location = new System.Drawing.Point(302, 112);
-            this.InterestOverallTextBox.Name = "InterestOverallTextBox";
-            this.InterestOverallTextBox.Size = new System.Drawing.Size(150, 34);
-            this.InterestOverallTextBox.TabIndex = 5;
-            this.InterestOverallTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // TotalIncomeTextBox
-            // 
-            this.TotalIncomeTextBox.Location = new System.Drawing.Point(302, 62);
-            this.TotalIncomeTextBox.Name = "TotalIncomeTextBox";
-            this.TotalIncomeTextBox.Size = new System.Drawing.Size(150, 34);
-            this.TotalIncomeTextBox.TabIndex = 4;
-            this.TotalIncomeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // AverageLengthLabel
-            // 
-            this.AverageLengthLabel.AutoSize = true;
-            this.AverageLengthLabel.Location = new System.Drawing.Point(30, 212);
-            this.AverageLengthLabel.Name = "AverageLengthLabel";
-            this.AverageLengthLabel.Size = new System.Drawing.Size(217, 28);
-            this.AverageLengthLabel.TabIndex = 3;
-            this.AverageLengthLabel.Text = "Average Loan Length:";
-            // 
-            // AverageLoanLabel
-            // 
-            this.AverageLoanLabel.AutoSize = true;
-            this.AverageLoanLabel.Location = new System.Drawing.Point(30, 162);
-            this.AverageLoanLabel.Name = "AverageLoanLabel";
-            this.AverageLoanLabel.Size = new System.Drawing.Size(199, 28);
-            this.AverageLoanLabel.TabIndex = 2;
-            this.AverageLoanLabel.Text = "Average Loan Total:";
-            // 
-            // TotalInterestLabel
-            // 
-            this.TotalInterestLabel.AutoSize = true;
-            this.TotalInterestLabel.Location = new System.Drawing.Point(30, 112);
-            this.TotalInterestLabel.Name = "TotalInterestLabel";
-            this.TotalInterestLabel.Size = new System.Drawing.Size(143, 28);
-            this.TotalInterestLabel.TabIndex = 1;
-            this.TotalInterestLabel.Text = "Total Interest:";
-            // 
-            // OverallLabel
-            // 
-            this.OverallLabel.AutoSize = true;
-            this.OverallLabel.Location = new System.Drawing.Point(30, 62);
-            this.OverallLabel.Name = "OverallLabel";
-            this.OverallLabel.Size = new System.Drawing.Size(139, 28);
-            this.OverallLabel.TabIndex = 0;
-            this.OverallLabel.Text = "Total Income:";
-            // 
             // SearchToolTip
             // 
             this.SearchToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
@@ -1000,7 +991,7 @@
             this.SearchGroupBox.Controls.Add(this.EmailSearchLabel);
             this.SearchGroupBox.Controls.Add(this.SearchIDLabel);
             this.SearchGroupBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SearchGroupBox.Location = new System.Drawing.Point(938, 538);
+            this.SearchGroupBox.Location = new System.Drawing.Point(876, 509);
             this.SearchGroupBox.Name = "SearchGroupBox";
             this.SearchGroupBox.Size = new System.Drawing.Size(692, 177);
             this.SearchGroupBox.TabIndex = 9;
@@ -1016,7 +1007,8 @@
             this.SearchEmailButton.Name = "SearchEmailButton";
             this.SearchEmailButton.Size = new System.Drawing.Size(178, 34);
             this.SearchEmailButton.TabIndex = 5;
-            this.SearchEmailButton.Text = "Search Email";
+            this.SearchEmailButton.Text = "Search E&mail";
+            this.SearchEmailToolTip.SetToolTip(this.SearchEmailButton, "Search Previous Transaction by Email.");
             this.SearchEmailButton.UseVisualStyleBackColor = false;
             this.SearchEmailButton.Click += new System.EventHandler(this.SearchEmailButton_Click);
             // 
@@ -1028,7 +1020,8 @@
             this.SearchIDButton.Name = "SearchIDButton";
             this.SearchIDButton.Size = new System.Drawing.Size(178, 34);
             this.SearchIDButton.TabIndex = 4;
-            this.SearchIDButton.Text = "Search ID";
+            this.SearchIDButton.Text = "Search &ID";
+            this.SearchIDToolTip.SetToolTip(this.SearchIDButton, "Search Previous Transaction By ID.");
             this.SearchIDButton.UseVisualStyleBackColor = false;
             this.SearchIDButton.Click += new System.EventHandler(this.SearchIDButton_Click);
             // 
@@ -1071,21 +1064,43 @@
             this.SearchListBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SearchListBox.FormattingEnabled = true;
             this.SearchListBox.ItemHeight = 28;
-            this.SearchListBox.Location = new System.Drawing.Point(1058, 742);
+            this.SearchListBox.Location = new System.Drawing.Point(606, 711);
             this.SearchListBox.Name = "SearchListBox";
             this.SearchListBox.Size = new System.Drawing.Size(572, 284);
             this.SearchListBox.TabIndex = 10;
             this.SearchListBox.Visible = false;
+            // 
+            // LogoPictureBox
+            // 
+            this.LogoPictureBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LogoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("LogoPictureBox.Image")));
+            this.LogoPictureBox.Location = new System.Drawing.Point(1206, 711);
+            this.LogoPictureBox.Name = "LogoPictureBox";
+            this.LogoPictureBox.Size = new System.Drawing.Size(362, 284);
+            this.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LogoPictureBox.TabIndex = 11;
+            this.LogoPictureBox.TabStop = false;
+            this.LogoPictureBox.Visible = false;
+            // 
+            // SearchIDToolTip
+            // 
+            this.SearchIDToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.SearchIDToolTip.ToolTipTitle = "Info";
+            // 
+            // SearchEmailToolTip
+            // 
+            this.SearchEmailToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.SearchEmailToolTip.ToolTipTitle = "Info";
             // 
             // Mad4RoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1652, 1050);
+            this.Controls.Add(this.LogoPictureBox);
             this.Controls.Add(this.SearchListBox);
             this.Controls.Add(this.SearchGroupBox);
             this.Controls.Add(this.SummaryGroupBox);
-            this.Controls.Add(this.CompanyLogoPictureBox);
             this.Controls.Add(this.ProceedGroupBox);
             this.Controls.Add(this.DisplayGroupBox);
             this.Controls.Add(this.LoanAmountGroupBox);
@@ -1104,13 +1119,13 @@
             this.LoanAmountGroupBox.PerformLayout();
             this.DisplayGroupBox.ResumeLayout(false);
             this.DisplayGroupBox.PerformLayout();
-            this.ProceedGroupBox.ResumeLayout(false);
-            this.ProceedGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CompanyLogoPictureBox)).EndInit();
             this.SummaryGroupBox.ResumeLayout(false);
             this.SummaryGroupBox.PerformLayout();
+            this.ProceedGroupBox.ResumeLayout(false);
+            this.ProceedGroupBox.PerformLayout();
             this.SearchGroupBox.ResumeLayout(false);
             this.SearchGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1191,7 +1206,6 @@
         private Label TotalInterest7YearLabel;
         private Label Monthly7YearLabel;
         private Label InterestRate7YearLabel;
-        private PictureBox CompanyLogoPictureBox;
         private GroupBox SummaryGroupBox;
         private Label AverageLengthLabel;
         private Label AverageLoanLabel;
@@ -1211,5 +1225,8 @@
         private Button SearchEmailButton;
         private Button SearchIDButton;
         private ListBox SearchListBox;
+        private PictureBox LogoPictureBox;
+        private ToolTip SearchEmailToolTip;
+        private ToolTip SearchIDToolTip;
     }
 }

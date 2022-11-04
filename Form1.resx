@@ -78,11 +78,17 @@
   <metadata name="SubmitToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>903, 17</value>
   </metadata>
+  <metadata name="SearchEmailToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>212, 49</value>
+  </metadata>
+  <metadata name="SearchIDToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 49</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="CompanyLogoPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="LogoPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAScAAABkCAYAAADE4fY3AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAGY9JREFUeF7tnO+vbNVZx/kXCNQ3yq+CjbVYoi9qICkotF7aQGlJ0WrRREi0wgta
+        wAAADsABataJCQAAGY9JREFUeF7tnO+vbNVZx/kXCNQ3yq+CjbVYoi9qICkotF7aQGlJ0WrRREi0wgta
         UxshhaZAlJRf2jTcAolGm3svJipR7jUxTZVC648oLZZIddOq+EqrL+pfMK7POvPMWfuZZ62919pr9sye
         2S8+ec539tprZs7Z3+951pp9znnfe32x8Hw7owpa7zL/EtEl1fE/y6r1JqrQpZP8a0T3qYLWU6KJ6J71
         f0Pt8HqkKnTpQbwR0SVV0DqT87zhDgFnrCF4Y04VTHXoOKPk4I11KBjBsAv4zum/6YAS1eMM7jVGz61T
