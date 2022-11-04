@@ -177,9 +177,11 @@
             this.PasswordTextBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PasswordTextBox.Location = new System.Drawing.Point(377, 58);
             this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(207, 34);
             this.PasswordTextBox.TabIndex = 1;
             this.PasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // PasswordLabelMessage
             // 

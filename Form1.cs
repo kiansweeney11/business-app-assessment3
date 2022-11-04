@@ -243,6 +243,7 @@ namespace Mad4Road
             }
         }
 
+        //Method 1 - EMI Values
         private decimal CalculateLoanTotal(int Term, decimal Loan, decimal IntRate)
         {
             // EMI calculator
@@ -470,7 +471,7 @@ namespace Mad4Road
                 MessageBox.Show("Invalid File. Does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        // METHOD 2 - returing method
         // we need to count total lines in files to ensure we generate a unique
         // number everytime. requirements mean we cannot use readlines or built-in
         // functions like count so we have to manually count each line.
@@ -498,6 +499,7 @@ namespace Mad4Road
             return TotalLines;
         }
 
+        // method3 - generate ID - non value returning
         private void TransactionIDGenerator()
         {
             int FileLines = CalculateFileLines();
@@ -532,11 +534,12 @@ namespace Mad4Road
             }
         }
 
+        // method 4 - check numbers only in string for telephone number
         private bool IsDigitsOnly(string str)
         {
-            foreach(char c in str)
+            for(int i = 0; i <= str.Length; i++)
             {
-                if(c < '0' || c > '9')
+                if (str[i] < '0' || str[i] > '9')
                     return false;
             }
 
