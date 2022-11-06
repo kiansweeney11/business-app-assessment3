@@ -597,6 +597,7 @@ namespace Mad4Road
                         SearchListBox.Items.Add("Interest Rate Applied is: " + OutputFile.ReadLine() + "%");
                         SearchListBox.Items.Add("Total Loan Cost is: €" + OutputFile.ReadLine());
                         SearchListBox.Visible = true;
+                        // break as one ID per transaction - unique
                         break;
                     }
                     else
@@ -604,6 +605,7 @@ namespace Mad4Road
                         LineRead = OutputFile.ReadLine();
                     }
                 }
+                OutputFile.Close();
                 if(LineRead == null)
                 {
                     MessageBox.Show("ID inputted not on file", "Info",
@@ -650,7 +652,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Information);
                         SearchListBox.Items.Add("Interest Rate Applied is: " + OutputFile.ReadLine() + "%");
                         SearchListBox.Items.Add("Total Loan Cost is: €" + OutputFile.ReadLine());
                         SearchListBox.Visible = true;
-                        break;
+                        // dont break this time - might be multiple transactions for an email
+                        LineRead = OutputFile.ReadLine();
                     }
                     else
                     {
@@ -658,7 +661,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LineRead = OutputFile.ReadLine();
                     }
                 }
-                if (LineRead == null)
+                OutputFile.Close();
+                if (LineRead == null && SearchListBox.Items.Count == 0)
                 {
                     MessageBox.Show("Email inputted not on file", "Info",
 MessageBoxButtons.OK, MessageBoxIcon.Information);

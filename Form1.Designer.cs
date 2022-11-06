@@ -745,7 +745,7 @@
             // InterestLabelDisplay
             // 
             this.InterestLabelDisplay.AutoSize = true;
-            this.InterestLabelDisplay.Location = new System.Drawing.Point(6, 74);
+            this.InterestLabelDisplay.Location = new System.Drawing.Point(6, 77);
             this.InterestLabelDisplay.Name = "InterestLabelDisplay";
             this.InterestLabelDisplay.Size = new System.Drawing.Size(218, 28);
             this.InterestLabelDisplay.TabIndex = 0;
